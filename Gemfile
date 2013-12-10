@@ -36,6 +36,11 @@ gem 'rails_12factor', group: :production
 gem 'paperclip'
 gem 'aws-sdk'
 
+gem 'bootstrap-sass'
+group :development do
+  gem 'rails_layout'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
