@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  description: MyText
+  active: false
+  paypal_identifier: MyString
+
+two:
+  name: MyString
+  description: MyText
+  active: false
+  paypal_identifier: MyString
