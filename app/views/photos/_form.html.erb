@@ -32,7 +32,7 @@
 				
 				<div class="form-group">
 				    <%= f.label :gallery_id %>
-				    <%= f.collection_select :gallery_id, Gallery.all, :id,:name_with_collection, :class => 'form-control' %>
+				    <%= f.collection_select :gallery_id, Gallery.all, :id,:name_with_collection, {}, :class => 'form-control' %>
 				</div>		
 				
 				<% if @photo.photo_file.blank? %>

@@ -1,28 +1,33 @@
-<%= form_for(@gallery) do |f| %>
-  <% if @gallery.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@gallery.errors.count, "error") %> prohibited this gallery from being saved:</h2>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-5  column">
 
-      <ul>
-      <% @gallery.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :collection_id %><br>
-    
-    <%= f.collection_select :collection_id, Collection.all, :id, :name %>
-    
-    
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+			<%= form_for(@gallery) do |f| %>
+			  <% if @gallery.errors.any? %>
+			    <div id="error_explanation">
+			      <h2><%= pluralize(@gallery.errors.count, "error") %> prohibited this gallery from being saved:</h2>
+			
+			      <ul>
+			      <% @gallery.errors.full_messages.each do |msg| %>
+			        <li><%= msg %></li>
+			      <% end %>
+			      </ul>
+			    </div>
+			  <% end %>
+			
+			  <div class="form-group">
+			    <%= f.label :name %>
+			    <%= f.text_field :name, :class => 'form-control' %>
+			  </div>
+			  <div class="form-group">
+			    <%= f.label :collection_id, "Belongs to Collection" %>
+			    <%= f.collection_select :collection_id, Collection.all, :id, :name,{},:class => 'form-control' %>
+			  </div>
+			  <div class="form-group">
+			   	<button type="submit" class="btn btn-default">Submit</button>
+			  </div>
+			<% end %>
+		</div>
+	</div>
+</div>

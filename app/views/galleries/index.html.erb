@@ -1,6 +1,6 @@
 <h1>Listing galleries</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -15,7 +15,7 @@
     <% @galleries.each do |gallery| %>
       <tr>
         <td><%= gallery.name %></td>
-        <td><%= gallery.collection_id %></td>
+        <td><%= gallery.collection.name %></td>
         <td><%= link_to 'Show', gallery %></td>
         <td><%= link_to 'Edit', edit_gallery_path(gallery) %></td>
         <td><%= link_to 'Destroy', gallery, method: :delete, data: { confirm: 'Are you sure?' } %></td>
