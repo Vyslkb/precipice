@@ -36,7 +36,7 @@ gem 'rails_12factor', group: :production
 gem 'paperclip'
 gem 'aws-sdk'
 
-gem 'bootstrap-sass'
+
 group :development do
   gem 'rails_layout'
 end

@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<ol class="breadcrumb">
+	<li>
+		<%= link_to "Home", root_url %>
+	</li>
+  <li>
+  	<%= link_to @gallery.collection.name, @gallery.collection %>
+  </li>
+  <li class="active"><%= @gallery.name %></li>
+</ol>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= link_to 'Edit Gallery Settings', edit_gallery_path(@gallery) %> |
+	<%= link_to 'Upload New Photo', new_photo_path %> 
+  </div>
+</div>
+
+
+
+<div class="container">
+				<div class="row">
+				<% @gallery.photos.limit(5).each do |photo|%>
+					
+						<div class="col-md-2">
+							<div class="thumbnail">
+						    	<%= image_tag photo.photo_file.url(:medium), :class => "img-thumbnail" %>
+						      	<div class="caption">
+						        	<span><%= photo.name %></span>
+						        	<p>
+						        		<%= link_to "edit", edit_photo_path(photo)%>
+						        	</p>
+						        	
+						      	</div>
+						    </div>
+					 	</div>
+					
+				<%end%>
+				</div>
+</div>

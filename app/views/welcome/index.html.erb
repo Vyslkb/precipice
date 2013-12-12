@@ -1,8 +1,54 @@
-<h2>What is up Dizzle Lips?</h2>
-<p>
-  The time is now: <%= Time.now %>
-</p>
+<h3>This is an Admin page for organizing Photos</h3>
 
-<div>
-	<%= link_to "Index of photos", photos_path %>
-</div>	
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<h3 class="text-default">
+				Photo Collections
+			</h3>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-11 col-md-offset-1 column">
+	 		<div class="list-group">
+			 	<%= link_to "Create a new Collection", new_collection_path, class:"list-group-item" %>
+			</div>
+		</div>
+	 </div>
+		
+	<div class="row">
+		<div class="col-md-11 col-md-offset-1 column">
+			<% Collection.all.each do |collection| %>
+				<div class="panel panel-default">
+			  	<!-- Default panel contents -->
+				  	<div class="panel-heading">
+				  		<%= link_to collection.name, collection %>
+				  	</div>
+				  	<div class="panel-body">
+				    	<!-- List group -->
+						<div class="list-group">
+							<% collection.galleries.each do |gallery|%>		
+								<%= link_to(gallery, {:class => "list-group-item"}) do %>
+								<%= gallery.name%>
+									<div class="container">
+										<% gallery.photos.each do |photo|%>
+											<%= image_tag photo.photo_file.url(:thumb), class: "img-thumbnail" %>
+										<%end%>
+									</div> 
+								<%end%>
+							<%end%>
+						
+			 				<%= link_to "Create a new Gallery", new_gallery_path, class:"list-group-item" %>
+			
+						</div>
+					</div>
+				</div>
+			<%end%>
+		</div>
+	</div>
+	
+</div>
+
+

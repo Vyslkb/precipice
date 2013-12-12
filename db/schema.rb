@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131210074535) do
+ActiveRecord::Schema.define(version: 20131211144032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "collections", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "galleries", force: true do |t|
+    t.string   "name"
+    t.integer  "collection_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "photos", force: true do |t|
     t.string   "name"
@@ -27,6 +40,7 @@ ActiveRecord::Schema.define(version: 20131210074535) do
     t.string   "photo_file_content_type"
     t.integer  "photo_file_file_size"
     t.datetime "photo_file_updated_at"
+    t.integer  "gallery_id"
   end
 
 end

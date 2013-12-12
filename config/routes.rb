@@ -1,5 +1,9 @@
 Precipice::Application.routes.draw do
   
+  resources :galleries
+
+  resources :collections
+
   resources :photos
 
   root 'welcome#index'
