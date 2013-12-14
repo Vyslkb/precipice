@@ -58,7 +58,7 @@ class GalleriesController < ApplicationController
   def destroy
     @gallery.destroy
     respond_to do |format|
-      format.html { redirect_to galleries_url }
+      format.html { redirect_to collections_url }
       format.json { head :no_content }
     end
   end

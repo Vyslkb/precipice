@@ -1,54 +1,37 @@
-<h3>This is an Admin page for organizing Photos</h3>
 
 
 <div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<h3 class="text-default">
-				Photo Collections
-			</h3>
-		</div>
-	</div>
+	<h4>This is a welcome page.  Go to the Collections link to manage photos</h4>
 	
-	<div class="row">
-		<div class="col-md-3 column">
-	 		<div class="list-group">
-			 	<%= link_to "Create a new Collection", new_collection_path, class:"list-group-item" %>
-			</div>
-		</div>
-	 </div>
-		
-	<div class="row">
-		<div class="col-md-11  column">
-			<% Collection.all.each do |collection| %>
-				<div class="panel panel-default">
-			  	<!-- Default panel contents -->
-				  	<div class="panel-heading">
-				  		<%= link_to collection.name, collection %>
-				  	</div>
-				  	<div class="panel-body">
-				    	<!-- List group -->
-						<div class="list-group">
-							<% collection.galleries.each do |gallery|%>		
-								<%= link_to(gallery, {:class => "list-group-item"}) do %>
-								<%= gallery.name%>
-									<div class="container">
-										<% gallery.photos.each do |photo|%>
-											<%= image_tag photo.photo_file.url(:thumb), class: "img-thumbnail" %>
-										<%end%>
-									</div> 
-								<%end%>
-							<%end%>
-						
-			 				<%= link_to "Create a new Gallery", new_gallery_path, class:"list-group-item" %>
-			
-						</div>
-					</div>
-				</div>
-			<%end%>
-		</div>
-	</div>
 	
+	<div id="carousel-example-generic" class="carousel slide">
+  <!-- Indicators -->
+	  <ol class="carousel-indicators">
+	    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+	    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+	    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+	  </ol>
+	
+	  <!-- Wrapper for slides -->
+	  <div class="carousel-inner">
+	  
+    	<% Photo.all.each_with_index do |photo, index|%>
+      	<div class="item <%= "active" if index == 0%>"><!-- class of active since it's the first item -->
+      		  <%= image_tag photo.photo_file.url() %>
+		      <div class="carousel-caption">
+		        <p>Caption text here</p>
+		      </div>
+    	</div>
+    	<%end%>  	
+	  	
+	  </div>
+	
+	  <!-- Controls -->
+		<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+			<span class="icon-prev"></span>
+		</a>
+	  	<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+	    	<span class="icon-next"></span>
+		</a>
+	</div>
 </div>
-
-

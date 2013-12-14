@@ -42,7 +42,13 @@ class PhotosController < ApplicationController
   def update
     respond_to do |format|
       if @photo.update(photo_params)
-        format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
+        
+        if URI(request.referrer).path == "/photos/#{@photo.id}/edit" 
+          format.html { redirect_to photos_url, notice: 'Photo was successfully updated.' }
+        else
+          format.html { redirect_to request.referrer, notice: 'Photo was successfully updated.' }
+        end
+       
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

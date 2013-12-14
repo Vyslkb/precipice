@@ -12,7 +12,7 @@
 
 <p>
   <strong>Gallery:</strong>
-  <%= @photo.gallery.name %>
+  <%= @photo.try(:gallery).try(:name) %>
 </p>
 
 <p>

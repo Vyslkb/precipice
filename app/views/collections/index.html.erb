@@ -1,27 +1,77 @@
-<h1>Listing collections</h1>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<h3 class="text-default">
+				Photo Collections
+			</h3>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-3 column">
+	 		<div class="list-group">
+			 	<%= link_to "Create a new Collection", new_collection_path, class:"list-group-item" %>
+			</div>
+		</div>
+	 </div>
+		
+	
+	<% Collection.all.each do |collection| %>
+		<div class="row">
+			<div class="col-md-11  column">
+				<div class="panel panel-default">
+				  	<div class="panel-heading">
+				  		<strong><%= link_to collection.name, collection %></strong>
+				  		- <%= link_to 'edit', edit_collection_path(collection), class: "text-muted" %>
+				  		- <%= link_to 'delete', collection, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-muted" %>
+				  	</div>
+					
+					<div class="panel-body">
+				    	<!-- List group -->
+						<div class="list-group">
+							<% collection.galleries.each do |gallery|%>		
+								<%= link_to(gallery, {:class => "list-group-item"}) do %>
+									<%= gallery.name%>
+									<div class="row">
+										<div class="col-md-10 col-md-offset-1">
+											<% gallery.photos.each do |photo|%>
+												<%= image_tag photo.photo_file.url(:thumb), class: "img-thumbnail" %>
+											<%end%>
+											
+											
+											<%if gallery.photos.blank?%>
+												<span class="text-muted">No photos have been uploaded to this gallery</span>
+											<%end%>
+										</div>
+									</div>
+								<%end%>							
+							<%end%>
+						</div>
+						
+						<div class="row">
+							<div class="col-md-11">
+								<%= form_for(collection, html:{role: "form", class: "form-horizontal"}) do |f| %>
+									<%=f.fields_for :galleries, collection.galleries.new do |gallery_form| %>
+										<div class="form-group">
+											<%= gallery_form.label :name, class: "hidden" %>
+											<div class="col-md-3">
+												<%= gallery_form.text_field :name, :class => 'form-control input-sm' %>	
+											</div>
+											<div class="7">
+												<button type="submit" class="btn btn-default btn-sm">Create a new Gallery</button>
+											</div>
+										</div>
+									<%end%>
+								<%end%>		
+							</div>	
+						</div>
+						
+					</div>
+				</div>	  	
+			</div>
+		</div>
+	<%end%>
+	
+</div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @collections.each do |collection| %>
-      <tr>
-        <td><%= collection.name %></td>
-        <td><%= link_to 'Show', collection %></td>
-        <td><%= link_to 'Edit', edit_collection_path(collection) %></td>
-        <td><%= link_to 'Destroy', collection, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Collection', new_collection_path %>

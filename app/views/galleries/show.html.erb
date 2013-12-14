@@ -13,7 +13,7 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <%= link_to 'Edit Gallery Settings', edit_gallery_path(@gallery) %> |
-	<%= link_to 'Upload New Photo', new_photo_path %> 
+	<%= link_to 'Delete this gallery', @gallery, method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
 </div>
 
@@ -73,9 +73,18 @@
 				    	<%= image_tag photo.photo_file.url(:medium), :class => "img-thumbnail" %>
 				      	<div class="caption">
 				        	<span><%= photo.name %></span>
-				        	<p>
+				        	<div>
 				        		<%= link_to "edit", edit_photo_path(photo)%>
-				        	</p>
+				        		
+				        		<%= form_for(photo) do |f| %>
+				        			 <%= f.hidden_field :gallery_id, value: nil %>
+				        			<button type="submit" class="btn btn-default btn-sm">Remove</button>
+				        		<%end%>
+				        	</div>
+				        		
+				        		
+				        		
+				        	
 				      	</div>
 				    </div>
 			 	</div>
