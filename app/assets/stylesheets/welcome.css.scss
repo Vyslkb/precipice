@@ -2,24 +2,26 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 /* Fade transition for carousel items */
-.carousel .item {
-    left: 0 !important;
-      -webkit-transition: opacity 1s; /*adjust timing here */
-         -moz-transition: opacity 1s;
-           -o-transition: opacity 1s;
-              transition: opacity 1s;
+.carousel-fade .carousel-inner .item {
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  transition-property: opacity;
 }
-.carousel-control {
-    background-image: none !important; /* remove background gradients on controls */
+.carousel-fade .carousel-inner .active {
+  opacity: 1;
 }
-/* Fade controls with items */
-.next.left,
-.prev.right {
-    opacity: 1;
-    z-index: 1;
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
 }
-.active.left,
-.active.right {
-    opacity: 0;
-    z-index: 2;
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {
+  opacity: 1;
+}
+.carousel-fade .carousel-control {
+  z-index: 2;
 }

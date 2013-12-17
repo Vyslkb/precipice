@@ -8,7 +8,7 @@ class Gallery < ActiveRecord::Base
   
   
   ### Nested attributes
-  accepts_nested_attributes_for :photos, reject_if: proc { |attributes| attributes['photo_file'].blank? }
+  accepts_nested_attributes_for :photos #, reject_if: proc { |attributes| attributes['photo_file'].blank? }
   
   
   def name_with_collection

@@ -1,0 +1,6 @@
+<% @photos.all.each do |photo|%>
+
+	<%= image_tag photo.photo_file.url(:medium) %>
+
+
+<%end%>

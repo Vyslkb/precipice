@@ -18,77 +18,46 @@
 </div>
 
 <div class="container">
-	<div class="row">
-		<div class="panel panel-default col-md-4">
-			<div class="panel-body">
-		  		<%= form_for(@gallery) do |f| %>
-					<% if @gallery.errors.any? %>
-					    <div id="error_explanation">
-					      <h2><%= pluralize(@gallery.errors.count, "error") %> prohibited this gallery from being saved:</h2>
-					
-					      <ul>
-					      <% @gallery.errors.full_messages.each do |msg| %>
-					        <li><%= msg %></li>
-					      <% end %>
-					      </ul>
-					    </div>
-					<% end %>
-					
-					<div class="form-group">
-					   	<%= f.fields_for :photos,@new_photo do |photo_form|%>
-					   		<div class="form-group">
-								 Upload New Photo to Gallery:
-								 <%= photo_form.file_field :photo_file %>
-							</div>
-					   		
-					   		<div class="form-group">
-								<%= photo_form.label :name %>
-								<%= photo_form.text_field :name, :class => 'form-control' %>		 
-							</div>
-							<div class="form-group">
-								<%= photo_form.label :description %>
-			    				<%= photo_form.text_area :description, :class => 'form-control' %>
-							</div>
-								
-							<div class="form-group">
-							    <%= photo_form.label :paypal_identifier %>
-							    <%= photo_form.text_field :paypal_identifier, :class => 'form-control' %>
-							</div>
-							
-							<button type="submit" class="btn btn-default">Upload Photo</button>
-					   	<%end%>
-					</div>
-					
-				<% end %>
-			
-		  </div>
-		</div>
-	</div>
-
-	<div class="row">
-		<% @gallery.photos.each do |photo|%>
-			<% unless photo == @new_photo %>
-				<div class="col-md-2">
-					<div class="thumbnail">
-				    	<%= image_tag photo.photo_file.url(:medium), :class => "img-thumbnail" %>
-				      	<div class="caption">
-				        	<span><%= photo.name %></span>
-				        	<div>
-				        		<%= link_to "edit", edit_photo_path(photo)%>
-				        		
-				        		<%= form_for(photo) do |f| %>
-				        			 <%= f.hidden_field :gallery_id, value: nil %>
-				        			<button type="submit" class="btn btn-default btn-sm">Remove</button>
-				        		<%end%>
-				        	</div>
-				        		
-				        		
-				        		
-				        	
-				      	</div>
-				    </div>
-			 	</div>
-			<%end%>
-		<%end%>
+	<%= render "galleries/show/file_upload"%>
+	<div class="row top-buffer" id="thumbnail_grid">
+		<%= render "galleries/show/thumbnails"%>
 	</div>
 </div>
+
+<div id="blueimp-gallery" class="blueimp-gallery" data-use-bootstrap-modal="false">
+    <!-- The container for the modal slides -->
+    <div class="slides"></div>
+    <!-- Controls for the borderless lightbox -->
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+    <!-- The modal dialog, which will be used to wrap the lightbox content -->
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">SlideShow!!!!</h4>
+                </div>
+                <div class="modal-body next"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left prev">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                        Previous
+                    </button>
+                    <button type="button" class="btn btn-primary next">
+                        Next
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

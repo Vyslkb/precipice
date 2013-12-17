@@ -1,0 +1,34 @@
+
+<% @photos.each do |photo|%>
+	<% unless photo == @new_photo %>
+		
+		<div class="col-md-2" id="links">
+			<div class="thumbnail">
+		    	<%= link_to photo.photo_file.url(), {title: photo.name, data:{gallery: ""}} do %>
+		    		<%= image_tag photo.photo_file.url(:medium), :class => "img-thumbnail" %>
+		      	<%end%>
+		      	<div class="caption">
+		        	<span><%= photo.name %></span>
+		        	<div>				        		
+		        		<%= form_for(@gallery, remote: true) do |f| %>
+		        			 <%= f.fields_for :photos, photo do |photo_form|%>
+			        			 <%= photo_form.label :gallery_order, "Order", class: "small" %>
+			        			 <%= photo_form.number_field :gallery_order, in: 1..99 %>
+			        			 <br />
+			        			 <%= photo_form.check_box :slideshow_flag %>
+			        			 <%= photo_form.label :slideshow_flag, "Add to Slideshow", class: "small" %>
+			        			 <br />
+			        			 <%= photo_form.check_box :gallery_id, {}, nil, photo_form.object.gallery_id%>
+			        			 <%= photo_form.label :gallery_id, "Remove from gallery", class: "small"  %>
+			        			 
+			        			 <button type="submit" class="btn btn-default btn-sm">Update</button>
+		        			<%end%>
+		        			<%= hidden_field_tag :upate_thumbnails, true%>
+		        		<%end%>
+		        		<%= link_to "edit more properties", edit_photo_path(photo), class: "small text-muted"%>
+		        	</div>
+		      	</div>
+		    </div>
+	 	</div>
+	<%end%>
+<%end%>

@@ -72,6 +72,40 @@
 		</div>
 	<%end%>
 	
+	<div class="row">
+		<div class="col-md-11  column">
+			<div class="panel panel-default">
+			  	<div class="panel-heading">
+			  		<strong>Uncatgorized Photos</strong>
+			  	</div>
+				
+				<div class="panel-body">
+			    	<!-- List group -->
+					<div class="list-group">
+							<%= link_to(uncategorized_photos_path, {:class => "list-group-item"}) do %>
+								<div class="row">
+									<div class="col-md-10 col-md-offset-1">
+										<% Photo.uncategorized.each do |photo|%>
+											<%= image_tag photo.photo_file.url(:thumb), class: "img-thumbnail" %>
+										<%end%>
+									</div>
+								</div>
+							<%end%>							
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </div>
 
 

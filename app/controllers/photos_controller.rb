@@ -1,10 +1,19 @@
 class PhotosController < ApplicationController
-  before_action :set_photo, only: [:show, :edit, :update, :destroy]
+  before_action :set_photo, only: [:show, :edit, :update, :destroy, :show_full_size]
+  before_action :massage_gallery_order, only: :update
 
   # GET /photos
   # GET /photos.json
   def index
-    @photos = Photo.all
+    @photos = Photo.order_by_gallery
+  end
+  
+  def uncategorized
+    @photos = Photo.uncategorized
+  end
+  
+  def show_full_size
+    
   end
 
   # GET /photos/1
@@ -42,7 +51,6 @@ class PhotosController < ApplicationController
   def update
     respond_to do |format|
       if @photo.update(photo_params)
-        
         if URI(request.referrer).path == "/photos/#{@photo.id}/edit" 
           format.html { redirect_to photos_url, notice: 'Photo was successfully updated.' }
         else
@@ -75,6 +83,32 @@ class PhotosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def photo_params
-      params.require(:photo).permit(:name, :description, :gallery_id, :active, :paypal_identifier, :photo_file)
+      params.require(:photo).permit(:name, 
+                                    :description, 
+                                    :gallery_id, 
+                                    :active, 
+                                    :paypal_identifier, 
+                                    :photo_file,
+                                    :gallery_order,
+                                    :slideshow_flag)
     end
+    
+    def massage_gallery_order
+      if params[:photo][:gallery_order].present?
+        # If new position is lower than previous:
+        # Subtract 1 from gallery order to ensure it falls ahead of the photo it is meant to replace.
+        # If new position is higher than previous:  
+        # Leave be to ensure it is lower (base1 index will be higher than base 0)
+        # Gallery Controller will handle the re-order of the collection
+        if params[:photo][:gallery_order].to_i <= @photo.gallery_order        
+          params[:photo][:gallery_order] = params[:photo][:gallery_order].to_i - 1     
+        else
+          params[:photo][:gallery_order] = params[:photo][:gallery_order].to_i + 1 
+        end
+      end
+    end
+    
+    
+    
+    
 end

@@ -11,7 +11,10 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap.min
+//= require jquery.blueimp-gallery.min
+//= require bootstrap-image-gallery.min
+//= require turbolinks
 //= require_tree .

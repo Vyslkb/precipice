@@ -1,5 +1,5 @@
 class GalleriesController < ApplicationController
-  before_action :set_gallery, only: [:show, :edit, :update, :destroy]
+  before_action :set_gallery, only: [:show,:edit, :update, :destroy]
 
   # GET /galleries
   # GET /galleries.json
@@ -10,6 +10,7 @@ class GalleriesController < ApplicationController
   # GET /galleries/1
   # GET /galleries/1.json
   def show
+    set_gallery_order
     @new_photo = @gallery.photos.new
   end
 
@@ -46,6 +47,10 @@ class GalleriesController < ApplicationController
       if @gallery.update(gallery_params)
         format.html { redirect_to @gallery, notice: 'Gallery was successfully updated.' }
         format.json { head :no_content }
+        if params[:update_thumbnails]
+          set_gallery_order
+          format.js
+        end
       else
         format.html { render action: 'edit' }
         format.json { render json: @gallery.errors, status: :unprocessable_entity }
@@ -71,6 +76,27 @@ class GalleriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gallery_params
-      params.require(:gallery).permit(:name, :collection_id, photos_attributes: [:name, :description, :photo_file, :gallery_id])
+      params.require(:gallery).permit(:name, 
+                                      :collection_id, 
+                                      photos_attributes: [:id,
+                                                          :name, 
+                                                          :description, 
+                                                          :photo_file, 
+                                                          :gallery_id, 
+                                                          :gallery_order, 
+                                                          :slideshow_flag])
     end
+    
+    def set_gallery_order
+      @gallery.photos.order("gallery_order asc, updated_at desc").each_with_index do |photo, i|
+        base1_index = i + 1
+        if photo.gallery_order != base1_index 
+          photo.update_attribute :gallery_order, base1_index
+        end
+      end
+      
+      # reload photos in correct order
+      @photos = @gallery.photos.order('gallery_order')
+    end
+    
 end

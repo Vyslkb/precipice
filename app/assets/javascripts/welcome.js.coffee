@@ -3,4 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  $('.carousel').carousel()
+  $('.carousel').carousel
+    interval: 4000
+    pause: "false"

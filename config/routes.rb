@@ -4,7 +4,14 @@ Precipice::Application.routes.draw do
 
   resources :collections
 
-  resources :photos
+  resources :photos do
+    collection do
+      get "uncategorized"
+    end
+    member do
+      get "show_full_size"
+    end
+  end
 
   root 'welcome#index'
   

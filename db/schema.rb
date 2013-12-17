@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131211144032) do
+ActiveRecord::Schema.define(version: 20131216084145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 20131211144032) do
     t.integer  "photo_file_file_size"
     t.datetime "photo_file_updated_at"
     t.integer  "gallery_id"
+    t.integer  "gallery_order"
+    t.boolean  "slideshow_flag"
   end
 
 end
