@@ -16,7 +16,12 @@
 			        			 <%= photo_form.number_field :gallery_order, in: 1..99 %>
 			        			 <br />
 			        			 <%= photo_form.check_box :slideshow_flag %>
-			        			 <%= photo_form.label :slideshow_flag, "Add to Slideshow", class: "small" %>
+			        			 
+			        			 <% if photo_form.object.slideshow_flag%>
+			        			 	<%= photo_form.label :slideshow_flag, "Part of Slideshow", class: "small" %>
+			        			 <%else%>
+			        			 	<%= photo_form.label :slideshow_flag, "Add to Slideshow", class: "small" %>
+			        			 <%end%>
 			        			 <br />
 			        			 <%= photo_form.check_box :gallery_id, {}, nil, photo_form.object.gallery_id%>
 			        			 <%= photo_form.label :gallery_id, "Remove from gallery", class: "small"  %>
