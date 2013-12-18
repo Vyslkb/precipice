@@ -1,6 +1,14 @@
-<h1>Editing gallery</h1>
+<ol class="breadcrumb">
+	<li>
+		<%= link_to "Home", root_url %>
+	</li>
+	<li>
+	  	<%= link_to "Collections", collections_path %>
+	</li>
+    <li>
+		<%= link_to @gallery.name, @gallery %>
+  	</li>
+	<li class="active">edit</li>
+</ol>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @gallery %> |
-<%= link_to 'Back', galleries_path %>

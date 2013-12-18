@@ -1,8 +1,6 @@
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-5  column">
-
-
 			<%= form_for(@gallery) do |f| %>
 			  <% if @gallery.errors.any? %>
 			    <div id="error_explanation">
@@ -25,11 +23,6 @@
 			    <%= f.collection_select :collection_id, Collection.all, :id, :name,{},:class => 'form-control' %>
 			  </div>
 			   
-			   <%= f.fields_for :photos, @gallery.photos.first do |photo_form|%>
-				        			 id is <%= photo_form.object.id%>
-				        			 <%= photo_form.label :gallery_order, "Order", class: "small" %>
-				        			 <%= photo_form.number_field :gallery_order, in: 1..99 %>
-			  <%end%>
 			  <div class="form-group">
 			   	<button type="submit" class="btn btn-default">Submit</button>
 			  </div>
