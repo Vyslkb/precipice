@@ -29,3 +29,10 @@
 .carousel .item img {
     width: 100%; /*img width*/
 }
+
+#spinner {
+  text-align: center;
+  width: 100%;
+  z-index: 100;
+  position: absolute;
+}
