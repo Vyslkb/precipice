@@ -78,6 +78,9 @@ Precipice::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
   
+  # Added for vendor assets
+  config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.svg)
+  
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
