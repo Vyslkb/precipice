@@ -10,22 +10,25 @@
     <%= favicon_link_tag 'camera-favicon.ico' %>
     
   </head>
-  <body>
+  <body>	
   	
 	
 	
 	<div class="container">
 		<div class="row clearfix">
-			<div class="col-md-12 column">
+			<div class="column col-md-2">
+				<%= render 'layouts/navigation_menu'%>
+			</div>
+			
+			<div class="col-md-10 column">
 				<%= render 'layouts/messages' %>
 	       		<%= yield %>
 			</div>
 		</div>
-		
 	</div>
 	
 	<div id="spinner" style="display: none">
-			<%=  image_tag("loading.gif", :alt => "Loading....", :style => "")%>
-		</div>
+		<%=  image_tag("loading.gif", :alt => "Loading....", :style => "")%>
+	</div>
   </body>
 </html>

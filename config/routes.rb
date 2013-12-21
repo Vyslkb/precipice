@@ -1,7 +1,11 @@
 Precipice::Application.routes.draw do
   
-  resources :galleries
-
+  resources :galleries do
+    member do
+      get "manage"
+    end
+  end
+  
   resources :collections
 
   resources :photos do

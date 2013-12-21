@@ -1,5 +1,21 @@
+#navigation_menu {
+  background: rgba(55, 55, 55, .5);
+  border: 1px solid black;
+  max-width: 200px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  padding: 15px;
+  z-index: 100;
+  
+}
+
+
 .top-buffer { margin-top:15px; }
 
+.container {
+  width: 100%;
+}
 
 #welcome-carousel{
   position:absolute;
@@ -24,7 +40,7 @@
 
 .carousel .item {
     width: 100%; /*slider width*/
-    max-height: 600px; /*slider height*/
+    height: 600px; /*slider height*/
 }
 .carousel .item img {
     width: 100%; /*img width*/
@@ -35,4 +51,9 @@
   width: 100%;
   z-index: 100;
   position: absolute;
+}
+
+.photo-border{
+  border: 4px solid #222;
+  border-radius: 7px;
 }

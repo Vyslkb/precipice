@@ -36,6 +36,14 @@ class Photo < ActiveRecord::Base
      self.gallery_id = nil if self.gallery_id == 0
    end
    
+   def next_photo
+     next_photo = Photo.where(gallery_id: self.gallery_id).find_by_gallery_order(self.gallery_order + 1) 
+   end
+   
+   def previous_photo
+     previous_photo = Photo.where(gallery_id: self.gallery_id).find_by_gallery_order(self.gallery_order - 1) 
+   end
+   
    def set_gallery_order
      if self.gallery_order_changed?
         # If new position is lower than previous:

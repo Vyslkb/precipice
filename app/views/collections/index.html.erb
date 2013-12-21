@@ -30,7 +30,7 @@
 				    	<!-- List group -->
 						<div class="list-group">
 							<% collection.galleries.each do |gallery|%>		
-								<%= link_to(gallery, {:class => "list-group-item"}) do %>
+								<%= link_to(manage_gallery_path(gallery), {:class => "list-group-item"}) do %>
 									<%= gallery.name%>
 									<div class="row">
 										<div class="col-md-10 col-md-offset-1">
@@ -95,17 +95,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	</div>	
 </div>
 
 
