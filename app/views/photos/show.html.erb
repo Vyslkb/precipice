@@ -1,28 +1,46 @@
+<div class="row">
+	<div class="col-md-10 top-buffer">
+		
+		<ol class="breadcrumb">
+		  <li><a href="#">Home</a></li>
+		  <li><%= link_to @photo.gallery.collection.name, @photo.gallery.collection  %></li>
+		  <li><%= link_to @photo.gallery.name, @photo.gallery %></li>
+		  <li class="active"><%= @photo.name%></li>
+		</ol>
+		
+	</div>
+</div>
+
 
 <div class="row top-buffer">
-	<div class="col-md-5">
-		<div class="">
-			<p>
-				<strong>
-					<%= @photo.gallery.name_with_collection %>	
-				</strong>
-			</p>
-		</div>
+	<div class="col-md-2">
+			<% @photo.gallery.photos.use_gallery_order.each do |photo|%>
+				<span class="  <%= "hidden" unless photo == @photo %>">
+					<%= link_to photo.photo_file.url(:large), {class: "text-info", title: photo.name, data:{gallery: ""} } do %>	
+						<span>gallery slideshow</span>
+					<%end%>			
+				</span>
+			<%end%>
 	</div>
 	
 	<div class="col-md-5">
-		<ul class="pager">
-		  <li class="">
-		  	<% unless @photo.gallery_order == 1 %>
-		  		<%= link_to "&laquo; Previous ".html_safe, @photo.previous_photo if @photo.previous_photo%>
-		  	
-		  	<%end%>
-		  </li>
-		  <li class="">
-		  	<%= link_to "Next &raquo;".html_safe, @photo.next_photo if @photo.next_photo%>
-		  	
-		  </li>
-		</ul>		
+		<ul class="pager without-margin">
+			
+			<li class="<%= "disabled"  if @photo.gallery_order == 1 %>">  		
+	  			<%= link_to "&laquo; Previous ".html_safe, @photo.previous_photo  %>
+	  				
+	  		</li>
+			
+			<li class="horz-padding">
+		  		<%= @photo.gallery_order %> of <%= @photo.gallery.photos.count %>
+			</li>
+			
+			<li class="<%= "disabled"  if @photo.gallery_order == @photo.gallery.photos.count %>">  
+				<%= link_to "Next &raquo;".html_safe, @photo.next_photo %>
+			</li>
+		</ul>	
+		
+		
 	</div>
 </div>
 
@@ -66,10 +84,12 @@
 			</div>
 			<button type="submit" class="btn btn-default">	Add to cart</button>
 		</form>
-
-
-		
-		
 	</div>
 </div>
+
+
+
+
+
+<%= render 'layouts/blueimp_gallery_container'%>
 

@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
 
   def index
-    render layout: "full_width"
+    #render layout: "full_width"
   end
 end

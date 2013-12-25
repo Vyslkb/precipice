@@ -13,19 +13,20 @@
   <body>	
   	
 	
-	
-	<div class="container">
-		<div class="row clearfix">
-			<div class="column col-md-2">
-				<%= render 'layouts/navigation_menu'%>
+	<div class="container clearfix">
+		<div class="row">
+			<div class="col-md-2">
+			<%= render 'layouts/navigation_menu'%>
 			</div>
 			
-			<div class="col-md-10 column">
+			<div class="col-md-10">
 				<%= render 'layouts/messages' %>
 	       		<%= yield %>
 			</div>
 		</div>
 	</div>
+	
+	
 	
 	<div id="spinner" style="display: none">
 		<%=  image_tag("loading.gif", :alt => "Loading....", :style => "")%>

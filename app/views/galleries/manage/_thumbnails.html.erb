@@ -5,7 +5,7 @@
 		<div class="col-md-3" id="links">
 			<div class="thumbnail">
 		    	<%= link_to photo.photo_file.url(:large), {title: photo.name, data:{gallery: ""}} do %>
-		    		<%= image_tag photo.photo_file.url(:thumb), :class => "img-thumbnail" %>
+		    		<%= image_tag photo.photo_file.url(:thumb), :class => "thumbnail" %>
 		      	<%end%>
 		      	<div class="caption">
 		        	<span><%= photo.name %></span>

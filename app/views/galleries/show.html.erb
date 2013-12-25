@@ -1,1 +1,52 @@
-oh hi
+<div class="row">
+	<div class="col-md-10 top-buffer">
+		
+		<ol class="breadcrumb">
+		  <li><a href="#">Home</a></li>
+		  <li><%= link_to @gallery.collection.name, @gallery.collection  %></li>
+		  <li class="active"><%= @gallery.name%></li>
+		</ol>
+		
+		<div class="well well-lg">
+			<h3><%= @gallery.name%></h3>
+			<p>
+				Some descriptive text. Some descriptive text.Some descriptive text.
+				Some descriptive text.Some descriptive text.Some descriptive text.Some descriptive text.
+				Some descriptive text.Some descriptive text.Some descriptive text.Some descriptive text.Some descriptive text.
+				Some descriptive text.
+			</p>
+			
+			<p>
+				<% @gallery.photos.use_gallery_order.each do |photo|%>
+					<span class="  <%= "hidden" unless photo.gallery_order == 1 %>">
+						<%= link_to photo.photo_file.url(:large), {class:"text-info", title: photo.name, data:{gallery: ""} } do %>	
+							<span>gallery slideshow</span>
+						<%end%>			
+					</span>
+				<%end%>
+			</p>	
+			
+		</div>
+		
+		
+	</div>
+</div>
+
+
+	<div class="row">
+		<% @gallery.photos.use_gallery_order.each do |photo|%>
+			<div class="col-md-4 top-buffer">				
+				<%= link_to photo,{title: photo.name} do %>
+					<%= image_tag photo.photo_file.url(:medium), class: "photo-border"%> 
+				<%end%>
+				<div class="horz-padding">
+					<strong><%= photo.name%></strong>
+					</br>
+					<%= photo.description%>
+				</div>
+			</div>		
+		<%end%>
+	</div>
+	
+<%= render 'layouts/blueimp_gallery_container'%>
+

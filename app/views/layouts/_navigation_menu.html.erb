@@ -7,14 +7,30 @@
 		You should really suck my cock for it.
 	</p>
 	<h5>
-		<%= link_to "Home", root_url%>
+		
 	</h5>
 	<h5>
-		<%= link_to "Admin - Manage Photos", collections_path %>
+		
 	</h5>
-	<% Collection.all.each do |collection|%>
-		<h5>
-			<%= link_to collection.name, collection %>
-		</h5>
-	<%end%>
+	 
+	<div class="">
+		<p>
+			<%= link_to "Home", root_url, class:""%>	
+		</p>
+		<p>
+			<%= link_to "Admin - Manage Photos", collections_path, class:"" %>
+		</p>
+		
+			
+		<% Collection.all.each do |collection|%>
+			<p>
+				<strong>
+				<%= link_to collection.name, collection, class:"" %>
+			</strong>
+			</p>
+			
+		<%end%>
+	</div>
+	
+	
 </div>

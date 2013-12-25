@@ -1,22 +1,35 @@
 <div class="row">
 	<div class="col-md-10">
-		<h3><%= @collection.name%> Galleries</h3>
+		<div class="top-buffer">
+			<h3 class="">
+				<strong>
+					<%= @collection.name%> Galleries	
+				</strong>
+				
+			</h3>	
+		</div>
+		
 	</div>
 </div>
 
 <% @collection.galleries.each do |gallery| %>
 	<div class="row">
 		<div class="col-md-10">
-			<h4>
+			<h4 class="inline_override">
 				<%= gallery.name%>
-				<% if gallery.photos.count > 6 %>
-					<small> - see all <%= gallery.photos.count %> photos in gallery</small>
-				<%end%>
 			</h4>
+				
+				<% if gallery.photos.count > 6 %>
+					- 
+					<%= link_to gallery, { class: "text-info"} do %>
+						 see all <%= gallery.photos.count %> photos in gallery
+					<%end%>
+				<%end%>
+			
 		</div>
 	</div>
 	<div class="row">
-		<% gallery.photos.limit(6).each do |photo|%>
+		<% gallery.photos.use_gallery_order.limit(6).each do |photo|%>
 			<div class="col-md-4 top-buffer">
 				<%= link_to photo,{title: photo.name} do %>
 					<%= image_tag photo.photo_file.url(:medium), class: "thumbnail"%> 

@@ -14,6 +14,10 @@ class Photo < ActiveRecord::Base
   
   
   ### Scopes
+    def self.use_gallery_order
+      self.order("gallery_order asc")
+    end
+    
     def self.order_by_gallery
       self.includes(:gallery => [:collection]).order("galleries.name")
     end
@@ -36,12 +40,13 @@ class Photo < ActiveRecord::Base
      self.gallery_id = nil if self.gallery_id == 0
    end
    
-   def next_photo
-     next_photo = Photo.where(gallery_id: self.gallery_id).find_by_gallery_order(self.gallery_order + 1) 
-   end
+  def next_photo
+    next_photo = Photo.where(gallery_id: self.gallery_id).find_by_gallery_order(self.gallery_order + 1) 
+  end
    
    def previous_photo
-     previous_photo = Photo.where(gallery_id: self.gallery_id).find_by_gallery_order(self.gallery_order - 1) 
+     previous_photo = Photo.where(gallery_id: self.gallery_id).find_by_gallery_order(self.gallery_order - 1)
+     #previous_photo = self  if previous_photo.nil?
    end
    
    def set_gallery_order
