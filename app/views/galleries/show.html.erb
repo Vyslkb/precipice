@@ -35,11 +35,11 @@
 
 	<div class="row">
 		<% @gallery.photos.use_gallery_order.each do |photo|%>
-			<div class="col-md-4 top-buffer">				
+			<div class="col-md-4 top-buffer ">				
 				<%= link_to photo,{title: photo.name} do %>
 					<%= image_tag photo.photo_file.url(:medium), class: "photo-border"%> 
 				<%end%>
-				<div class="horz-padding">
+				<div class="horz-padding equal_height">
 					<strong><%= photo.name%></strong>
 					</br>
 					<%= photo.description%>
