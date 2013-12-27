@@ -1,6 +1,11 @@
 class Photo < ActiveRecord::Base
    ### Custom Attributes
-   has_attached_file :photo_file, :styles => { :medium => "300x300>", :thumb => "100x100>", :large => "1400x1400>" }, :default_url => "/images/:style/missing.png"
+   has_attached_file :photo_file, :styles => { :medium => "300x300>", 
+                                               :thumb => "100x100>", 
+                                               :large => "1100x1100>" },
+                                               :convert_options => {
+                                               :thumb => "-quality 75 -strip" }, 
+                                               :default_url => "/images/:style/missing.png"
    
    ### Associations
    belongs_to :gallery, :inverse_of => :photos
