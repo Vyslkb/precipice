@@ -12,6 +12,7 @@
 
 <div class="panel panel-default">
   <div class="panel-body">
+  	<%= link_to 'Public View', @gallery %> |
     <%= link_to 'Edit Gallery Settings', edit_gallery_path(@gallery) %> |
 	<%= link_to 'Delete this gallery', @gallery, method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
