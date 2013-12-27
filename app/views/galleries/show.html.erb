@@ -10,12 +10,8 @@
 		<div class="well well-lg">
 			<h3><%= @gallery.name%></h3>
 			<p>
-				Some descriptive text. Some descriptive text.Some descriptive text.
-				Some descriptive text.Some descriptive text.Some descriptive text.Some descriptive text.
-				Some descriptive text.Some descriptive text.Some descriptive text.Some descriptive text.Some descriptive text.
-				Some descriptive text.
+				<%= @gallery.description%>
 			</p>
-			
 			<p>
 				<% @gallery.photos.use_gallery_order.each do |photo|%>
 					<span class="  <%= "hidden" unless photo.gallery_order == 1 %>">
@@ -25,10 +21,7 @@
 					</span>
 				<%end%>
 			</p>	
-			
 		</div>
-		
-		
 	</div>
 </div>
 
