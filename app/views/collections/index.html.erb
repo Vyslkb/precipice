@@ -34,7 +34,7 @@
 									<%= gallery.name%>
 									<div class="row">
 										<div class="col-md-10 col-md-offset-1">
-											<% gallery.photos.each do |photo|%>
+											<% gallery.photos.use_gallery_order.each do |photo|%>
 												<%= image_tag photo.photo_file.url(:thumb), class: "img-thumbnail" %>
 											<%end%>
 											
