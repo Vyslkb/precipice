@@ -14,8 +14,8 @@ class GalleriesController < ApplicationController
   end
   
   def manage
-    set_gallery_order
     @new_photo = @gallery.photos.new
+    @photos = @gallery.photos.order('gallery_order')
   end
 
   # GET /galleries/new
@@ -49,9 +49,6 @@ class GalleriesController < ApplicationController
   def update
     respond_to do |format|
       if @gallery.update(gallery_params)
-        if params[:update_thumbnails]
-          set_gallery_order
-        end
         format.html { redirect_to manage_gallery_path(@gallery), notice: 'Gallery was successfully updated.' }
         format.js
         #format.html { redirect_to @gallery, notice: 'Gallery was successfully updated.' }
@@ -78,6 +75,7 @@ class GalleriesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_gallery
       @gallery = Gallery.find(params[:id])
+      @photos = @gallery.photos.order('gallery_order')
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -94,17 +92,5 @@ class GalleriesController < ApplicationController
                                                           :slideshow_flag])
     end
     
-    def set_gallery_order
-      logger.error "!!!!!!!!!!!!!!!!!"
-      @gallery.photos.order("gallery_order asc, updated_at desc").each_with_index do |photo, i|
-        base1_index = i + 1
-        if photo.gallery_order != base1_index 
-          photo.update_attribute :gallery_order, base1_index
-        end
-      end
-      
-      # reload photos in correct order
-      @photos = @gallery.photos.order('gallery_order')
-    end
     
 end
