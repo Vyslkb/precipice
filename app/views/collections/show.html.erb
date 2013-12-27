@@ -18,14 +18,14 @@
 			<h4 class="inline_override">
 				<%= gallery.name%>
 			</h4>
-				
-				<% if gallery.photos.count > 6 %>
-					- 
-					<%= link_to gallery, { class: "text-info"} do %>
-						 see all <%= gallery.photos.count %> photos in gallery
-					<%end%>
-				<%end%>
-			
+			- 
+			<%= link_to gallery, { class: "text-info"} do %>
+				 <% if gallery.photos.count > 6 %>
+				 	see all <%= gallery.photos.count %> photos in gallery
+				 <%else%>
+				 	go to gallery
+				 <%end%>
+			<%end%>
 		</div>
 	</div>
 	<div class="row">
