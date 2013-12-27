@@ -3,7 +3,9 @@ class Photo < ActiveRecord::Base
    has_attached_file :photo_file, :styles => { :medium => "300x300>", 
                                                :thumb => "100x100>", 
                                                :large => "1100x1100>" },
-                                               :convert_options => {:thumb => "-quality 50 -strip" }, 
+                                               :convert_options => {:thumb => "-quality 60 -strip",
+                                                                    :medium => "-quality 60 -strip",
+                                                                    :large => "-quality 60 -strip" }, 
                                                :default_url => "/images/:style/missing.png"
    
    ### Associations
