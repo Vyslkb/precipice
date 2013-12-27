@@ -4,6 +4,7 @@ $(document).ready ->
   ajax_spinner()
   resize_nav_menu()
   equalize_grid_height()
+  maximize_slideshow()
 
 ajax_spinner = ->
    $("#spinner").hide()
@@ -26,3 +27,24 @@ equalize_grid_height = ->
   heights = thumbnails.map( -> $(this).height()).get()
   maxHeight = Math.max.apply(null, heights)
   thumbnails.height(maxHeight)
+  
+maximize_slideshow = ->
+ # available width is window width minus the nav_menu width
+ # available height is window height
+ # aspect ratio is 2x3
+ 
+ h = $(window).height()
+ w = $(window).width()
+ 
+ image_height = h
+ image_width = h * 1.5
+ 
+ if image_width >( w - $("#navigation_menu").width())
+   image_width =  w - $("#navigation_menu").width()
+   image_height = image_width * 2 / 3
+   
+ $(".maximize_size").height(image_height)
+ $(".maximize_size").width(image_width)  
+   
+   
+
