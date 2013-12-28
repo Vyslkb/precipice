@@ -5,6 +5,7 @@ $(document).ready ->
   resize_nav_menu()
   equalize_grid_height()
   maximize_slideshow()
+  background_image()
 
 ajax_spinner = ->
    $("#spinner").hide()
@@ -46,5 +47,6 @@ maximize_slideshow = ->
  $(".maximize_size").height(image_height)
  $(".maximize_size").width(image_width)  
    
-   
+background_image = ->
+  $("img", "#top_image").width($(window).width()- 200)
 

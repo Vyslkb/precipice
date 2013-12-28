@@ -8,7 +8,7 @@
 		  
 			<% Photo.slideshow.each_with_index do |photo, index|%>
 		      	<div class="item <%= "active" if index == 0%>"><!-- class of active since it's the first item -->
-		      		  <%= image_tag photo.photo_file.url(:large), class: "photo-border, maximize_size", height: "400", width:"600" %>
+		      		  <%= image_tag photo.photo_file.url(:large), class: "img-rounded maximize_size", height: "400", width:"600" %>
 				      <div class="carousel-caption">
 				        <p></p>
 				      </div>

@@ -11,7 +11,14 @@
     
   </head>
   <body>	
-  	
+  	<% unless controller_name == "welcome"%>
+	  	<div id="top_image">
+	  		<%= image_tag "sand.jpg"%>
+	  	</div>
+	  	<div style="height: 150px">
+	  		
+	  	</div>
+  	<%end%>
 	
 	<div class="container clearfix">
 		<div class="row">
@@ -19,7 +26,7 @@
 			<%= render 'layouts/navigation_menu'%>
 			</div>
 			
-			<div class="col-md-10">
+			<div class="col-md-10" id="g-body">
 				<%= render 'layouts/messages' %>
 	       		<%= yield %>
 			</div>
