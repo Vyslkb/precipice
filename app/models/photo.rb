@@ -15,6 +15,7 @@ class Photo < ActiveRecord::Base
    validates_presence_of :name, :photo_file
    
   ### Callbacks
+  before_create :set_gallery_order
   before_save :nullify_gallery_id
   
   
@@ -44,6 +45,14 @@ class Photo < ActiveRecord::Base
    
    def nullify_gallery_id
      self.gallery_id = nil if self.gallery_id == 0
+   end
+   
+   def set_gallery_order
+     if self.gallery_id.present?
+       if self.gallery_order.blank?
+         self.gallery_order = self.gallery.photos.count + 1
+       end
+     end
    end
    
   def next_photo

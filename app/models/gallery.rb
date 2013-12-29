@@ -23,13 +23,13 @@ class Gallery < ActiveRecord::Base
  
     def reorder_photos
       if self.photos.present?
-        logger.error "IM DONE SAVING!!!!!!"
         # Need to figure out if most recently updated photo is moving
         # up or moving down
         previous_position_array = Array(1..self.photos.count) - self.photos.map{|p| p.gallery_order}
         previous_position = previous_position_array[0].to_i 
-        new_position = self.photos.order("updated_at desc").first.gallery_order
-        
+          
+        new_position = self.photos.order("updated_at desc").first.gallery_order.to_i  
+                
         if previous_position > new_position
           sort_order = "desc"
         else

@@ -8,11 +8,11 @@ body {
 }
 
 #top_image {
-  position:absolute;
+  position:fixed;
   top:0px;
   left: 0px;
   width: 100%;
-  height: 390px;
+  //height: 390px;
   z-index: 0;
   margin-left: 200px;
 }
