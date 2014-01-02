@@ -26,9 +26,12 @@ body {
   position: fixed;
   top: 0px;
   left: 0px;
-  padding: 15px;
+  
   z-index: 100;
   
+  div{
+    padding:15px;  
+  }  
 }
 
 
@@ -60,6 +63,8 @@ body {
 }
  
 #welcome-carousel{
+  margin-top: 25px;
+  
   /*
   position:absolute;
   top:0;
@@ -102,4 +107,21 @@ body {
   border: 1px solid #aaa;
   border-radius: 7px;
   padding: 3px;
+}
+
+.slide-border{
+  border:  solid #F5F5f5;
+  border-width: 6px 10px;
+  border-radius: 0px;
+  padding: 2px;
+}
+
+.breadcrumb {
+  background: none;
+  border: none;
+}
+
+
+.well {
+  //background: rgba(28, 30, 34, .5);
 }

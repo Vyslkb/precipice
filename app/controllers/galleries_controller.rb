@@ -83,13 +83,13 @@ class GalleriesController < ApplicationController
       params.require(:gallery).permit(:name,
                                       :description, 
                                       :collection_id, 
-                                      photos_attributes: [:id,
+                                      {photos_attributes: [:id,
                                                           :name, 
                                                           :description, 
                                                           :photo_file, 
                                                           :gallery_id, 
                                                           :gallery_order, 
-                                                          :slideshow_flag])
+                                                          :slideshow_flag]})
     end
     
     

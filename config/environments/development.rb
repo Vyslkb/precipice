@@ -30,4 +30,6 @@ Precipice::Application.configure do
   # config.assets.digest = true
   config.assets.debug = true #default is true
   # config.assets.compile = false #added fro test
+  
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end

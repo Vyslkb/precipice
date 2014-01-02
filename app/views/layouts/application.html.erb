@@ -11,7 +11,7 @@
     
   </head>
   <body>	
-  	<% unless controller_name == "welcome"%>
+  	<% unless (params[:id] == "home" and controller_name == "pages")%>
 	  	<div id="top_image">
 	  		<%= image_tag "sand.jpg"%>
 	  	</div>
@@ -27,7 +27,9 @@
 			</div>
 			
 			<div class="col-md-10" id="g-body">
+				<%= render 'layouts/admin_nav_bar' if admin_signed_in?%>
 				<%= render 'layouts/messages' %>
+				
 	       		<%= yield %>
 			</div>
 		</div>

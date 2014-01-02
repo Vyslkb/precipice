@@ -1,36 +1,32 @@
 <div id="navigation_menu">
-	<h2>
-		Some bullshit about how great your photography is.
-	</h2>
-	<p>
-		I just love going out to hike and taking pictures.
-		You should really suck my cock for it.
-	</p>
-	<h5>
-		
-	</h5>
-	<h5>
-		
-	</h5>
-	 
+	<%= link_to root_url, class:"" do%>	
+	<%= image_tag "logo.png", width: "200", class:"img-circle"%>
+	<%end%>
+	
 	<div class="">
-		<p>
-			<%= link_to "Home", root_url, class:""%>	
-		</p>
-		<p>
-			<%= link_to "Admin - Manage Photos", collections_path, class:"" %>
-		</p>
-		
+		<h2>
 			
+		</h2>
+		<p>
+			
+		</p>
+			
+				
 		<% Collection.all.each do |collection|%>
 			<p>
 				<strong>
-				<%= link_to collection.name, collection, class:"" %>
-			</strong>
-			</p>
-			
+					<%= link_to collection.name, collection, class:"" %>
+				</strong>
+			</p>	
 		<%end%>
+		<p>
+			<%= link_to 'Bio', page_path('bio')%>
+		</p>
+		<p>
+			<%= link_to 'Contact', page_path('contact')%>
+		</p>
+		<p>
+			<%= link_to 'Prints and Pricing', page_path('prints_and_pricing')%>
+		</p>
 	</div>
-	
-	
 </div>

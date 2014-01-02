@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
   before_action :set_photo, only: [:show, :edit, :update, :destroy, :show_full_size]
   before_action :massage_gallery_order, only: :update
+  before_action :print_option_params, only: [:update]
 
   # GET /photos
   # GET /photos.json
@@ -90,7 +91,9 @@ class PhotosController < ApplicationController
                                     :paypal_identifier, 
                                     :photo_file,
                                     :gallery_order,
-                                    :slideshow_flag)
+                                    :slideshow_flag,
+                                    {print_option_ids: []},
+                                    {photo_print_options_attributes:[:id,:print_option_id]})
     end
     
     def massage_gallery_order
@@ -108,6 +111,20 @@ class PhotosController < ApplicationController
       end
     end
     
+    def print_option_params
+      checked_ids = params[:print_option_ids]
+      checked_ids = [] if checked_ids.nil?
+      
+      #check existing records to see if they need to be destroyed
+      @photo.photo_print_options.each do |photo_print_option|
+        photo_print_option.destroy unless checked_ids.include?(photo_print_option.print_option_id)
+      end
+      
+      #add new records
+      checked_ids.each do |id|
+        @photo.photo_print_options.new(print_option_id: id) unless @photo.print_option_ids.include?(id)
+      end
+    end    
     
     
     

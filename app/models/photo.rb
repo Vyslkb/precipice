@@ -8,16 +8,23 @@ class Photo < ActiveRecord::Base
                                                                     :large => "-quality 60 -strip" }, 
                                                :default_url => "/images/:style/missing.png"
    
-   ### Associations
-   belongs_to :gallery, :inverse_of => :photos
+  ### Associations
+  belongs_to :gallery, :inverse_of => :photos
    
-   ### Validations
-   validates_presence_of :name, :photo_file
+  has_many :photo_print_options
+  has_many :print_options, :through => :photo_print_options
+   
+  ### Validations
+  validates_presence_of :name, :photo_file
    
   ### Callbacks
   before_create :set_gallery_order
   before_save :nullify_gallery_id
+  after_save :add_print_options
   
+  
+  ### Nested Attributes
+  accepts_nested_attributes_for :photo_print_options, allow_destroy: true
   
   
   ### Scopes
@@ -80,5 +87,10 @@ class Photo < ActiveRecord::Base
      end
    end
    
+   def add_print_options
+     PrintOption.all.each do |print_option|
+       self.photo_print_options.create(print_option_id: print_option.id)
+     end
+   end
    
 end

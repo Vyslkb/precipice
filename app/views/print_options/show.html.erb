@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @print_option.name %>
+</p>
+
+
+
+<p>
+  <strong>Price:</strong>
+  <%= @print_option.price %>
+</p>
+
+<%= link_to 'Edit', edit_print_option_path(@print_option) %> |
+<%= link_to 'Back', print_options_path %>

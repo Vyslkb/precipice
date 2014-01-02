@@ -1,0 +1,31 @@
+<h3>Print Options</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+     
+    
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @print_options.each do |print_option| %>
+      <tr>
+        <td><%= print_option.name %></td>
+       
+        <td><%= number_to_currency print_option.price %></td>
+       
+        <td><%= link_to 'Edit', edit_print_option_path(print_option) %></td>
+        <td><%= link_to 'Destroy', print_option, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Print option', new_print_option_path %>

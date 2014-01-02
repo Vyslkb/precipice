@@ -1,5 +1,12 @@
 Precipice::Application.routes.draw do
   
+  resources :print_options
+
+  #devise_for :admins
+  devise_for :admins, :controllers => {:registrations => "registrations"}
+  #devise_for :admins,  :controllers => { :registrations => "admins/registrations" }
+  
+  
   resources :galleries do
     member do
       get "manage"
@@ -16,8 +23,11 @@ Precipice::Application.routes.draw do
       get "show_full_size"
     end
   end
+  
+  
+  
 
-  root 'welcome#index'
+  #root 'photos#index'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -37,7 +37,8 @@ end
 gem 'rails_12factor', group: :production
 gem 'paperclip'
 gem 'aws-sdk'
-
+gem 'devise'
+gem 'high_voltage'
 
 group :development do
   gem 'rails_layout'

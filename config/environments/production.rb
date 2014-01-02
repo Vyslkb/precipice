@@ -81,6 +81,8 @@ Precipice::Application.configure do
   # Added for vendor assets
   config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.svg)
   
+  config.action_mailer.default_url_options = { :host => 'calm-meadow-8880.herokuapp.com' }
+  
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {

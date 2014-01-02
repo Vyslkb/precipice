@@ -2,7 +2,6 @@
 	<div class="col-md-10 top-buffer">
 		
 		<ol class="breadcrumb">
-		  <li><a href="#">Home</a></li>
 		  <li><%= link_to @photo.gallery.collection.name, @photo.gallery.collection  %></li>
 		  <li><%= link_to @photo.gallery.name, @photo.gallery %></li>
 		  <li class="active"><%= @photo.name%></li>
@@ -56,7 +55,7 @@
 		
 		<h4><strong><%= @photo.name %></strong></h4>
 		<p><%= @photo.description %></p>
-		
+		<p>Print Options count: <%= @photo.print_options.count %></p>
 	</div>
 </div>
 
@@ -66,17 +65,19 @@
 		<div class="well">
 		<form role="form" target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
 			<div class="form-group">
-			<input type="hidden" name="cmd" value="_s-xclick">
-			<input type="hidden" name="hosted_button_id" value="2PJ68NZB45W88">
-			<input type="hidden" name="on0" value="Print Sizes">
-			<label name="os0"> Order Prints:</label>
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="hosted_button_id" value="<%= @photo.paypal_identifier%>">
+				<input type="hidden" name="on0" value="Print Sizes">
+				<label name="os0"> Order Prints:</label>
+				
 			
-			
-			<select name="os0" class="form-control">
-				<option value="4x6">4x6 $5.00 </option>
-				<option value="8x10">8x10 $10.00</option>
-				<option value="18x24">18x24 $25.00</option>
-			</select>
+				<select name="os0" class="form-control">
+					<%@photo.print_options.each do |print_option|%>
+						<option value="<%= print_option.name%>">
+							<%= "#{print_option.name} - #{number_to_currency(print_option.price)} "%> 
+						</option>
+					<%end%>
+				</select>
 			<input type="hidden" name="currency_code" value="USD">
 			</div>
 			<button type="submit" class="btn btn-default">	Add to cart</button>
