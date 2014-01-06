@@ -32,7 +32,7 @@
 		<% gallery.photos.use_gallery_order.limit(6).each do |photo|%>
 			<div class="col-md-4 top-buffer">
 				<%= link_to photo,{title: photo.name} do %>
-					<%= image_tag photo.photo_file.url(:medium), class: "thumbnail"%> 
+					<%= image_tag photo.photo_file.url(:medium), class: ""%> 
 				<%end%>
 			</div>		
 		<%end%>
