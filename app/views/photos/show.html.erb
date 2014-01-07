@@ -44,7 +44,7 @@
 </div>
 
 
-<div class="row">
+<div class="row top-buffer">
 	<div class="col-md-10">		
 		<%= image_tag @photo.photo_file.url(:large), class: "photo-border ", height:"500" %>
 	</div>
@@ -55,7 +55,7 @@
 		
 		<h4><strong><%= @photo.name %></strong></h4>
 		<p><%= @photo.description %></p>
-		<p>Print Options count: <%= @photo.print_options.count %></p>
+		
 	</div>
 </div>
 

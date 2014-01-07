@@ -34,7 +34,7 @@ maximize_slideshow = ->
  # available height is window height
  # aspect ratio is 2x3
  
- h = $(window).height() - 70
+ h = $(window).height() - 40
  w = $(window).width()
  
  image_height = h

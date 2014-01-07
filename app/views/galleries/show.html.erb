@@ -2,32 +2,35 @@
 	<div class="col-md-10 top-buffer">
 		
 		<ol class="breadcrumb">
-		  <li><a href="#">Home</a></li>
+		
 		  <li><%= link_to @gallery.collection.name, @gallery.collection  %></li>
 		  <li class="active"><%= @gallery.name%></li>
 		</ol>
 		
 		<div class="well well-lg">
-			<h3><%= @gallery.name%></h3>
-			<p>
-				<%= @gallery.description%>
-			</p>
-			<p>
+			<h3 class="inline_override"><%= @gallery.name%></h3>
+			<span>
 				<% @gallery.photos.use_gallery_order.each do |photo|%>
 					<span class="  <%= "hidden" unless photo.gallery_order == 1 %>">
 						<%= link_to photo.photo_file.url(:large), {class:"text-info", title: photo.name, data:{gallery: ""} } do %>	
-							<span>gallery slideshow</span>
+							<span class="horz-padding">gallery slideshow</span>
 						<%end%>			
 					</span>
 				<%end%>
-			</p>	
+			</span>
+			
+			
+			<p>
+				<%= @gallery.description%>
+			</p>
+				
 		</div>
 	</div>
 </div>
 
-
+	<% @gallery.photos.use_gallery_order.in_groups_of(3,false).each do |photo_group|%>
 	<div class="row">
-		<% @gallery.photos.use_gallery_order.each do |photo|%>
+		<%photo_group.each do |photo|%>
 			<div class="col-md-4 top-buffer ">				
 				<%= link_to photo,{title: photo.name} do %>
 					<%= image_tag photo.photo_file.url(:medium), class: "photo-border"%> 
@@ -40,6 +43,6 @@
 			</div>		
 		<%end%>
 	</div>
-	
+	<%end%>
 <%= render 'layouts/blueimp_gallery_container'%>
 

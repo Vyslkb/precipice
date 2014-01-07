@@ -13,7 +13,7 @@
 </div>
 
 <% @collection.galleries.each do |gallery| %>
-	<div class="row">
+	<div class="row top-buffer">
 		<div class="col-md-10">
 			<h4 class="inline_override">
 				<%= gallery.name%>
@@ -28,13 +28,16 @@
 			<%end%>
 		</div>
 	</div>
+	
+	<% gallery.photos.use_gallery_order.limit(6).in_groups_of(3, false).each do |photo_group|%>
 	<div class="row">
-		<% gallery.photos.use_gallery_order.limit(6).each do |photo|%>
+		<% photo_group.each do |photo|%>
 			<div class="col-md-4 top-buffer">
 				<%= link_to photo,{title: photo.name} do %>
-					<%= image_tag photo.photo_file.url(:medium), class: ""%> 
+					<%= image_tag photo.photo_file.url(:medium), class: "img-rounded photo-border"%> 
 				<%end%>
 			</div>		
 		<%end%>
 	</div>
+	<%end%>
 <%end%>
