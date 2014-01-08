@@ -54,5 +54,5 @@ maximize_slideshow = ->
  
  
 background_image = ->
-  $("img", "#top_image").width($(window).width()- 200)
+  $("img", "#top_image").width($(window).width()- $("#sidebar-wrapper").width())
 
