@@ -5,31 +5,42 @@
 		
 		  <li><%= link_to @gallery.collection.name, @gallery.collection  %></li>
 		  <li class="active"><%= @gallery.name%></li>
-		</ol>
-		
-		<div class="well well-lg">
-			<h3 class="inline_override"><%= @gallery.name%></h3>
-			<span>
-				<% @gallery.photos.use_gallery_order.each do |photo|%>
+		  <li>
+		  	<% @gallery.photos.use_gallery_order.each do |photo|%>
 					<span class="  <%= "hidden" unless photo.gallery_order == 1 %>">
-						<%= link_to photo.photo_file.url(:large), {class:"text-info", title: photo.name, data:{gallery: ""} } do %>	
+						<%= link_to photo.photo_file.url(:large), {class:"text-info", title: "slideshow", data:{gallery: ""} } do %>	
 							<span class="horz-padding">gallery slideshow</span>
 						<%end%>			
 					</span>
 				<%end%>
+		  </li>
+		</ol>
+		
+		<div class="well well-lg">
+			<h3 class="inline_override"></h3>
+			
+			<span class="lead classy-text punched-text ">
+				<%= @gallery.name%>
 			</span>
 			
 			
 			<p>
 				<%= @gallery.description%>
 			</p>
+			<p>
+				
+			</p>	
 				
 		</div>
 	</div>
 </div>
 
+	
+	
+	
+	
 	<% @gallery.photos.use_gallery_order.in_groups_of(3,false).each do |photo_group|%>
-	<div class="row">
+	<div class="row" data-content="thumbnail-row">
 		<%photo_group.each do |photo|%>
 			<div class="col-md-4 top-buffer ">				
 				<%= link_to photo,{title: photo.name} do %>

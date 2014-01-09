@@ -6,6 +6,8 @@ $(document).ready ->
   equalize_grid_height()
   maximize_slideshow()
   background_image()
+  shrink_thumbnails()
+  
 
 ajax_spinner = ->
    $("#spinner").hide()
@@ -55,4 +57,18 @@ maximize_slideshow = ->
  
 background_image = ->
   $("img", "#top_image").width($(window).width()- $("#sidebar-wrapper").width())
+
+
+shrink_thumbnails = ->
+  ##  Assume med size thumbnails: 308px
+  ##  Assume 3 thumbnails per row
+  $('[data-content="thumbnail-row"]').each ->
+    if $(this).width() < 308 * 3
+      #figure out new width
+      new_width = ($(this).width() - 90)/3 
+      $("img", $(this)).width(new_width)
+      
+    
+      
+
 

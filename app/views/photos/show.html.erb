@@ -5,6 +5,15 @@
 		  <li><%= link_to @photo.gallery.collection.name, @photo.gallery.collection  %></li>
 		  <li><%= link_to @photo.gallery.name, @photo.gallery %></li>
 		  <li class="active"><%= @photo.name%></li>
+		  <li>
+		  	<% @photo.gallery.photos.use_gallery_order.each do |photo|%>
+				<span class="  <%= "hidden" unless photo == @photo %>">
+					<%= link_to photo.photo_file.url(:large), {class: "text-info", title: photo.name, data:{gallery: ""} } do %>	
+						<span>gallery slideshow</span>
+					<%end%>			
+				</span>
+			<%end%>
+		  </li>
 		</ol>
 		
 	</div>
@@ -12,15 +21,7 @@
 
 
 <div class="row top-buffer">
-	<div class="col-md-2">
-			<% @photo.gallery.photos.use_gallery_order.each do |photo|%>
-				<span class="  <%= "hidden" unless photo == @photo %>">
-					<%= link_to photo.photo_file.url(:large), {class: "text-info", title: photo.name, data:{gallery: ""} } do %>	
-						<span>gallery slideshow</span>
-					<%end%>			
-				</span>
-			<%end%>
-	</div>
+	
 	
 	<div class="col-md-5">
 		<ul class="pager without-margin">
@@ -53,7 +54,7 @@
 <div class="row">
 	<div class="col-md-5 top-buffer">
 		
-		<h4><strong><%= @photo.name %></strong></h4>
+		<span class="classy-text punched-text lead"><strong><%= @photo.name %></strong></span>
 		<p><%= @photo.description %></p>
 		
 	</div>

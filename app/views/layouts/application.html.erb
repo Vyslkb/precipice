@@ -2,8 +2,8 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "On The Precipice" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "On The Precipice" %>">
+    <title><%= content_for?(:title) ? yield(:title) : "Beyond The Precipice" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Beyond The Precipice" %>">
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
@@ -38,7 +38,7 @@
 				
 			</li>	
 		<%end%>
-			<li>
+			<li class="top-buffer-big">
 				<%= link_to 'Bio', page_path('bio')%>
 			</li>
 			<li>

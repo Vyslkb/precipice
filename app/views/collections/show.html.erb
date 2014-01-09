@@ -1,8 +1,8 @@
 <div class="row">
-	<div class="col-md-11">
+	<div class="col-md-12">
 		<div class="top-buffer">
-			<div class="well text-center ">
-				<span class=" classy-header">
+			<div class="well well-sm text-center">
+				<span class="lead classy-text punched-text">
 						<%= @collection.name.singularize%> Galleries
 				</span>		
 			</div>	
@@ -13,11 +13,11 @@
 </div>
 
 <% @collection.galleries.each do |gallery| %>
-	<div class="row top-buffer">
+	<div class="row top-buffer-big">
 		<div class="col-md-10">
-			<h4 class="inline_override">
+			<span class="lead classy-text punched-text">
 				<%= gallery.name%>
-			</h4>
+			</span>
 			- 
 			<%= link_to gallery, { class: "text-info"} do %>
 				 <% if gallery.photos.count > 6 %>
@@ -30,7 +30,7 @@
 	</div>
 	
 	<% gallery.photos.use_gallery_order.limit(6).in_groups_of(3, false).each do |photo_group|%>
-	<div class="row">
+	<div class="row"  data-content="thumbnail-row">
 		<% photo_group.each do |photo|%>
 			<div class="col-md-4 top-buffer">
 				<%= link_to photo,{title: photo.name} do %>
