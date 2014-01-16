@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140101073116) do
+ActiveRecord::Schema.define(version: 20140113153419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,25 @@ ActiveRecord::Schema.define(version: 20140101073116) do
 
   create_table "collections", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "customer_orders", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone_number"
+    t.string   "ship_to_first_name"
+    t.string   "ship_to_last_name"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+    t.integer  "shopping_cart_id"
+    t.decimal  "shopping_cart_total", precision: 7, scale: 2
+    t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -74,6 +93,23 @@ ActiveRecord::Schema.define(version: 20140101073116) do
   create_table "print_options", force: true do |t|
     t.string   "name"
     t.integer  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shopping_cart_items", force: true do |t|
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.integer  "quantity"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.float    "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "item_description"
+  end
+
+  create_table "shopping_carts", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

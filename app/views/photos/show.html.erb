@@ -61,28 +61,24 @@
 </div>
 
 
+
 <div class="row top-buffer">
 	<div class="col-md-5">
-		<div class="well">
-		<form role="form" target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-			<div class="form-group">
-				<input type="hidden" name="cmd" value="_s-xclick">
-				<input type="hidden" name="hosted_button_id" value="<%= @photo.paypal_identifier%>">
-				<input type="hidden" name="on0" value="Print Sizes">
-				<label name="os0"> Order Prints:</label>
-				
-			
-				<select name="os0" class="form-control">
-					<%@photo.print_options.each do |print_option|%>
-						<option value="<%= print_option.name%>">
-							<%= "#{print_option.name} - #{number_to_currency(print_option.price)} "%> 
-						</option>
-					<%end%>
-				</select>
-			<input type="hidden" name="currency_code" value="USD">
+		<div class="well well-transparent">
+		<h5>Order Prints:</h5>
+		<%= form_tag update_shopping_cart_path, method: :post, role: "form" do %>
+			<%= hidden_field_tag :cart_action, "add"%>
+			<%= select_tag "photo_print_option_id", 
+							options_from_collection_for_select(@photo.photo_print_options, "id", "print_option_name_and_price"),
+							class: "form-control"%>
+			<div class="top-buffer-big">
+				<button type="submit" class="btn btn-default">Add to cart</button>	
 			</div>
-			<button type="submit" class="btn btn-default">	Add to cart</button>
-		</form>
+			
+		<%end%>
+		
+			
+		
 		</div>
 	</div>
 </div>

@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @customer_order.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @customer_order.last_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @customer_order.email %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @customer_order.phone_number %>
+</p>
+
+<p>
+  <strong>Ship to first name:</strong>
+  <%= @customer_order.ship_to_first_name %>
+</p>
+
+<p>
+  <strong>Ship to last name:</strong>
+  <%= @customer_order.ship_to_last_name %>
+</p>
+
+<p>
+  <strong>address line 1:</strong>
+  <%= @customer_order.address_line_1 %>
+</p>
+
+<p>
+  <strong>Address line 2:</strong>
+  <%= @customer_order.address_line_2 %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @customer_order.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @customer_order.state %>
+</p>
+
+<p>
+  <strong>Zip code:</strong>
+  <%= @customer_order.zip_code %>
+</p>
+
+<p>
+  <strong>Shopping cart:</strong>
+  <%= @customer_order.shopping_cart_id %>
+</p>
+
+<p>
+  <strong>Shopping cart total:</strong>
+  <%= @customer_order.shopping_cart_total %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @customer_order.comments %>
+</p>
+
+<%= link_to 'Edit', edit_customer_order_path(@customer_order) %> |
+<%= link_to 'Back', customer_orders_path %>

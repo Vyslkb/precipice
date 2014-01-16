@@ -1,0 +1,27 @@
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="well well-lg">
+			<h3> Cart Items</h3>
+			<div class="row">
+				<div id="show_cart_container" class="col-md-12">
+					<%= render 'show_cart'%>
+				</div>
+				
+			</div>
+			
+			
+			<div class="row">
+				<div class="col-md-12">
+					<%= link_to "Keep Shopping", :back , class: "horz-padding"%> |
+					<%= link_to "Continue to Checkout", checkout_path,class: "horz-padding" %>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		
+		
+	</div>
+</div>

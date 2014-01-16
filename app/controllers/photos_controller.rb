@@ -9,13 +9,8 @@ class PhotosController < ApplicationController
     @photos = Photo.order_by_gallery
   end
   
-  def uncategorized
-    @photos = Photo.uncategorized
-  end
+
   
-  def show_full_size
-    
-  end
 
   # GET /photos/1
   # GET /photos/1.json
@@ -75,6 +70,8 @@ class PhotosController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

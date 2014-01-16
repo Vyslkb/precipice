@@ -16,5 +16,8 @@
 //= require bootstrap.min
 //= require jquery.blueimp-gallery.min
 //= require bootstrap-image-gallery.min
+//= require jquery.validate.min
+//= require additional-methods.min
+//= require jquery.payment
 //= require turbolinks
 //= require_tree .

@@ -1,3 +1,6 @@
+@import "bootstrap";
+
+
 .foo {
   border: 1px solid red;
 }
@@ -127,7 +130,7 @@ body {
 }
 
 
-.well {
+.well-transparent {
   background: rgba(28, 30, 34, .6);
 }
 
@@ -142,4 +145,8 @@ body {
 
 .top-buffer-big {
   margin-top: 25px;
+}
+
+label.error {
+  @extend .text-danger;
 }

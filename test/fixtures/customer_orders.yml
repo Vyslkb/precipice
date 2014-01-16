@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  phone_number: MyString
+  ship_to_first_name: MyString
+  ship_to_last_name: MyString
+  adddress_line_1: MyString
+  address_line_2: MyString
+  city: MyString
+  state: MyString
+  zip_code: MyString
+  shopping_cart_id: 1
+  shopping_cart_total: 9.99
+  comments: MyText
+
+two:
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  phone_number: MyString
+  ship_to_first_name: MyString
+  ship_to_last_name: MyString
+  adddress_line_1: MyString
+  address_line_2: MyString
+  city: MyString
+  state: MyString
+  zip_code: MyString
+  shopping_cart_id: 1
+  shopping_cart_total: 9.99
+  comments: MyText

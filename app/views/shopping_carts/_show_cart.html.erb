@@ -1,0 +1,68 @@
+			<table class="table">
+				<thead>
+					<th></th>
+					<th>Photo</th>
+					<th>Print Type</th>
+					<th>Quantity</th>
+					<th>Price</th>
+					
+				</thead>
+				<tbody>
+					<% @shopping_cart.shopping_cart_items.each do |shopping_cart_item| %>
+						<% photo = PhotoPrintOption.find(shopping_cart_item.item_id).photo%>
+						<% print_option = PhotoPrintOption.find(shopping_cart_item.item_id).print_option %>
+						<tr>
+							<td>
+								<%= image_tag photo.photo_file.url(:thumb) %>
+							</td>
+							<td>
+								<%= photo.name %>
+							</td>
+							<td>
+								<%= print_option.name %>
+							</td>
+							<td>
+								<%= form_tag update_shopping_cart_path, method: :post, remote: true do%>
+									<%= text_field_tag :item_quantity,shopping_cart_item.quantity, maxlength: "2", size: "1",data:{content:"cart-quantity-field"}  %>
+									<%= hidden_field_tag :cart_action, "update_quantity"%>
+									<%= hidden_field_tag :shopping_cart_item_id, shopping_cart_item.id %>
+									<br />
+									<button type="submit" class="btn btn-success btn-xs top-buffer" data-content="update-cart-quantity">update</button>
+									<span  
+										  data-content="saved-msg" 
+										  data-id= "<%= shopping_cart_item.id  %>"
+										  class="text-success hidden">
+										  saved
+									</span>
+								<%end%>
+								
+							</td>
+							<td>
+								<%= number_to_currency shopping_cart_item.price %>
+							</td>
+					
+						</tr>
+					<%end%>
+				</tbody>
+			</table>
+			
+			<div class="row">
+				<div class="col-md-3 col-md-offset-9">
+					<table class="table">
+						<tr>
+							<td>Sub-total</td>
+							<td><%= number_to_currency @shopping_cart.subtotal%></td>
+						</tr>
+						<tr>
+							<td>Shipping</td>
+							<td><%= number_to_currency @shopping_cart.shipping_cost%></td>
+						</tr>
+						<tr>
+							<td><strong>Total</strong></td>
+							<td><strong><%= number_to_currency @shopping_cart.total%></strong>
+								</td>
+						</tr>
+					</table>
+				
+				</div>
+			</div>

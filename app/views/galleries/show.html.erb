@@ -16,7 +16,7 @@
 		  </li>
 		</ol>
 		
-		<div class="well well-lg">
+		<div class="well well-lg well-transparent">
 			<h3 class="inline_override"></h3>
 			
 			<span class="lead classy-text punched-text ">
@@ -46,7 +46,7 @@
 				<%= link_to photo,{title: photo.name} do %>
 					<%= image_tag photo.photo_file.url(:medium), class: "photo-border"%> 
 				<%end%>
-				<div class="horz-padding equal_height">
+				<div class="horz-padding">
 					<strong><%= photo.name%></strong>
 					</br>
 					<%= photo.description%>

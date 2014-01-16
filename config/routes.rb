@@ -1,5 +1,10 @@
 Precipice::Application.routes.draw do
   
+  resources :customer_orders
+  get 'checkout', to: 'customer_orders#new', as: :checkout
+
+
+
   resources :print_options
 
   #devise_for :admins
@@ -24,8 +29,14 @@ Precipice::Application.routes.draw do
     end
   end
   
+  resources :charges
   
+    
+  get 'shopping_cart', to: 'shopping_carts#show'
+  post 'update_shopping_cart', to: 'shopping_carts#update'
   
+  #get 'checkout', to: 'shopping_carts#checkout'
+  #post 'create_charge', to: 'shopping_carts#create_charge'
 
   #root 'photos#index'
   
