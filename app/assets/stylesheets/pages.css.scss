@@ -1,6 +1,3 @@
-// Place all the styles related to the welcome controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 /* Fade transition for carousel items */
 .carousel-fade .carousel-inner .item {
   opacity: 0;
@@ -26,4 +23,6 @@
   z-index: 2;
 }
 
-
+.carousel-caption { 
+  position: relative; 
+} 

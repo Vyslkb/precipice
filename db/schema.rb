@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140113153419) do
+ActiveRecord::Schema.define(version: 20140119101831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,10 @@ ActiveRecord::Schema.define(version: 20140113153419) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "collections", ["slug"], name: "index_collections_on_slug", unique: true, using: :btree
 
   create_table "customer_orders", force: true do |t|
     t.string   "first_name"
@@ -59,13 +62,29 @@ ActiveRecord::Schema.define(version: 20140113153419) do
     t.datetime "updated_at"
   end
 
+  create_table "friendly_id_slugs", force: true do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
   create_table "galleries", force: true do |t|
     t.string   "name"
     t.integer  "collection_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
+    t.string   "slug"
   end
+
+  add_index "galleries", ["slug"], name: "index_galleries_on_slug", unique: true, using: :btree
 
   create_table "photo_print_options", force: true do |t|
     t.integer  "photo_id"
@@ -88,7 +107,10 @@ ActiveRecord::Schema.define(version: 20140113153419) do
     t.integer  "gallery_id"
     t.integer  "gallery_order"
     t.boolean  "slideshow_flag"
+    t.string   "slug"
   end
+
+  add_index "photos", ["slug"], name: "index_photos_on_slug", unique: true, using: :btree
 
   create_table "print_options", force: true do |t|
     t.string   "name"

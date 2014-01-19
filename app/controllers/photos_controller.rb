@@ -15,6 +15,7 @@ class PhotosController < ApplicationController
   # GET /photos/1
   # GET /photos/1.json
   def show
+    
   end
 
   # GET /photos/new
@@ -47,11 +48,13 @@ class PhotosController < ApplicationController
   def update
     respond_to do |format|
       if @photo.update(photo_params)
-        if URI(request.referrer).path == "/photos/#{@photo.id}/edit" 
-          format.html { redirect_to photos_url, notice: 'Photo was successfully updated.' }
-        else
-          format.html { redirect_to request.referrer, notice: 'Photo was successfully updated.' }
-        end
+        format.html {redirect_to photos_url}
+        
+        #if URI(request.referrer).path == "/photos/#{@photo.id}/edit" 
+        #  format.html { redirect_to photos_url, notice: 'Photo was successfully updated.' }
+        #else
+        #  format.html { redirect_to request.referrer, notice: 'Photo was successfully updated.' }
+        #end
        
         format.json { head :no_content }
       else
@@ -76,7 +79,7 @@ class PhotosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_photo
-      @photo = Photo.find(params[:id])
+      @photo = Photo.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

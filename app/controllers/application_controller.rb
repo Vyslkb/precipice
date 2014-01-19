@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   
   
   def check_session
+    
     #reset_session
     #if session[:expires_at].present?
     ##  if session[:expires_at] < Time.now 

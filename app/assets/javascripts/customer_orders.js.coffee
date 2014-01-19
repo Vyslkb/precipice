@@ -15,6 +15,7 @@ customer_order =
   setupForm: ->
     $('#new_customer_order').submit ->
       $('input[type=submit]').attr('disabled', true)
+      $("#spinner").show()
       customer_order.processCard()
       false #stop normal submission
       
@@ -33,7 +34,9 @@ customer_order =
       $('#new_customer_order')[0].submit()
       #alert response.id
     else
+       $("#spinner").hide()
       $('#stripe_error').text(response.error.message)
+      $('#stripe_error').parent().removeClass("hidden")
       $('input[type=submit]').attr('disabled', false)
   
   checkoutFormUi: -> 

@@ -1,0 +1,105 @@
+<div class="row top-buffer-big">
+	<div class="col-md-10 col-md-offset-1">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3> Thank you, your order is complete!</h3>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 well">
+					
+						<div class="row">
+							<div class="col-md-5">
+								<p>
+									<strong class="text-white">Contact:</strong>
+								</p>
+								
+								<strong>
+									<%= @customer_order.first_name %> <%= @customer_order.last_name %>	
+								</strong>
+								<br />
+								<%= @customer_order.email%> <br /> 
+								<%= number_to_phone @customer_order.phone_number %> 							
+							</div>
+							<div class="col-md-5">
+								<p>
+									<strong class="text-white">Shipping to:</strong>
+								</p>
+								
+								<p class="horz-padding">
+									<strong>
+										<%= @customer_order.ship_to_first_name %> <%= @customer_order.ship_to_last_name %><br />
+									</strong>
+									<%= @customer_order.address_line_1%> <br />
+									<%= @customer_order.address_line_2%> <%= "<br/>".html_safe if @customer_order.address_line_2.present? %>
+									<%= @customer_order.city%>, <%= @customer_order.zip_code%> <%= @customer_order.state%> <br />
+								</p>
+							</div>
+						</div>
+											
+						
+					</div>
+				</div>
+				
+				
+				<div class="row">
+					<div class="col-md-12">
+						<h4 class="text-white">
+							Order details: 
+						</h4>
+						<table class="table table-condensed">
+							<thead>
+								<th>Photo</th>
+								<th>Print Type</th>
+								<th>Quantity</th>
+								<th>Price</th>
+							</thead>
+							<tbody>
+								<% @customer_order.shopping_cart.shopping_cart_items.each do |shopping_cart_item| %>
+									<% photo = PhotoPrintOption.find(shopping_cart_item.item_id).photo%>
+									<% print_option = PhotoPrintOption.find(shopping_cart_item.item_id).print_option %>
+									<tr>
+										<td>
+											<%= photo.name %>
+										</td>
+										<td>
+											<%= print_option.name %>
+										</td>
+										<td>
+											<%= shopping_cart_item.quantity %>
+										</td>
+										<td>
+											<%= number_to_currency shopping_cart_item.price %>
+										</td>
+									</tr>
+								<%end%>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 col-md-offset-9">
+						<table class="table table-condensed">
+							<tr>
+								<td>Sub-total</td>
+								<td><%= number_to_currency @customer_order.shopping_cart.subtotal%></td>
+							</tr>
+							<tr>
+								<td>Shipping</td>
+								<td><%= number_to_currency @customer_order.shopping_cart.shipping_cost%></td>
+							</tr>
+							<tr>
+								<td><strong>Total</strong></td>
+								<td><strong><%= number_to_currency @customer_order.shopping_cart.total%></strong>
+									</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				
+				
+				
+			</div>
+		</div>
+	</div>
+</div>

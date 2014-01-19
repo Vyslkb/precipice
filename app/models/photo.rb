@@ -1,4 +1,7 @@
 class Photo < ActiveRecord::Base
+   extend FriendlyId
+   friendly_id :name, use: :slugged
+   
    ### Custom Attributes
    has_attached_file :photo_file, :styles => { :medium => "300x300>", 
                                                :thumb => "100x100>", 
@@ -10,6 +13,8 @@ class Photo < ActiveRecord::Base
                                                                     :original => "-quality 75" }, 
                                                :default_url => "/images/:style/missing.png"
    
+  
+  
   ### Associations
   belongs_to :gallery, :inverse_of => :photos
    
@@ -18,7 +23,8 @@ class Photo < ActiveRecord::Base
    
   ### Validations
   validates_presence_of :name, :photo_file
-   
+  validates :name, uniqueness: { case_sensitive: false }
+    
   ### Callbacks
   before_create :set_gallery_order
   before_save :nullify_gallery_id
@@ -94,5 +100,9 @@ class Photo < ActiveRecord::Base
        self.photo_print_options.create(print_option_id: print_option.id)
      end
    end
+   
+  def should_generate_new_friendly_id?
+    name_changed? || slug.nil?
+  end
    
 end

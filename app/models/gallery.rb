@@ -1,4 +1,7 @@
 class Gallery < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+   
   ### Associations
   belongs_to :collection, :inverse_of => :galleries
   has_many :photos, :inverse_of => :gallery, :dependent => :restrict_with_error
@@ -17,6 +20,10 @@ class Gallery < ActiveRecord::Base
   
   def name_with_collection
     "#{self.collection.name} - #{name}"
+  end
+  
+  def should_generate_new_friendly_id?
+    name_changed? || slug.nil?
   end
   
   private

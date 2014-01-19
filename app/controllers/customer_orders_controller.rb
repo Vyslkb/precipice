@@ -12,6 +12,10 @@ class CustomerOrdersController < ApplicationController
   def show
   end
 
+  def complete
+    @customer_order = CustomerOrder.find(session[:customer_order_id])
+  end
+
   # GET /customer_orders/new
   def new
     @customer_order = CustomerOrder.new
@@ -33,9 +37,10 @@ class CustomerOrdersController < ApplicationController
     respond_to do |format|
       if @customer_order.save
         create_charge
-        reset_session
+        session[:customer_order_id] = @customer_order.id
+        session[:shopping_cart_id] = nil
         
-        format.html { redirect_to @customer_order, notice: 'Customer order was successfully created.' }
+        format.html { redirect_to order_complete_path }
         format.json { render action: 'show', status: :created, location: @customer_order }
       else
         format.html { render action: 'new' }

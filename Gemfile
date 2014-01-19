@@ -41,6 +41,7 @@ gem 'devise'
 gem 'high_voltage'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'acts_as_shopping_cart', '~> 0.2.0'
+gem 'friendly_id', '~> 5.0.0'
 
 group :development do
   gem 'rails_layout'
