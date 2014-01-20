@@ -1,53 +1,42 @@
-<h1>Listing customer_orders</h1>
+<div class="row">
+	<div class="col-md-12">
+		<h3>Customer Orders</h3>
+	</div>
+	<div class="col-md-12 top-buffer-big">
+		<table class="table table-condensed">
+		  <thead>
+		    <tr>
+		      <th>Placed on</th>
+		      <th>Customer</th>
+		      <th>Order Total</th>
+		      
+		      <th></th>
 
-<table>
-  <thead>
-    <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Email</th>
-      <th>Phone number</th>
-      <th>Ship to first name</th>
-      <th>Ship to last name</th>
-      <th>address line 1</th>
-      <th>Address line 2</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Zip code</th>
-      <th>Shopping cart</th>
-      <th>Shopping cart total</th>
-      <th>Comments</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+		      <th></th>
+		    </tr>
+		  </thead>
+		
+		  <tbody>
+		    <% @customer_orders.each do |customer_order| %>
+		      <tr>
+		        <td><%= customer_order.created_at.strftime("%m/%d/%Y, %l:%M %p") %></td>
+		        <td>
+		        	<%= customer_order.first_name %>
+		        	<%= customer_order.last_name %>
+		        </td>
+		        <td>
+		        	<%= number_to_currency customer_order.shopping_cart_total %>
+		        </td>
+		        
+		        <td><%= link_to 'Show', customer_order %></td>
+		
+		        <td><%= link_to 'Delete', customer_order, method: :delete, data: { confirm: "Don't delete this unless you really mean it. Are you sure?" } %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
 
-  <tbody>
-    <% @customer_orders.each do |customer_order| %>
-      <tr>
-        <td><%= customer_order.first_name %></td>
-        <td><%= customer_order.last_name %></td>
-        <td><%= customer_order.email %></td>
-        <td><%= customer_order.phone_number %></td>
-        <td><%= customer_order.ship_to_first_name %></td>
-        <td><%= customer_order.ship_to_last_name %></td>
-        <td><%= customer_order.address_line_1 %></td>
-        <td><%= customer_order.address_line_2 %></td>
-        <td><%= customer_order.city %></td>
-        <td><%= customer_order.state %></td>
-        <td><%= customer_order.zip_code %></td>
-        <td><%= customer_order.shopping_cart_id %></td>
-        <td><%= customer_order.shopping_cart_total %></td>
-        <td><%= customer_order.comments %></td>
-        <td><%= link_to 'Show', customer_order %></td>
-        <td><%= link_to 'Edit', edit_customer_order_path(customer_order) %></td>
-        <td><%= link_to 'Destroy', customer_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+	</div>
+</div>
 
-<br>
 
-<%= link_to 'New Customer order', new_customer_order_path %>

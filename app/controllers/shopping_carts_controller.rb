@@ -46,15 +46,18 @@ class ShoppingCartsController < ApplicationController
     
   end
   
-  def checkout
-    # Set your secret key: remember to change this to your live secret key in production
-    # See your keys here https://manage.stripe.com/account
-    
-    #Stripe.api_key = "sk_test_DtlutWbhRy1T629i5mrocR56"
-    @shopping_cart = ShoppingCart.find(session[:shopping_cart_id])
-    
-    
+  def index
+    @shopping_carts = ShoppingCart.order('updated_at desc')
    
+  end
+  
+  def destroy
+    @shopping_cart = ShoppingCart.find(params[:id])
+    @shopping_cart.destroy
+    respond_to do |format|
+      format.html { redirect_to shopping_carts_url }
+      format.json { head :no_content }
+    end
   end
   
   

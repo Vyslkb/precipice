@@ -4,7 +4,7 @@ class CustomerOrdersController < ApplicationController
   # GET /customer_orders
   # GET /customer_orders.json
   def index
-    @customer_orders = CustomerOrder.all
+    @customer_orders = CustomerOrder.order('created_at desc')
   end
 
   # GET /customer_orders/1

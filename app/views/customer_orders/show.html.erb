@@ -1,74 +1,116 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @customer_order.first_name %>
-</p>
+<%= link_to 'All Orders', customer_orders_path %>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @customer_order.last_name %>
-</p>
+<div class="row top-buffer-big">
+	<div class="col-md-10 col-md-offset-1">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h4>Order:
+					<%= @customer_order.created_at.strftime("%m/%d/%Y, %l:%M %p") %>
+				</h4>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 well">
+					
+						<div class="row">
+							<div class="col-md-5">
+								<p>
+									<strong class="text-white">Contact:</strong>
+								</p>
+								
+								<p class="horz-padding">
+									<strong>
+										<%= @customer_order.first_name %> <%= @customer_order.last_name %>	
+									</strong>
+									<br />
+									<%= @customer_order.email%> <br /> 
+									<%= number_to_phone @customer_order.phone_number %>
+								</p>						
+							</div>
+							<div class="col-md-5">
+								<p>
+									<strong class="text-white">Shipping to:</strong>
+								</p>
+								
+								<p class="horz-padding">
+									<strong>
+										<%= @customer_order.ship_to_first_name %> <%= @customer_order.ship_to_last_name %><br />
+									</strong>
+									<%= @customer_order.address_line_1%> <br />
+									<%= @customer_order.address_line_2%> <%= "<br/>".html_safe if @customer_order.address_line_2.present? %>
+									<%= @customer_order.city%>, <%= @customer_order.zip_code%> <%= @customer_order.state%> <br />
+								</p>
+								
+								<% if @customer_order.comments.present? %>
+									<p>
+										<strong class="text-white">Additional Comments:</strong>
+									</p>
+									<p class="horz-padding">
+										<%= @customer_order.comments %>
+									</p>
+								<%end%>
+							</div>
+						</div>
+											
+						
+					</div>
+				</div>
+				
+				
+				<div class="row">
+					<div class="col-md-12">
+						<h4 class="text-white">
+							Order details: 
+						</h4>
+						<div class="top-buffer-big">
+							<strong>
+							Charge for this order: <%= number_to_currency @customer_order.shopping_cart_total %>
+							</strong>
+						</div>
+						<table class="table table-condensed top-buffer-big">
+							<thead>
+								<th>Photo</th>
+								<th>Print Type</th>
+								<th>Quantity</th>
+								<th>Current Price</th>
+							</thead>
+							<tbody>
+								<% @customer_order.shopping_cart.shopping_cart_items.each do |shopping_cart_item| %>
+									<% photo = PhotoPrintOption.find(shopping_cart_item.item_id).photo%>
+									<% print_option = PhotoPrintOption.find(shopping_cart_item.item_id).print_option %>
+									<tr>
+										<td>
+											<%= image_tag photo.photo_file.url(:thumb)%>
+											<%= photo.name %>
+										</td>
+										<td>
+											<%= print_option.name %>
+										</td>
+										<td>
+											<%= shopping_cart_item.quantity %>
+										</td>
+										<td>
+											<%= number_to_currency shopping_cart_item.price %>
+										</td>
+									</tr>
+								<%end%>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 col-md-offset-9">
+						
+					</div>
+				</div>
+				
+				
+				
+			</div>
+		</div>
+	</div>
+</div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @customer_order.email %>
-</p>
 
-<p>
-  <strong>Phone number:</strong>
-  <%= @customer_order.phone_number %>
-</p>
-
-<p>
-  <strong>Ship to first name:</strong>
-  <%= @customer_order.ship_to_first_name %>
-</p>
-
-<p>
-  <strong>Ship to last name:</strong>
-  <%= @customer_order.ship_to_last_name %>
-</p>
-
-<p>
-  <strong>address line 1:</strong>
-  <%= @customer_order.address_line_1 %>
-</p>
-
-<p>
-  <strong>Address line 2:</strong>
-  <%= @customer_order.address_line_2 %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @customer_order.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @customer_order.state %>
-</p>
-
-<p>
-  <strong>Zip code:</strong>
-  <%= @customer_order.zip_code %>
-</p>
-
-<p>
-  <strong>Shopping cart:</strong>
-  <%= @customer_order.shopping_cart_id %>
-</p>
-
-<p>
-  <strong>Shopping cart total:</strong>
-  <%= @customer_order.shopping_cart_total %>
-</p>
-
-<p>
-  <strong>Comments:</strong>
-  <%= @customer_order.comments %>
-</p>
-
-<%= link_to 'Edit', edit_customer_order_path(@customer_order) %> |
-<%= link_to 'Back', customer_orders_path %>

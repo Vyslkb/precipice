@@ -2,6 +2,11 @@ Precipice::Application.routes.draw do
   
   resources :customer_orders
   
+  resources :shopping_carts, only: [:index, :destroy]
+  
+  get 'shopping_cart', to: 'shopping_carts#show'
+  post 'update_shopping_cart', to: 'shopping_carts#update'
+  
   get 'order_complete', to: 'customer_orders#complete', as: :order_complete
   get 'checkout', to: 'customer_orders#new', as: :checkout
 
@@ -33,8 +38,7 @@ Precipice::Application.routes.draw do
   
  
     
-  get 'shopping_cart', to: 'shopping_carts#show'
-  post 'update_shopping_cart', to: 'shopping_carts#update'
+  
   
   #get 'checkout', to: 'shopping_carts#checkout'
   #post 'create_charge', to: 'shopping_carts#create_charge'

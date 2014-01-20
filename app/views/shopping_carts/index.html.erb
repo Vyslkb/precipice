@@ -1,0 +1,37 @@
+<div class="row">
+	<div class="col-md-12">
+		<% @shopping_carts.each do |shopping_cart| %>
+			<table class="table table-condensed">
+				<tr>
+					<td>last updated: <%= shopping_cart.updated_at.strftime("%m/%d/%Y, %l:%M %p")%></td>
+					<td><%= link_to 'Delete', shopping_cart, method: :delete, data: { confirm: "Are you sure?" } %></td>
+					
+				</tr>
+				<% shopping_cart.shopping_cart_items.each do |shopping_cart_item|%>
+					<% photo = PhotoPrintOption.find(shopping_cart_item.item_id).photo%>
+						<% print_option = PhotoPrintOption.find(shopping_cart_item.item_id).print_option %>
+						<tr>
+							<td>
+								
+							</td>
+							<td>
+								<%= photo.name %>
+							</td>
+							<td>
+								<%= print_option.name %>
+							</td>
+							<td>
+								<%= shopping_cart_item.quantity  %>
+							</td>
+							<td>
+								<%= number_to_currency shopping_cart_item.price %>
+							</td>
+						</tr>
+				<%end%>
+			</table>
+		
+		
+		<%end%>
+	
+	</div>
+</div>

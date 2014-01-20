@@ -13,13 +13,14 @@
 								<p>
 									<strong class="text-white">Contact:</strong>
 								</p>
-								
-								<strong>
-									<%= @customer_order.first_name %> <%= @customer_order.last_name %>	
-								</strong>
-								<br />
-								<%= @customer_order.email%> <br /> 
-								<%= number_to_phone @customer_order.phone_number %> 							
+								<p class="horz-padding">
+									<strong>
+										<%= @customer_order.first_name %> <%= @customer_order.last_name %>	
+									</strong>
+									<br />
+									<%= @customer_order.email%> <br /> 
+									<%= number_to_phone @customer_order.phone_number %>
+								</p> 							
 							</div>
 							<div class="col-md-5">
 								<p>
@@ -34,6 +35,15 @@
 									<%= @customer_order.address_line_2%> <%= "<br/>".html_safe if @customer_order.address_line_2.present? %>
 									<%= @customer_order.city%>, <%= @customer_order.zip_code%> <%= @customer_order.state%> <br />
 								</p>
+								
+								<% if @customer_order.comments.present? %>
+									<p>
+										<strong class="text-white">Additional Comments:</strong>
+									</p>
+									<p class="horz-padding">
+										<%= @customer_order.comments %>
+									</p>
+								<%end%>
 							</div>
 						</div>
 											
