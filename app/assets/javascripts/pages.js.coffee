@@ -6,7 +6,7 @@ $(document).ready ->
 
 startCarousel = ->
   $('#home-carousel').carousel({
-    interval: 3500,
+    interval: 4500,
     pause: false
     })
     
