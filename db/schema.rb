@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140119101831) do
+ActiveRecord::Schema.define(version: 20140122063353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,9 +39,21 @@ ActiveRecord::Schema.define(version: 20140119101831) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
+    t.integer  "display_order"
   end
 
   add_index "collections", ["slug"], name: "index_collections_on_slug", unique: true, using: :btree
+
+  create_table "customer_order_items", force: true do |t|
+    t.integer  "customer_order_id"
+    t.string   "photo_name"
+    t.integer  "photo_id"
+    t.string   "print_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "print_cost"
+    t.integer  "quantity"
+  end
 
   create_table "customer_orders", force: true do |t|
     t.string   "first_name"
@@ -55,11 +67,12 @@ ActiveRecord::Schema.define(version: 20140119101831) do
     t.string   "city"
     t.string   "state"
     t.string   "zip_code"
-    t.integer  "shopping_cart_id"
-    t.decimal  "shopping_cart_total", precision: 7, scale: 2
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "total",              precision: 8, scale: 2
+    t.decimal  "subtotal",           precision: 8, scale: 2
+    t.decimal  "shipping",           precision: 8, scale: 2
   end
 
   create_table "friendly_id_slugs", force: true do |t|
@@ -82,6 +95,7 @@ ActiveRecord::Schema.define(version: 20140119101831) do
     t.datetime "updated_at"
     t.text     "description"
     t.string   "slug"
+    t.integer  "order_in_collection"
   end
 
   add_index "galleries", ["slug"], name: "index_galleries_on_slug", unique: true, using: :btree
@@ -108,6 +122,7 @@ ActiveRecord::Schema.define(version: 20140119101831) do
     t.integer  "gallery_order"
     t.boolean  "slideshow_flag"
     t.string   "slug"
+    t.integer  "slideshow_order"
   end
 
   add_index "photos", ["slug"], name: "index_photos_on_slug", unique: true, using: :btree

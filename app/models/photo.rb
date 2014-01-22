@@ -49,7 +49,7 @@ class Photo < ActiveRecord::Base
     end
     
     def self.slideshow
-      where(slideshow_flag: true)
+      where(slideshow_flag: true).order('slideshow_order')
     end
     
     

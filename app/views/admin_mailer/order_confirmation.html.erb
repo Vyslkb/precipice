@@ -1,0 +1,98 @@
+<h3>Test Email</h3>
+<p>
+	If this were real, it would be sent to <%= @customer_order.email%>
+</p>
+<h3>Continue</h3>
+
+
+<p>
+	Hello <%= @customer_order.first_name %>,
+</p>
+
+<p>
+	Thank you for your recent purchase from BeyondThePrecipice.com
+</p>
+
+<p>
+	<strong>Order Details:</strong>
+</p>
+
+<p>
+	<table style="border:none">
+		<thead>
+			<th>Photo</th>
+			<th>Print Type</th>
+			<th>Quantity</th>
+			<th>Price</th>
+		</thead>
+		<tbody>
+			<% @customer_order.customer_order_items.each do |customer_order_item| %>
+				
+				<tr>
+					<td>
+						<%= customer_order_item.photo_name %>
+					</td>
+					<td>
+						<%= customer_order_item.print_name %>
+					</td>
+					<td>
+						<%= customer_order_item.quantity %>
+					</td>
+					<td>
+						<%= number_to_currency customer_order_item.print_cost %>
+					</td>
+				</tr>
+			<%end%>
+		</tbody>
+	</table>
+	
+	<table class="" style="border:none">
+		<tr>
+			<td>Sub-total</td>
+			<td><%= number_to_currency @customer_order.subtotal%></td>
+		</tr>
+		<tr>
+			<td>Shipping</td>
+			<td><%= number_to_currency @customer_order.shipping%></td>
+		</tr>
+		<tr>
+			<td><strong>Total</strong></td>
+			<td><strong><%= number_to_currency @customer_order.total%></strong>
+				</td>
+		</tr>
+	</table>
+</p>
+	
+<p>
+	<strong>Shipping Details:</strong>
+</p>	
+		
+<p class="">
+	<strong>
+		<%= @customer_order.ship_to_first_name %> <%= @customer_order.ship_to_last_name %><br />
+	</strong>
+	<%= @customer_order.address_line_1%> <br />
+	<%= @customer_order.address_line_2%> <%= "<br/>".html_safe if @customer_order.address_line_2.present? %>
+	<%= @customer_order.city%>, <%= @customer_order.zip_code%> <%= @customer_order.state%> <br />
+</p>
+
+<% if @customer_order.comments.present? %>
+	<p>
+		<strong class="text-white">Additional Comments:</strong>
+	</p>
+	<p class="horz-padding">
+		<%= @customer_order.comments %>
+	</p>
+<%end%>
+		
+		
+<p>
+	Please don't hesitate to reply if you have any questions.
+</p>
+				
+				
+<p>
+	Sincerely, <br />
+	Michael
+</p>
+								

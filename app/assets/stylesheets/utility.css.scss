@@ -154,3 +154,24 @@ label.error {
 .text-white {
   color: #FFF; 
 }
+
+ul.sortable {
+  list-style-type:none;
+}
+
+
+ul.sortable-grid li {
+  //float: left;
+  display: inline-block;
+  margin: 10px;
+  width: 175px;
+  padding: 10px;
+  border: 1px solid #333;
+  background-color: #000;
+}
+
+.sortable-placeholder {
+  border: 1px dashed #888;
+  width: 175px;
+  height: 110px;
+}

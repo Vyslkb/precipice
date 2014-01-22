@@ -70,6 +70,6 @@ class CollectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def collection_params
-      params.require(:collection).permit(:name, galleries_attributes: [:name])
+      params.require(:collection).permit(:name, galleries_attributes: [:id, :name,:order_in_collection])
     end
 end

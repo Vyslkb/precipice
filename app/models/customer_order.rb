@@ -1,11 +1,12 @@
 class CustomerOrder < ActiveRecord::Base
   ### Associations
   belongs_to :shopping_cart
+  has_many :customer_order_items, inverse_of: :customer_order
   
   ### Validations
   validates_presence_of :first_name, :last_name, :email, :phone_number, :ship_to_first_name,
-                        :ship_to_last_name, :address_line_1, :city, :state, :zip_code,
-                        :shopping_cart_total, :shopping_cart_id
+                        :ship_to_last_name, :address_line_1, :city, :state, :zip_code
+                    
   
   validates :first_name, length: { in: 2..50 }
   validates :last_name, length: { in: 2..50 }
@@ -21,7 +22,8 @@ class CustomerOrder < ActiveRecord::Base
   ### Callbacks
   before_validation :format_phone_number 
  
-  
+  ### Nested attributes
+  accepts_nested_attributes_for :customer_order_items, allow_destroy: true
   
   
   

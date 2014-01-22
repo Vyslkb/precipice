@@ -15,9 +15,13 @@ class Gallery < ActiveRecord::Base
   ### Nested attributes
   accepts_nested_attributes_for :photos #, reject_if: proc { |attributes| attributes['photo_file'].blank? }
   
+  ### Scopes
+  def self.collection_order
+    self.order(:order_in_collection)
+  end
   
   
-  
+  ### Methods
   def name_with_collection
     "#{self.collection.name} - #{name}"
   end

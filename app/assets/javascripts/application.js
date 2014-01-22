@@ -19,5 +19,6 @@
 //= require jquery.validate.min
 //= require additional-methods.min
 //= require jquery.payment
+//= require jquery.sortable
 //= require turbolinks
 //= require_tree .

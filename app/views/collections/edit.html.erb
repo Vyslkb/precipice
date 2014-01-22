@@ -1,6 +1,21 @@
-<h1>Editing collection</h1>
 
-<%= render 'form' %>
 
-<%= link_to 'Show', @collection %> |
-<%= link_to 'Back', collections_path %>
+<div class="row top-buffer-big">
+	<div class="col-md-12">
+		<div class="well">
+			<h3>Edit <%= @collection.name %> collection</h3>
+		
+	
+	
+			<%= render 'form' %>
+	
+	
+			<div class="row top-buffer-big">
+				<div class="col-md-12">
+					<%= link_to 'View Collection', @collection %> |
+					<%= link_to 'Manage Photos', collections_path %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

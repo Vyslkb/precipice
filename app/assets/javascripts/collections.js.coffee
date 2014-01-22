@@ -3,4 +3,18 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready ->
   if $('body').data('controller') == 'collections'
-    shrink_thumbnails() 
+    shrink_thumbnails()
+    
+    if $('body').data('action') == 'edit'
+      sortItems()
+      
+
+sortItems = ->
+  $('ul.sortable').sortable().on('sortupdate', -> sortResponse())
+  renumberSortableItems()
+renumberSortableItems = ->
+  $('li', 'ul.sortable').each (index, element) =>
+    $('*[data-content="sort_order_field"]', element).val(index)
+
+sortResponse = ->
+  renumberSortableItems()

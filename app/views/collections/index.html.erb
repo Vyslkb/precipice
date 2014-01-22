@@ -29,7 +29,7 @@
 					<div class="panel-body">
 				    	<!-- List group -->
 						<div class="list-group">
-							<% collection.galleries.each do |gallery|%>		
+							<% collection.galleries.collection_order.each do |gallery|%>		
 								<%= link_to(manage_gallery_path(gallery), {:class => "list-group-item"}) do %>
 									<%= gallery.name%>
 									<div class="row">

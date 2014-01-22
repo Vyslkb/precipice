@@ -65,21 +65,20 @@
 								<th>Price</th>
 							</thead>
 							<tbody>
-								<% @customer_order.shopping_cart.shopping_cart_items.each do |shopping_cart_item| %>
-									<% photo = PhotoPrintOption.find(shopping_cart_item.item_id).photo%>
-									<% print_option = PhotoPrintOption.find(shopping_cart_item.item_id).print_option %>
+								<% @customer_order.customer_order_items.each do |customer_order_item| %>
+									
 									<tr>
 										<td>
-											<%= photo.name %>
+											<%= customer_order_item.photo_name %>
 										</td>
 										<td>
-											<%= print_option.name %>
+											<%= customer_order_item.print_name %>
 										</td>
 										<td>
-											<%= shopping_cart_item.quantity %>
+											<%= customer_order_item.quantity %>
 										</td>
 										<td>
-											<%= number_to_currency shopping_cart_item.price %>
+											<%= number_to_currency customer_order_item.print_cost %>
 										</td>
 									</tr>
 								<%end%>
@@ -92,15 +91,15 @@
 						<table class="table table-condensed">
 							<tr>
 								<td>Sub-total</td>
-								<td><%= number_to_currency @customer_order.shopping_cart.subtotal%></td>
+								<td><%= number_to_currency @customer_order.subtotal%></td>
 							</tr>
 							<tr>
 								<td>Shipping</td>
-								<td><%= number_to_currency @customer_order.shopping_cart.shipping_cost%></td>
+								<td><%= number_to_currency @customer_order.shipping%></td>
 							</tr>
 							<tr>
 								<td><strong>Total</strong></td>
-								<td><strong><%= number_to_currency @customer_order.shopping_cart.total%></strong>
+								<td><strong><%= number_to_currency @customer_order.total%></strong>
 									</td>
 							</tr>
 						</table>

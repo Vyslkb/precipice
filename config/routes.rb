@@ -2,12 +2,15 @@ Precipice::Application.routes.draw do
   
   resources :customer_orders
   
-  resources :shopping_carts, only: [:index, :destroy]
   
+  ### NEED TO FIX THIS
   get 'shopping_cart', to: 'shopping_carts#show'
   post 'update_shopping_cart', to: 'shopping_carts#update'
+  resources :shopping_carts, only: [:index, :destroy]
+  ###############################
   
   get 'order_complete', to: 'customer_orders#complete', as: :order_complete
+  get 'charge_error', to: 'customer_orders#charge_error', as: :charge_error
   get 'checkout', to: 'customer_orders#new', as: :checkout
 
 
@@ -30,6 +33,8 @@ Precipice::Application.routes.draw do
   resources :photos do
     collection do
       get "uncategorized"
+      get "manage_slideshow"
+      put "update_slideshow"
     end
     member do
       get "show_full_size"

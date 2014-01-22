@@ -14,8 +14,24 @@ class PhotosController < ApplicationController
 
   # GET /photos/1
   # GET /photos/1.json
-  def show
-    
+  def show   
+  end
+  
+  def manage_slideshow
+    @photos = Photo.slideshow
+  end
+  
+  def update_slideshow
+     logger.error params[:photos].keys
+     logger.error params[:photos].values
+     
+     params[:photos].values.each do |photo_values|
+        Photo.update(photo_values['id'], slideshow_order: photo_values['slideshow_order']) 
+     end 
+     
+     #Photo.update(params[:products].keys, params[:products].values)
+     
+     redirect_to :back
   end
 
   # GET /photos/new

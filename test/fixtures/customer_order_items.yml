@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  customer_order_id: 1
+  photo_name: MyString
+  photo_id: 1
+  print_name: MyString
+  print_cost: MyString
+  integer: MyString
+
+two:
+  customer_order_id: 1
+  photo_name: MyString
+  photo_id: 1
+  print_name: MyString
+  print_cost: MyString
+  integer: MyString

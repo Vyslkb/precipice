@@ -5,6 +5,7 @@ class CustomerOrdersController < ApplicationController
   # GET /customer_orders.json
   def index
     @customer_orders = CustomerOrder.order('created_at desc')
+    AdminMailer.welcome_email.deliver
   end
 
   # GET /customer_orders/1
@@ -14,6 +15,10 @@ class CustomerOrdersController < ApplicationController
 
   def complete
     @customer_order = CustomerOrder.find(session[:customer_order_id])
+  end
+  
+  def charge_error
+    
   end
 
   # GET /customer_orders/new
@@ -30,15 +35,34 @@ class CustomerOrdersController < ApplicationController
   # POST /customer_orders.json
   def create
     @customer_order = CustomerOrder.new(customer_order_params)
-    @shopping_cart = ShoppingCart.find(session[:shopping_cart_id])
-    @customer_order.shopping_cart_id = @shopping_cart.id
-    @customer_order.shopping_cart_total = @shopping_cart.total
+    
+    shopping_cart = ShoppingCart.find(session[:shopping_cart_id])
+    @customer_order.subtotal = shopping_cart.subtotal
+    @customer_order.shipping = shopping_cart.shipping_cost
+    @customer_order.total = shopping_cart.total
+    
+    shopping_cart.shopping_cart_items.each do |shopping_cart_item|
+      new_order_item = @customer_order.customer_order_items.new
+      
+      photo = PhotoPrintOption.find(shopping_cart_item.item_id).photo
+      print_option = PhotoPrintOption.find(shopping_cart_item.item_id).print_option
+      
+      new_order_item.photo_name = photo.name
+      new_order_item.photo_id = photo.id
+      new_order_item.print_name = print_option.name
+      new_order_item.print_cost = print_option.price     
+      
+      new_order_item.quantity = shopping_cart_item.quantity
+    end
+    
     
     respond_to do |format|
       if @customer_order.save
-        create_charge
+        create_charge(@customer_order.total)
         session[:customer_order_id] = @customer_order.id
         session[:shopping_cart_id] = nil
+        AdminMailer.order_confirmation(@customer_order).deliver
+        
         
         format.html { redirect_to order_complete_path }
         format.json { render action: 'show', status: :created, location: @customer_order }
@@ -91,27 +115,26 @@ class CustomerOrdersController < ApplicationController
                                              :address_line_2, 
                                              :city, 
                                              :state, 
-                                             :zip_code, 
-                                             :shopping_cart_id, 
-                                             :shopping_cart_total, 
+                                             :zip_code,  
                                              :comments,
                                              :stripe_card_token)
     end
     
-    def create_charge
+    def create_charge(charge_in_dollars)
      # Get the credit card details submitted by the form
       token = params[:stripe_card_token]
       
       # Create the charge on Stripe's servers - this will charge the user's card
       begin
         charge = Stripe::Charge.create(
-          :amount => (@shopping_cart.total * 100).to_i, # amount in cents, again
+          :amount => (charge_in_dollars * 100).to_i, # amount in cents, again
           :currency => "usd",
           :card => token,
           :description => @customer_order.email 
         )
       rescue Stripe::CardError => e
-        # The card has been declined
+        
+        #redirect_to charge_error_path
       end
     end
 end

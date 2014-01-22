@@ -1,0 +1,32 @@
+<div class="row">
+	<div class="col-md-12 col-md-offset-0">
+		<h3> Manage Slideshow Order</h3>
+		<p>
+			Drag and drop thumbnails to re-order the slideshow.<br/>
+			Make sure to click the "submit" button at the bottom when finished.
+		</p>
+		
+		<%= form_tag update_slideshow_photos_path,  method: :put  do %>
+			<ul class="sortable sortable-grid">
+				<% @photos.each do |photo|%>
+					<li class="">
+						<%= image_tag photo.photo_file.url(:thumb)%><br />
+						<%= photo.name %> <br />
+						
+					
+					
+						<%= fields_for "photos[]", photo do |photo_form| %>
+							<%= photo_form.hidden_field :id %>
+							<%= photo_form.hidden_field :slideshow_order, data:{content: "sort_order_field"} %>
+						<%end%>
+					</li>
+				<%end%>
+			</ul>
+			
+			<button type="submit" class="btn btn-default">Submit</button>
+		<%end%>
+		
+		
+		
+	</div>
+</div>
