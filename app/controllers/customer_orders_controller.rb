@@ -5,7 +5,6 @@ class CustomerOrdersController < ApplicationController
   # GET /customer_orders.json
   def index
     @customer_orders = CustomerOrder.order('created_at desc')
-    AdminMailer.welcome_email.deliver
   end
 
   # GET /customer_orders/1
