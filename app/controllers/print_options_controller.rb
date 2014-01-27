@@ -7,6 +7,15 @@ class PrintOptionsController < ApplicationController
     @print_options = PrintOption.all
   end
 
+  def update_order
+     params[:print_options].values.each do |print_option_values|
+        PrintOption.update(print_option_values['id'], display_order: print_option_values['display_order']) 
+     end 
+     
+     redirect_to :back
+  end
+  
+  
   # GET /print_options/1
   # GET /print_options/1.json
   def show
@@ -69,6 +78,6 @@ class PrintOptionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def print_option_params
-      params.require(:print_option).permit(:name, :price)
+      params.require(:print_option).permit(:name, :price, :add_to_photos)
     end
 end

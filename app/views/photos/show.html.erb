@@ -1,88 +1,83 @@
 <div class="row">
-	<div class="col-md-10 top-buffer">
+	<div class="col-md-12 col-md-offset-0">
 		
-		<ol class="breadcrumb">
-		  <li><%= link_to @photo.gallery.collection.name, @photo.gallery.collection  %></li>
-		  <li><%= link_to @photo.gallery.name, @photo.gallery %></li>
-		  <li class="active"><%= @photo.name%></li>
-		  <li>
-		  	<% @photo.gallery.photos.use_gallery_order.each do |photo|%>
-				<span class="  <%= "hidden" unless photo == @photo %>">
-					<%= link_to photo.photo_file.url(:large), {class: "text-info", title: photo.name, data:{gallery: ""} } do %>	
-						<span>gallery slideshow</span>
-					<%end%>			
-				</span>
-			<%end%>
-		  </li>
-		</ol>
-		
-	</div>
-</div>
-
-
-<div class="row top-buffer">
-	
-	
-	<div class="col-md-5">
-		<ul class="pager without-margin">
-			
-			<li class="<%= "disabled"  if @photo.gallery_order == 1 %>">  		
-	  			<%= link_to "&laquo; Previous ".html_safe, @photo.previous_photo  %>
-	  				
-	  		</li>
-			
-			<li class="horz-padding">
-		  		<%= @photo.gallery_order %> of <%= @photo.gallery.photos.count %>
-			</li>
-			
-			<li class="<%= "disabled"  if @photo.gallery_order == @photo.gallery.photos.count %>">  
-				<%= link_to "Next &raquo;".html_safe, @photo.next_photo %>
-			</li>
-		</ul>	
-		
-		
-	</div>
-</div>
-
-
-<div class="row top-buffer">
-	<div class="col-md-10">		
-		<%= image_tag @photo.photo_file.url(:large), class: "photo-border ", height:"500" %>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-5 top-buffer">
-		
-		<span class="classy-text punched-text lead"><strong><%= @photo.name %></strong></span>
-		<p><%= @photo.description %></p>
-		
-		
-	</div>
-</div>
-
-
-
-<div class="row top-buffer">
-	<div class="col-md-5">
-		<div class="well well-transparent">
-		<h5>Order Prints:</h5>
-		<%= form_tag update_shopping_cart_path, method: :post, role: "form" do %>
-			<%= hidden_field_tag :cart_action, "add"%>
-			<%= select_tag "photo_print_option_id", 
-							options_from_collection_for_select(@photo.photo_print_options, "id", "print_option_name_and_price"),
-							class: "form-control"%>
-			<div class="top-buffer-big">
-				<button type="submit" class="btn btn-default">Add to cart</button>	
+		<div class="row">
+			<div class="col-md-10 top-buffer">
+				
+				<ol class="breadcrumb">
+				  <li><%= link_to @photo.gallery.collection.name, @photo.gallery.collection  %></li>
+				  <li><%= link_to @photo.gallery.name, @photo.gallery %></li>
+				  <li class="active"><%= @photo.name%></li>
+				  <li>
+				  	<% @photo.gallery.photos.use_gallery_order.each do |photo|%>
+						<span class="  <%= "hidden" unless photo == @photo %>">
+							<%= link_to photo.photo_file.url(:large), {class: "text-info", title: photo.name, data:{gallery: ""} } do %>	
+								<span>gallery slideshow</span>
+							<%end%>			
+						</span>
+					<%end%>
+				  </li>
+				</ol>
+				
 			</div>
-			
-		<%end%>
-		
-			
-		
 		</div>
+		
+		
+		<div class="row top-buffer">
+			<div class="col-md-5">
+				<ul class="pager without-margin">
+					<li class="<%= "disabled"  if @photo.gallery_order == 1 %>">  		
+			  			<%= link_to "&laquo; Previous ".html_safe, @photo.previous_photo  %>
+			  		</li>
+					<li class="horz-padding">
+				  		<%= @photo.gallery_order %> of <%= @photo.gallery.photos.count %>
+					</li>
+					<li class="<%= "disabled"  if @photo.gallery_order == @photo.gallery.photos.count %>">  
+						<%= link_to "Next &raquo;".html_safe, @photo.next_photo %>
+					</li>
+				</ul>	
+			</div>
+		</div>
+		
+		
+		<div class="row top-buffer">
+			<div class="col-md-10">		
+				<%= image_tag @photo.photo_file.url(:large), class: "photo-border ", height:"500" %>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-5 top-buffer">
+				<span class="classy-text punched-text lead"><strong><%= @photo.name %></strong></span>
+				<p><%= @photo.description %></p>
+			</div>
+		</div>
+		
+		
+		
+		<div class="row top-buffer">
+			<div class="col-md-5">
+				<div class="well well-transparent">
+					<h5>Order Prints:</h5>
+					<%= form_tag update_shopping_cart_path, method: :post, role: "form" do %>
+						<%= hidden_field_tag :cart_action, "add"%>
+						<%= select_tag "photo_print_option_id", 
+										options_from_collection_for_select(@photo.photo_print_options.includes(:print_option).order('print_options.display_order'), "id", "print_option_name_and_price"),
+										class: "form-control"%>
+						<div class="top-buffer-big">
+							<button type="submit" class="btn btn-default">Add to cart</button>	
+						</div>
+					<%end%>
+				</div>
+			</div>
+		</div>
+		
+		
+		
 	</div>
 </div>
+
+
 
 
 

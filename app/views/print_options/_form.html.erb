@@ -24,6 +24,13 @@
 		    <%= f.number_field :price, :class => 'form-control' %>
 		  </div>
 		  <div class="form-group">
+		    <%= f.check_box :add_to_photos %> 
+		    <%= label_tag 'add_to_photos', 'Add this print option to all photos. ' %>
+		    <p>
+		    	Leave this unchecked to manually add this option to specific photos.
+		    </p>
+		  </div>
+		  <div class="form-group">
 		   <button type="submit" class="btn btn-default">Submit</button>
 		  </div>
 		<% end %>

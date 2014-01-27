@@ -24,7 +24,7 @@
 		  	Be sure to press the "submit" button when you're done.
 		  </p>
 		  <div class="form-group">
-			<ul id="sort_gallery" class="list-group sortable">
+			<ul class="list-group sortable">
 	  			<% @collection.galleries.collection_order.each do |gallery|%>
 		  			<li class="list-group-item  handle">
 			  			<%= f.fields_for :galleries, gallery do |galleries_form|%>	

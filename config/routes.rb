@@ -15,7 +15,11 @@ Precipice::Application.routes.draw do
 
 
 
-  resources :print_options
+  resources :print_options do
+    collection do
+      put 'update_order'
+    end
+  end
 
   #devise_for :admins
   devise_for :admins, :controllers => {:registrations => "registrations"}

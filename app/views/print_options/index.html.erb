@@ -1,31 +1,50 @@
-<h3>Print Options</h3>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-     
-    
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @print_options.each do |print_option| %>
-      <tr>
-        <td><%= print_option.name %></td>
-       
-        <td><%= number_to_currency print_option.price %></td>
-       
-        <td><%= link_to 'Edit', edit_print_option_path(print_option) %></td>
-        <td><%= link_to 'Destroy', print_option, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+<div class="row">
+	<div class="col-md-12">
+		
+		<h3>Print Options</h3>
+		<p class="top-buffer-big">
+			Drag and drop these options to adjust the display order. <br />
+			Click the button at the bottom to submit changes.
+			
+		</p>
+	</div>	
+	
+	<div class="col-md-5">
+		<ul>
+			<%= form_tag update_order_print_options_path,  method: :put  do %>
+				<ul class="sortable list-group">
+					<% @print_options.each do |print_option|%>
+						<li class="list-group-item">
+							<span class="horz-padding">
+								<%= print_option.name%> 
+							</span>
+							<span class="horz-padding">
+								<%= number_to_currency print_option.price %>
+							</span>
+			
+							<span class="pull-right horz-padding">
+								<%= link_to "delete", print_option, method: :delete, data: {confirm: "Are you sure??"}%>
+							</span>
+							
+							<span class="pull-right horz-padding">
+								<%= link_to "edit", edit_print_option_path(print_option) %>
+							</span>
+							
+							<%= fields_for "print_options[]", print_option do |print_option_form| %>
+								<%= print_option_form.hidden_field :id %>
+								<%= print_option_form.hidden_field :display_order, data:{content: "sort_order_field"} %>
+							<%end%>
+						</li>
+					<%end%>
+				</ul>
+				
+				<button type="submit" class="btn btn-default">Update Order</button>
+			<%end%>
+		</ul>
+	</div>
+</div>
 
 <%= link_to 'New Print option', new_print_option_path %>

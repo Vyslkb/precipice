@@ -10,6 +10,7 @@ $(document).ready ->
       
 
 sortItems = ->
+  $("<style type='text/css'> .sortable-placeholder{ background-color: #000;height: 30px;} </style>").appendTo("head");
   $('ul.sortable').sortable().on('sortupdate', -> sortResponse())
   renumberSortableItems()
 renumberSortableItems = ->

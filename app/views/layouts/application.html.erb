@@ -19,7 +19,7 @@
   	
   	<% unless (params[:id] == "home" and controller_name == "pages")%>
 	  	<div id="top_image">
-	  		<%= image_tag "background.jpg"%>
+	  		<%= image_tag "portrait_background.jpg"%>
 	  	</div>
 	  	<div style="height: 0px">
 	  		
@@ -44,7 +44,7 @@
 			</li>	
 		<%end%>
 			<li class="top-buffer-big">
-				<%= link_to 'About Me', page_path('bio')%>
+				<%= link_to 'About Me', page_path('aboutme')%>
 			</li>
 			<li>
 				<%= link_to 'Contact', page_path('contact')%>
