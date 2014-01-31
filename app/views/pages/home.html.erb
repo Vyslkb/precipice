@@ -5,10 +5,9 @@
 			<div class="carousel carousel-fade slide" id="home-carousel">
 			<!-- Wrapper for slides -->
 			  <div class="carousel-inner">
-			  
 				<% Photo.slideshow.each_with_index do |photo, index|%>
 			      	<div class="item <%= "active" if index == 0%>"><!-- class of active since it's the first item -->
-			      		  <%= image_tag photo.photo_file.url(:large), class: "slide-border img-rounded maximize_size", height: "400", width:"600" %>
+			      		  <%= image_tag photo.photo_file.url(:large), class: "slide-border img-rounded" %>
 					      <div class="carousel-caption text-center top-buffer">
 					        <p>
 					        	<%= link_to photo.name, photo_path(photo)%>
@@ -17,7 +16,18 @@
 			    	</div>
 				<%end%>  	
 			  </div>
+				 <!-- Controls -->
+				  <a class="left carousel-control" href="#home-carousel" data-slide="prev">
+				    <span class="glyphicon glyphicon-chevron-left"></span>
+				  </a>
+				  <a class="right carousel-control" href="#home-carousel" data-slide="next">
+				    <span class="glyphicon glyphicon-chevron-right"></span>
+				  </a>
+			
 			</div>
+		
+			
+		
 		</div>
 	</div>
 </div>

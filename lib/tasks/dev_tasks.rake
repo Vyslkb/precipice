@@ -9,12 +9,9 @@ namespace :dev_tasks do
 
   desc "remove orphaned print options"
   task :clean_print_options => :environment do
-    PhotoPrintOption.all.each do |photo_print_option|
-      if PrintOption.where(id: photo_print_option.print_option_id).present?
-        photo_print_option.destroy
-      end
-      
-    end
+    PrintOption.destroy_all
+    PhotoPrintOption.destroy_all
+    
   end
 
   
