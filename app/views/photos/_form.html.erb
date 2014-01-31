@@ -12,12 +12,12 @@
 			    </div>
 			  <% end %>
 				<div class="form-group">
-					<% if @photo.photo_file.blank? %>
-						<div class="form-group">
-							 Upload Photo:
-							 <%= f.file_field :photo_file %>
-						</div>
-					<%else%>
+					
+					<div class="form-group">
+						 Upload Photo:
+						 <%= f.file_field :photo_file %>
+					</div>
+					<%if @photo.photo_file.present?%>
 						<div class="col-md-offset-2">
 							<div class="form-group">
 								<%= image_tag @photo.photo_file.url(:thumb), :class => "img-thumbnail" %>	
