@@ -79,7 +79,7 @@ Precipice::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
   
   # Added for vendor assets
-  config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.svg)
+  config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.svg *.eot *.woff *.ttf)
   
   config.action_mailer.default_url_options = { :host => 'beyondtheprecipice.com' }
   
