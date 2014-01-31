@@ -7,12 +7,7 @@ namespace :dev_tasks do
     Collection.find_each(&:save)
   end
 
-  desc "remove orphaned print options"
-  task :clean_print_options => :environment do
-    PrintOption.destroy_all
-    PhotoPrintOption.destroy_all
-    
-  end
+  
 
   
 end
