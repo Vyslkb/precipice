@@ -1,7 +1,7 @@
 $(document).ready ->
   if $('body').data('controller') == 'pages' && $('body').data('static-page') == 'home'
     maximize_slideshow()
-    startCarousel()
+    #startCarousel()
     captionOverride()
 
 startCarousel = ->
