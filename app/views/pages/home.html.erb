@@ -9,7 +9,7 @@
 			      	<div class="item <%= "active" if index == 0%>"><!-- class of active since it's the first item -->
 			      		  <%= image_tag photo.photo_file.url(:large), class: "slide-border img-rounded" %>
 					      <div class="carousel-caption text-center top-buffer">
-					        <p>
+					        <p class="lead">
 					        	<%= link_to photo.name, photo_path(photo)%>
 					        </p>
 					      </div>
