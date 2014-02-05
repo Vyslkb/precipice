@@ -1,7 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
-  #before_action :foo, only: [:new]
+  before_action :close_signup, only: [:new]
   
-  def foo
+  def close_signup
     if admin_signed_in?
       true
     else 

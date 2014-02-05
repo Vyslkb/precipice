@@ -1,6 +1,7 @@
 class GalleriesController < ApplicationController
   before_action :set_gallery, only: [:show, :manage,:edit, :update, :destroy]
-
+  before_filter :authenticate_admin!, only: [:index, :manage, :new, :edit, :create, :update, :destroy]
+  
   # GET /galleries
   # GET /galleries.json
   def index

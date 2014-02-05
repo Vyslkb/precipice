@@ -2,7 +2,9 @@ class PhotosController < ApplicationController
   before_action :set_photo, only: [:show, :edit, :update, :destroy, :show_full_size]
   before_action :massage_gallery_order, only: :update
   before_action :print_option_params, only: [:update]
-
+  before_filter :authenticate_admin!, only: [:index, :manage_slideshow, :update_slideshow, :new, :edit, :create, :update, :destroy]
+  
+  
   # GET /photos
   # GET /photos.json
   def index

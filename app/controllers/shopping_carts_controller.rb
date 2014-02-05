@@ -1,4 +1,5 @@
 class ShoppingCartsController < ApplicationController
+before_filter :authenticate_admin!, only: [:index, :destroy]
 
   def show
     #only show carts which are availabe to the user session

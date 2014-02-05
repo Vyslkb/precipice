@@ -1,6 +1,7 @@
 class PrintOptionsController < ApplicationController
   before_action :set_print_option, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_admin!
+  
   # GET /print_options
   # GET /print_options.json
   def index

@@ -1,6 +1,7 @@
 class CustomerOrdersController < ApplicationController
   before_action :set_customer_order, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_admin!, only: [:index, :show, :edit, :update, :destroy]
+  
   # GET /customer_orders
   # GET /customer_orders.json
   def index
