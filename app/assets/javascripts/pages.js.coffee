@@ -10,12 +10,18 @@ startCarousel = ->
     pause: "false"
     })
     
+  $('#playButton').hide()
+    
   $('#playButton').click ->
+    $('#home-carousel').carousel('next')
     $('#home-carousel').carousel('cycle')
+    $(this).hide()
+    $('#pauseButton').show()
     
   $('#pauseButton').click ->
     $('#home-carousel').carousel('pause')
-    
+    $(this).hide()
+    $('#playButton').show()  
     
 captionOverride = ->
   $('.carousel-caption').css('position',"relative")
@@ -61,6 +67,6 @@ maximize_slideshow = ->
  $('.item').width(image_width)
  
  #center the play/pause buttons
- $('#carouselButtons').css('margin-left', (image_width/2 -30))
+ $('#carouselButtons').css('margin-left', (image_width/2 -16))
 
 
