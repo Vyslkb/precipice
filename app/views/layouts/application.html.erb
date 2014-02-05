@@ -17,14 +17,13 @@
   </head>
   <body data-controller="<%= controller_name %>" data-action="<%= action_name %>" data-static-page="<%= static_page_name %>">	
   	
-  	<% unless (params[:id] == "home" and controller_name == "pages")%>
-	  	<div id="top_image">
-	  		<%= image_tag "portrait_background.jpg"%>
-	  	</div>
-	  	<div style="height: 0px">
-	  		
-	  	</div>
-  	<%end%>
+  	
+  	
+  	
+  	<div id="background_image_container">
+  		<%= set_background_image %>
+  	</div>
+  	
   	
   	 <div id="wrapper">
       
@@ -33,18 +32,17 @@
         <ul class="sidebar-nav">
           <li class="sidebar-brand">
           	<%= link_to root_url, class:"" do%>	
-				<%= image_tag "bitmap8.png", class:""%>
+				<%= image_tag "Logo10.png", width: ""%>
 			<%end%>
           </li>
+         
           <% Collection.all.each do |collection|%>
 			<li>
-				
-					<%= link_to collection.name, collection, class:"" %>
-				
+				<%= link_to collection.name, collection, class:"" %>
 			</li>	
 		<%end%>
 			<li class="top-buffer-big">
-				<%= link_to 'About Me', page_path('aboutme')%>
+				<%= link_to 'Philosophy', page_path('philosophy')%>
 			</li>
 			<li>
 				<%= link_to 'Contact', page_path('contact')%>
@@ -53,9 +51,7 @@
 				<%= link_to 'Prints and Pricing', page_path('prints_and_pricing')%>
 			</li>
 			
-			<li class="top-buffer-big">
-				<%= link_to "Shopping Cart", shopping_cart_path if session[:shopping_cart_id].present? %>
-			</li>
+			
           
         </ul>
       </div>
@@ -69,6 +65,14 @@
             <div class="col-md-12">
              	<%= render 'layouts/admin_nav_bar' if admin_signed_in?%>
 				<%= render 'layouts/messages' %>
+				<% if session[:shopping_cart_id].present? %>
+					<div class="pull-right">
+						<span class="glyphicon glyphicon-shopping-cart"></span>
+						<%= link_to "Shopping Cart", shopping_cart_path  %>
+					</div>
+				<%end%>
+				
+				
 				
 	       		<%= yield %>
             </div>

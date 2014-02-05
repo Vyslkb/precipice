@@ -27,8 +27,9 @@ spinner_position = ->
 #  thumbnails.height(maxHeight)
 
 background_image = ->
-  $("img", "#top_image").width($(window).width()- $("#sidebar-wrapper").width())
-
+  $("img", "#background_image_container").width($(window).width()- $("#sidebar-wrapper").width())
+  $("img", "#background_image_container").height($(window).height())
+  $("img", "#background_image_container").css("margin-left", $("#sidebar-wrapper").width() )
 
 @shrink_thumbnails = ->
   ##  Assume med size thumbnails: 308px

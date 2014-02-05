@@ -1,14 +1,21 @@
 $(document).ready ->
   if $('body').data('controller') == 'pages' && $('body').data('static-page') == 'home'
     maximize_slideshow()
-    #startCarousel()
+    startCarousel()
     captionOverride()
 
 startCarousel = ->
   $('#home-carousel').carousel({
     interval: 4500,
-    pause: true
+    pause: "false"
     })
+    
+  $('#playButton').click ->
+    $('#home-carousel').carousel('cycle')
+    
+  $('#pauseButton').click ->
+    $('#home-carousel').carousel('pause')
+    
     
 captionOverride = ->
   $('.carousel-caption').css('position',"relative")
@@ -52,5 +59,8 @@ maximize_slideshow = ->
  
  # resize container as well for centered text
  $('.item').width(image_width)
+ 
+ #center the play/pause buttons
+ $('#carouselButtons').css('margin-left', (image_width/2 -30))
 
 

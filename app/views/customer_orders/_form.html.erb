@@ -150,9 +150,9 @@
 		</div>
 	</div>
   	
-  	<div class="panel panel-primary hidden " data-content="checkout-page"  data-id="checkout-step-3">
+  	<div class="panel panel-primary hidden" data-content="checkout-page"  data-id="checkout-step-3">
 		<div class="panel-heading">		
-			Checkout Step 3 of 3: Credit Cart Info
+			Checkout Step 3 of 3: Secure Checkout <span class="horz-padding"> <%=link_to image_tag("outline.png"), "https://stripe.com/about", target:"_blank"%> </span>
 		</div>
 		<div class="panel-body">
 			<div class="alert alert-danger hidden">
@@ -160,17 +160,26 @@
 			</div>
 			
 			<%= hidden_field_tag :stripe_card_token %>
+			
+			
 			<div class="form-group top-buffer-big">
 				<%= label_tag :card_number, "Credit Card Number", class: "col-md-2 control-label" %>
-				<div class="col-md-5">
+				<div class="col-md-4">
 					<%=text_field_tag :card_number, nil, name: nil, :class => 'form-control',
 																	required: "required" %>	
+					
+				</div>
+				<div class="col-md-5">
+					<%= image_tag "visa.png"%>
+					<%= image_tag "mastercard.png"%>
+					<%= image_tag "discover.png"%>
+					<%= image_tag "amex.png"%>
 				</div>
 			</div>
 			
 			<div class="form-group top-buffer-big">
 				<%= label_tag :card_code, "Security Code on Card (CVV)", class: "col-md-2 control-label" %>
-				<div class="col-md-5">
+				<div class="col-md-2">
 					<%=text_field_tag :card_code, nil, {name: nil, class: 'form-control'} %>	
 				</div>
 			</div>
@@ -197,6 +206,9 @@
 				</div>
 			</div>
 			
+			
+			
+			
 			<div class="top-buffer-big">
 				<ul class="pull-left pager">
 					<li>
@@ -209,8 +221,6 @@
 				</ul>
 				
 			</div>
-			
-			
 			
 		</div>
 	</div>

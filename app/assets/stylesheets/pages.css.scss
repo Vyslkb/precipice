@@ -10,7 +10,7 @@
   opacity: 1;
 }
 .carousel-fade .carousel-inner .active.left,
-.carousel-fade .carousel-inner .active.right {
+.carousel-fade .carousel-inner .active.right{
   left: 0;
   opacity: 0;
   z-index: 1;
@@ -26,3 +26,19 @@
 .carousel-caption { 
   position: relative; 
 } 
+
+#carouselButtons {
+    margin-left: 300px;
+    
+    position: absolute;
+    bottom: 10px;
+}
+
+#carouselButtons a {
+  padding: 7px;
+  z-index: 3;
+  opacity: 0.9;
+}
+
+
+
