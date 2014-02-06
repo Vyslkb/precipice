@@ -12,7 +12,9 @@ class PhotosController < ApplicationController
   end
   
 
-  
+  def uncategorized
+    @photos = Photo.uncategorized
+  end
 
   # GET /photos/1
   # GET /photos/1.json

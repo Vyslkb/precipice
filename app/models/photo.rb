@@ -71,28 +71,27 @@ class Photo < ActiveRecord::Base
    end
    
   def next_photo
-    next_photo = Photo.where(gallery_id: self.gallery_id).find_by_gallery_order(self.gallery_order + 1) 
+    next_index = self.gallery_order.to_i + 1
+    if Photo.where(gallery_id: self.gallery_id, gallery_order: next_index).exists?
+      next_photo = Photo.where(gallery_id: self.gallery_id).find_by_gallery_order(next_index)
+    else
+      next_photo = self 
+    end
+    
+    next_photo 
   end
    
    def previous_photo
-     previous_photo = Photo.where(gallery_id: self.gallery_id).find_by_gallery_order(self.gallery_order - 1)
-     #previous_photo = self  if previous_photo.nil?
-   end
-   
-   def set_gallery_order
-     if self.gallery_order_changed?
-        # If new position is lower than previous:
-        # Subtract 1 from gallery order to ensure it falls ahead of the photo it is meant to replace.
-        # If new position is higher than previous:  
-        # Leave be to ensure it is lower (base1 index will be higher than base 0)
-        # Gallery Controller will handle the re-order of the collection
-       
-       if self.gallery_order_change[1] <= self.gallery_order_change[0]
-         self.gallery_order = self.gallery_order_change[1].to_i - 1
-       else
-         self.gallery_order = self.gallery_order_change[1].to_i + 1
-       end
-     end
+     #previous_photo = Photo.where(gallery_id: self.gallery_id).find_by_gallery_order(self.gallery_order - 1)
+     previous_index = self.gallery_order.to_i - 1
+     
+     if Photo.where(gallery_id: self.gallery_id, gallery_order: previous_index).exists?
+        previous_photo = Photo.where(gallery_id: self.gallery_id).find_by_gallery_order(previous_index)
+      else
+        previous_photo = self 
+      end
+      
+      previous_photo
    end
    
    def add_print_options
