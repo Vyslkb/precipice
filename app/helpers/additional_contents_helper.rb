@@ -1,0 +1,2 @@
+module AdditionalContentsHelper
+end

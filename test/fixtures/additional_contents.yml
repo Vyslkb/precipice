@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  philosophy: MyText
+  contact: MyText
+  prints_and_pricing: MyText
+
+two:
+  philosophy: MyText
+  contact: MyText
+  prints_and_pricing: MyText

@@ -1,0 +1,31 @@
+<h1>Listing additional_contents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Philosophy</th>
+      <th>Contact</th>
+      <th>Prints and pricing</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @additional_contents.each do |additional_content| %>
+      <tr>
+        <td><%= raw additional_content.philosophy %></td>
+        <td><%= additional_content.contact %></td>
+        <td><%= additional_content.prints_and_pricing %></td>
+        <td><%= link_to 'Show', additional_content %></td>
+        <td><%= link_to 'Edit', edit_additional_content_path(additional_content) %></td>
+        <td><%= link_to 'Destroy', additional_content, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Additional content', new_additional_content_path %>
