@@ -1,6 +1,7 @@
 class AdditionalContentsController < ApplicationController
   before_action :set_additional_content, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_admin!
+  
   # GET /additional_contents
   # GET /additional_contents.json
   def index
