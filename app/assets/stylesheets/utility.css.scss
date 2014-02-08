@@ -1,5 +1,9 @@
 @import "bootstrap";
 
+@import url(http://fonts.googleapis.com/css?family=Arbutus+Slab);
+font-family: 'Arbutus Slab', serif;
+
+
 @font-face {
   font-family: 'Andalus';
   
@@ -16,7 +20,7 @@
 }
 
 body {
-  font-family: "Andalus";
+  font-family: "Arbutus Slab";
   //  font-size: 11pt;
   background-color: #000;
 }
