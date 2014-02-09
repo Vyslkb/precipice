@@ -75,7 +75,7 @@ class Photo < ActiveRecord::Base
     if Photo.where(gallery_id: self.gallery_id, gallery_order: next_index).exists?
       next_photo = Photo.where(gallery_id: self.gallery_id).find_by_gallery_order(next_index)
     else
-      next_photo = self 
+      next_photo = Gallery.find(self.gallery_id).photos.use_gallery_order.first # Photo.where(gallery_id: self.gallery_id).find_by_gallery_order(next_index) 
     end
     
     next_photo 
@@ -88,7 +88,7 @@ class Photo < ActiveRecord::Base
      if Photo.where(gallery_id: self.gallery_id, gallery_order: previous_index).exists?
         previous_photo = Photo.where(gallery_id: self.gallery_id).find_by_gallery_order(previous_index)
       else
-        previous_photo = self 
+        previous_photo = Gallery.find(self.gallery_id).photos.use_gallery_order.last
       end
       
       previous_photo

@@ -26,13 +26,13 @@
 		<div class="row top-buffer">
 			<div class="col-md-5">
 				<ul class="pager without-margin">
-					<li class="<%= "disabled"  if @photo.gallery_order == 1 %>">  		
+					<li class="<%= ""  if @photo.gallery_order == 1 %>">  		
 			  			<%= link_to "&laquo; Previous ".html_safe, @photo.previous_photo  %>
 			  		</li>
 					<li class="horz-padding">
 				  		<%= @photo.gallery_order %> of <%= @photo.gallery.photos.count %>
 					</li>
-					<li class="<%= "disabled"  if @photo.gallery_order == @photo.gallery.photos.count %>">  
+					<li class="<%= ""  if @photo.gallery_order == @photo.gallery.photos.count %>">  
 						<%= link_to "Next &raquo;".html_safe, @photo.next_photo %>
 					</li>
 				</ul>	
