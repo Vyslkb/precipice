@@ -13,7 +13,7 @@ class Photo < ActiveRecord::Base
                                                                     :original => "-quality 75" }, 
                                                :default_url => "/images/:style/missing.png"
    
-  
+  validates_attachment_content_type :photo_file, :content_type => %w(image/jpeg image/jpg image/png)
   
   ### Associations
   belongs_to :gallery, :inverse_of => :photos

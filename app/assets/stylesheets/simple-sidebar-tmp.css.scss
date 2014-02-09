@@ -1,13 +1,13 @@
 #wrapper {
-  padding-left: 270px;
+  padding-left: 245px;
   //transition: all 0.4s ease 0s;
 }
 
 
 #sidebar-wrapper {
-  margin-left: -270px;
-  left: 270px;
-  width: 270px;
+  margin-left: -245px;
+  left: 245px;
+  width: 245px;
   background: rgba(0,0,0, 0.5);
   position: fixed;
   height: 100%;
@@ -28,7 +28,7 @@
 .sidebar-nav {
   position: absolute;
   top: 0;
-  width: 270px;
+  width: 245px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -38,12 +38,14 @@
 .sidebar-nav li {
   line-height: 40px;
   text-indent: 20px;
+  
 }
 
 .sidebar-nav li a {
   color: #999999;
   display: block;
   text-decoration: none;
+  
 }
 
 .sidebar-nav li a:hover {
