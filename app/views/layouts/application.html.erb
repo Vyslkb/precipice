@@ -29,19 +29,24 @@
       
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-          <li class="sidebar-brand">
-          	<%= link_to root_url, class:"" do%>	
+        <div id="logo-container">
+        		<%= link_to root_url, class:"" do%>	
 				<%= image_tag "Logo12.png", width: ""%>
 			<%end%>
-          </li>
-         
-          <% Collection.all.each do |collection|%>
-			<li>
-				<%= link_to collection.name, collection, class:"" %>
-			</li>	
-		<%end%>
-			<li class="top-buffer-big">
+        </div>
+        
+        <ul class="nav nav-pills nav-stacked">
+	         <% Collection.all.each do |collection|%>
+				<li>	
+					<%= link_to collection.name, collection, class:"" %>
+				</li>	
+			<%end%>
+			
+        </ul>
+        <div class="top-buffer-big"></div>
+        
+        <ul class="test-side-nav top-buffer-big">
+        	<li>
 				<%= link_to 'Philosophy', page_path('philosophy')%>
 			</li>
 			<li>
@@ -50,13 +55,18 @@
 			<li>
 				<%= link_to 'Prints and Pricing', page_path('prints_and_pricing')%>
 			</li>
-			<li class="text-info" style="line-height: 14px;font-size: smaller">
+        </ul>
+        
+        
+        
+        
+        <div class="text-info top-buffer" style="line-height: 14px;font-size: smaller">
+        	
 				<div class="horz-padding">Free shipping</div>
 				<div class="horz-padding">on all prints</div>
 				 		
-			</li>
-				
-        </ul>
+			
+        </div>
         
       </div>
           
