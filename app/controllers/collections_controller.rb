@@ -51,6 +51,18 @@ class CollectionsController < ApplicationController
       end
     end
   end
+  
+  def edit_display_order
+    @collections = Collection.all
+  end
+  
+  def update_display_order
+     params[:collections].values.each do |collection_values|
+        Collection.update(collection_values['id'], display_order: collection_values['display_order']) 
+     end 
+     
+     redirect_to collections_path
+  end
 
   # DELETE /collections/1
   # DELETE /collections/1.json
@@ -70,6 +82,6 @@ class CollectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def collection_params
-      params.require(:collection).permit(:name, galleries_attributes: [:id, :name,:order_in_collection])
+      params.require(:collection).permit(:name, :for_sale_flag, galleries_attributes: [:id, :name,:order_in_collection])
     end
 end

@@ -54,24 +54,24 @@
 		</div>
 		
 		
-		
-		<div class="row top-buffer">
-			<div class="col-md-5">
-				<div class="well well-transparent">
-					<h5>Order Prints:</h5>
-					<%= form_tag update_shopping_cart_path, method: :post, role: "form" do %>
-						<%= hidden_field_tag :cart_action, "add"%>
-						<%= select_tag "photo_print_option_id", 
-										options_from_collection_for_select(@photo.photo_print_options.includes(:print_option).order('print_options.display_order'), "id", "print_option_name_and_price"),
-										class: "form-control"%>
-						<div class="top-buffer-big">
-							<button type="submit" class="btn btn-default">Add to cart</button>	
-						</div>
-					<%end%>
+		<% if @photo.try(:gallery).try(:collection).try(:for_sale_flag) == true %>
+			<div class="row top-buffer">
+				<div class="col-md-5">
+					<div class="well well-transparent">
+						<h5>Order Prints:</h5>
+						<%= form_tag update_shopping_cart_path, method: :post, role: "form" do %>
+							<%= hidden_field_tag :cart_action, "add"%>
+							<%= select_tag "photo_print_option_id", 
+											options_from_collection_for_select(@photo.photo_print_options.includes(:print_option).order('print_options.display_order'), "id", "print_option_name_and_price"),
+											class: "form-control"%>
+							<div class="top-buffer-big">
+								<button type="submit" class="btn btn-default">Add to cart</button>	
+							</div>
+						<%end%>
+					</div>
 				</div>
 			</div>
-		</div>
-		
+		<%end%>
 		
 		
 	</div>

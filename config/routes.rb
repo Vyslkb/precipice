@@ -34,7 +34,12 @@ Precipice::Application.routes.draw do
     end
   end
   
-  resources :collections
+  resources :collections do
+    collection do
+      get "edit_display_order"
+      put "update_display_order"
+    end
+  end
 
   resources :photos do
     collection do

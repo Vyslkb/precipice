@@ -8,7 +8,9 @@ $(document).ready ->
     if $('body').data('action') == 'edit'
       sortItems()
       
-
+    if $('body').data('action') == 'edit_display_order'  
+      sortItems()
+      
 sortItems = ->
   $("<style type='text/css'> .sortable-placeholder{ background-color: #000;height: 30px;} </style>").appendTo("head");
   $('ul.sortable').sortable().on('sortupdate', -> sortResponse())

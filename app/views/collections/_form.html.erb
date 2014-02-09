@@ -18,6 +18,11 @@
 		    <%= f.text_field :name, class: "form-control" %>
 		  </div>
 		  
+		  <div class="form-group">
+		    <%= f.check_box :for_sale_flag %>
+		    <%= f.label :for_sale_flag, "Allow photos in this collection to be listed for selling." %>
+		  </div>
+		  
 		  <h3 class="top-buffer-big">Manage Gallery Order</h3>
 		  <p>
 		  	Drag and drop the gallery names into the preferred order.<br>
@@ -33,22 +38,13 @@
 			  			<%end%>
 		  			</li>
 	  			<%end%>
-	  		</ul>
-		  	
-		  	
-		  	
+	  		</ul>  	
 		  </div>
 		  
 		  <div class="form-group top-buffer-big">
 		   <button type="submit" class="btn btn-default">Submit</button>
 		  </div>
-		<% end %>
-
-		
-		
-		
-		
-		
+		<% end %>	
 	</div>
 </div>
 
