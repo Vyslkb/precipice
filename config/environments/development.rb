@@ -25,7 +25,11 @@ Precipice::Application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.svg)
+  
+  # Added for vendor assets
+  config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.svg *.eot *.woff *.ttf)
+  
+  
   # config.assets.js_compressor = :uglifier
   # config.assets.digest = true
   config.assets.debug = true #default is true
