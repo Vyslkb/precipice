@@ -26,6 +26,11 @@ Precipice::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   
+  ###JUST TO SIMULATE PROD
+  #config.assets.compile = false
+  #config.assets.digest = true
+  
+  
   # Added for vendor assets
   config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.svg *.eot *.woff *.ttf)
   

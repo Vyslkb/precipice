@@ -7,7 +7,10 @@ namespace :dev_tasks do
     Collection.find_each(&:save)
   end
 
-  
+  desc "test gmail account"
+  task :test_email => :environment do
+     AdminMailer.welcome_email.deliver
+  end
 
   
 end
