@@ -11,6 +11,11 @@ namespace :dev_tasks do
   task :test_email => :environment do
      AdminMailer.welcome_email.deliver
   end
+  
+  task :foo => :environment do
+     puts "hi"
+     puts ENV['SENDGRID_USERNAME']
+  end
 
   
 end

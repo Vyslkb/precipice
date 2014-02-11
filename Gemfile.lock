@@ -65,8 +65,12 @@ GEM
     execjs (2.0.2)
     friendly_id (5.0.2)
       activerecord (~> 4.0.0)
+    griddler (0.6.3)
+      htmlentities
+      rails (>= 3.2.0)
     high_voltage (2.1.0)
     hike (1.2.3)
+    htmlentities (4.3.1)
     i18n (0.6.9)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
@@ -165,6 +169,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   friendly_id (~> 5.0.0)
+  griddler
   high_voltage
   jbuilder (~> 1.2)
   jquery-rails
