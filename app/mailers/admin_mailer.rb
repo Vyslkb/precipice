@@ -2,7 +2,7 @@ class AdminMailer < ActionMailer::Base
   default from: "Michael@BeyondThePrecipice.com"
   
   def welcome_email  
-    mail(to: 'jamesmholst@yahoo.com', subject: 'Welcome to My Awesome Site')
+    mail(to: 'jamesmholst@yahoo.com, troutsnifferx@yahoo.com', subject: 'Testing Email Solution')
   end
   
   def order_confirmation(customer_order)
