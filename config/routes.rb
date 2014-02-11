@@ -52,7 +52,8 @@ Precipice::Application.routes.draw do
     end
   end
   
- 
+ # mount using default path
+  mount_griddler
     
   
   
