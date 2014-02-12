@@ -12,8 +12,8 @@ namespace :dev_tasks do
      AdminMailer.welcome_email.deliver
   end
   
-  task :generate_large_thumnails => :environment do
-    photos_to_reprocess.each do |photo|
+  task :generate_large_thumbnails => :environment do
+    Photo.all.each do |photo|
       photo.photo_file.reprocess! :large
     end
   end
