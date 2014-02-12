@@ -35,25 +35,33 @@
 			<%end%>
         </div>
         
-        <ul class="nav nav-pills nav-stacked">
+        <ul class="nav  nav-stacked">
 	         <% Collection.all.each do |collection|%>
 				<li>	
-					<%= link_to collection.name, collection, class:"" %>
+					<%= link_to  collection do %>
+						<span class="horz-padding"><%=collection.name%></span>
+					<%end%>
 				</li>	
 			<%end%>
 			
         </ul>
         <div class="top-buffer-big"></div>
         
-        <ul class="test-side-nav top-buffer-big">
+        <ul class="nav  nav-stacked top-buffer-big">
         	<li>
-				<%= link_to 'Philosophy', page_path('philosophy')%>
+				<%= link_to  page_path('philosophy') do%>
+					<span class="horz-padding">Philosophy</span>
+				<%end%>
 			</li>
 			<li>
-				<%= link_to 'Contact', page_path('contact')%>
+				<%= link_to page_path('contact') do%>
+				<span class="horz-padding">Contact</span>
+				<%end%>
 			</li>
 			<li>
-				<%= link_to 'Prints and Pricing', page_path('prints_and_pricing')%>
+				<%= link_to  page_path('prints_and_pricing') do%>
+					<span class="horz-padding">Prints and Pricing</span>
+				<%end%>
 			</li>
         </ul>
         

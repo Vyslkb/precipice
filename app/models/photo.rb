@@ -5,7 +5,7 @@ class Photo < ActiveRecord::Base
    ### Custom Attributes
    has_attached_file :photo_file, :styles => { :medium => "300x300>", 
                                                :thumb => "100x100>", 
-                                               :large => "1100x1100>",
+                                               :large => "900x900>",
                                                :original => "1400x1400>" },
                                                :convert_options => {:thumb => "-quality 60 -strip",
                                                                     :medium => "-quality 60 -strip",

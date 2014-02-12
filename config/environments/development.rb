@@ -27,8 +27,8 @@ Precipice::Application.configure do
   # number of complex assets.
   
   ###JUST TO SIMULATE PROD
-  config.assets.compile = false
-  config.assets.digest = true
+  #config.assets.compile = false
+  #config.assets.digest = true
   
   
   # Added for vendor assets
