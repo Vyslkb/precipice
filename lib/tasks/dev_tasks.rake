@@ -12,7 +12,11 @@ namespace :dev_tasks do
      AdminMailer.welcome_email.deliver
   end
   
-  
+  task :generate_large_thumnails => :environment do
+    photos_to_reprocess.each do |photo|
+      photo.photo_file.reprocess! :large
+    end
+  end
 
   
 end
