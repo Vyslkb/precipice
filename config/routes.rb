@@ -4,7 +4,7 @@ Precipice::Application.routes.draw do
 
   resources :customer_orders
   
-  post '/email_processor' => 'griddler/emails#create'
+  #post '/email_processor' => 'griddler/emails#create'
   
   ### NEED TO FIX THIS
   get 'shopping_cart', to: 'shopping_carts#show'

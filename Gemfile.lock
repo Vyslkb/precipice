@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/thoughtbot/griddler.git
+  revision: eff2d650f8439f29498dc0dde9564b97c0fbdb07
+  specs:
+    griddler (0.6.3)
+      htmlentities
+      rails (>= 3.2.0)
+
+GIT
   remote: https://github.com/stripe/stripe-ruby
   revision: d7ddf47d57736b607b9d0717a114ceb6bcd3f4b0
   specs:
@@ -65,9 +73,6 @@ GEM
     execjs (2.0.2)
     friendly_id (5.0.2)
       activerecord (~> 4.0.0)
-    griddler (0.6.3)
-      htmlentities
-      rails (>= 3.2.0)
     high_voltage (2.1.0)
     hike (1.2.3)
     htmlentities (4.3.1)
@@ -89,6 +94,8 @@ GEM
     mini_portile (0.5.1)
     minitest (4.7.5)
     multi_json (1.8.2)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     nokogiri (1.6.0-x86-mingw32)
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
@@ -169,7 +176,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   friendly_id (~> 5.0.0)
-  griddler
+  griddler!
   high_voltage
   jbuilder (~> 1.2)
   jquery-rails
