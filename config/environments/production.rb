@@ -108,9 +108,9 @@ Precipice::Application.configure do
   }
   
   Precipice::Application.config.middleware.use ExceptionNotification::Rack,
-  :ignore_exceptions => [],
+  :ignore_exceptions => [''],
   :email => {
-    :email_prefix         => "[Whatever] ",
+    :email_prefix         => "Error Notification",
     :sender_address => %{"Exeption Notifier" <notifier@beyondtheprecipice.com>},
     :exception_recipients => %w{jamesmholst@yahoo.com}
   }
