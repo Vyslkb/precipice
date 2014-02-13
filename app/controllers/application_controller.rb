@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   before_filter :check_session
   helper_method :get_visitor_cart
   
-  
   def check_session
     
     #reset_session
@@ -36,4 +35,5 @@ class ApplicationController < ActionController::Base
     @shopping_cart = shopping_cart
   end
   
+   
 end
