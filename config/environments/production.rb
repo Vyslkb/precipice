@@ -107,11 +107,11 @@ Precipice::Application.configure do
   :enable_starttls_auto => true
   }
   
-  
-  
-  
-  
-  
+  config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :sender_address => %{"Exeption Notifier" <notifier@beyondtheprecipice.com>},
+    :exception_recipients => %w{jamesmholst@yahoo.com}
+  }
   
   config.paperclip_defaults = {
     :storage => :s3,
