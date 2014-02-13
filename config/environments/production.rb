@@ -108,7 +108,7 @@ Precipice::Application.configure do
   }
   
   Precipice::Application.config.middleware.use ExceptionNotification::Rack,
-  :ignore_exceptions => [''],
+  :ignore_exceptions => ['ActionView::TemplateError'],
   :email => {
     :email_prefix         => "Error Notification",
     :sender_address => %{"Exeption Notifier" <notifier@beyondtheprecipice.com>},
