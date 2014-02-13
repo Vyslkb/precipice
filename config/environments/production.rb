@@ -107,8 +107,10 @@ Precipice::Application.configure do
   :enable_starttls_auto => true
   }
   
-  config.middleware.use ExceptionNotification::Rack,
+  Precipice::Application.config.middleware.use ExceptionNotification::Rack,
+  :ignore_exceptions => [],
   :email => {
+    :email_prefix         => "[Whatever] ",
     :sender_address => %{"Exeption Notifier" <notifier@beyondtheprecipice.com>},
     :exception_recipients => %w{jamesmholst@yahoo.com}
   }
