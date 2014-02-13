@@ -29,53 +29,36 @@
       
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
-        <div id="logo-container">
-        		<%= link_to root_url, class:"" do%>	
-				<%= image_tag "Logo12.png", width: ""%>
-			<%end%>
-        </div>
-        
-        <ul class="nav  nav-stacked">
+        <ul class="sidebar-nav">
+	    	<li class="sidebar-brand">
+	          	<%= link_to root_url, class:"" do%>	
+					<%= image_tag "Logo12.png"%>
+				<%end%>
+         	</li>
+	         
 	         <% Collection.all.each do |collection|%>
 				<li>	
-					<%= link_to  collection do %>
-						<span class="horz-padding"><%=collection.name%></span>
-					<%end%>
+					<%= link_to collection.name,  collection %>
 				</li>	
-			<%end%>
-			
-        </ul>
-        <div class="top-buffer-big"></div>
-        
-        <ul class="nav  nav-stacked top-buffer-big">
-        	<li>
-				<%= link_to  page_path('philosophy') do%>
-					<span class="horz-padding">Philosophy</span>
-				<%end%>
+			<%end%>	
+							  
+        	<li class="top-buffer-big">
+				<%= link_to "Philosophy", page_path('philosophy')%>
 			</li>
 			<li>
-				<%= link_to page_path('contact') do%>
-				<span class="horz-padding">Contact</span>
-				<%end%>
+				<%= link_to "Contact", page_path('contact') %>
 			</li>
 			<li>
-				<%= link_to  page_path('prints_and_pricing') do%>
-					<span class="horz-padding">Prints and Pricing</span>
-				<%end%>
+				<%= link_to "Prints and Pricing",  page_path('prints_and_pricing')%>
 			</li>
-        </ul>
-        
-        
-        
-        
-        <div class="text-info top-buffer" style="line-height: 14px;font-size: smaller">
-        	
-				<div class="horz-padding">Free shipping</div>
-				<div class="horz-padding">on all prints</div>
-				 		
-			
-        </div>
-        
+			<li>
+				
+				<div class="text-info top-buffer" style="line-height: 16px;font-size: smaller">
+					<div class="horz-padding">Free ground shipping</div>
+					<div class="horz-padding">on all fine art.</div>
+		        </div>
+			</li>
+        </ul>    
       </div>
           
       <!-- Page content -->
