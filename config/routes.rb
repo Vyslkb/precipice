@@ -1,5 +1,7 @@
 Precipice::Application.routes.draw do
   
+  resources :site_photos
+
   resources :additional_contents
 
   resources :customer_orders

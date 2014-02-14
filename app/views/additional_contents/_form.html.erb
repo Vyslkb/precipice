@@ -14,19 +14,23 @@
 		      </ul>
 		    </div>
 		  <% end %>
-		
+		 <div class="form-group">
+		    <%= f.label :prints_and_pricing %><br>
+		    <%= f.text_area :prints_and_pricing, rows: 10, :class => 'form-control' %>
+		  </div>
 		  <div class="form-group">
 		    <%= f.label :philosophy %><br>
-		    <%= f.text_area :philosophy,rows: 5, :class => 'form-control' %>
+		    <%= f.text_area :philosophy,rows: 10, :class => 'form-control' %>
+		  </div>
+		  <div class="form-group">
+		    <%= f.label :travel_quote, "Travel Quotes" %><br>
+		    <%= f.text_area :travel_quote,rows: 10, :class => 'form-control' %>
 		  </div>
 		  <div class="form-group">
 		    <%= f.label :contact %><br>
-		    <%= f.text_area :contact,rows: 5, :class => 'form-control' %>
+		    <%= f.text_area :contact,rows: 10, :class => 'form-control' %>
 		  </div>
-		  <div class="form-group">
-		    <%= f.label :prints_and_pricing %><br>
-		    <%= f.text_area :prints_and_pricing, rows: 5, :class => 'form-control' %>
-		  </div>
+		 
 		  <div class="actions">
 		   <button type="submit" class="btn btn-default">Save</button>
 		  </div>

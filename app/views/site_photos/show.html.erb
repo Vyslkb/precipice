@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @site_photo.name %>
+  <div>
+  	<%= image_tag @site_photo.photo_file.url(:large)%>	
+  </div>
+  
+</p>
+
+<%= link_to 'Edit', edit_site_photo_path(@site_photo) %> |
+<%= link_to 'Back', site_photos_path %>

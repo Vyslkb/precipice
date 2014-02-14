@@ -70,6 +70,6 @@ class AdditionalContentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def additional_content_params
-      params.require(:additional_content).permit(:philosophy, :contact, :prints_and_pricing)
+      params.require(:additional_content).permit(:philosophy, :contact, :prints_and_pricing, :travel_quote)
     end
 end

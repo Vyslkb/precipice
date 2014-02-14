@@ -1,0 +1,30 @@
+<h3>Site photos</h3>
+
+<table class="table-condensed">
+  <thead>
+    <tr>
+    	<th>Photo</th>
+      <th>Name</th>
+      <th>URL (500px on the long edge)</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @site_photos.each do |site_photo| %>
+      <tr>
+        <td><%= image_tag site_photo.photo_file.url(:thumb)%></td>
+        <td><%= site_photo.name %></td>
+        <td> <%= site_photo.photo_file.url(:large)%> </td>
+        <td><%= link_to 'Show', site_photo %></td>
+        <td><%= link_to 'Edit', edit_site_photo_path(site_photo) %></td>
+        <td><%= link_to 'Destroy', site_photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Site photo', new_site_photo_path %>
