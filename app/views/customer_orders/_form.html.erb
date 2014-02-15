@@ -150,7 +150,7 @@
 		</div>
 	</div>
   	
-  	<div class="panel panel-primary hidden" data-content="checkout-page"  data-id="checkout-step-3">
+  	<div class="panel panel-primary " data-content="checkout-page"  data-id="checkout-step-3">
 		<div class="panel-heading">		
 			Checkout Step 3 of 3: Secure Checkout <span class="horz-padding"> <%=link_to image_tag("outline.png"), "https://stripe.com/about", target:"_blank"%> </span>
 		</div>
@@ -161,6 +161,16 @@
 			
 			<%= hidden_field_tag :stripe_card_token %>
 			
+			<div class="row">
+				<div class="col-md-12 col-md-offset-0">
+					<span class="glyphicon glyphicon-lock"></span>
+					<small>
+					Your credit card information will be securely processed by 
+					<%=link_to "Stripe.com", "https://stripe.com/about", target:"_blank"%>, a service specializing in 
+					online payments.
+					</small>
+				</div>
+			</div>
 			
 			<div class="form-group top-buffer-big">
 				<%= label_tag :card_number, "Credit Card Number", class: "col-md-2 control-label" %>
@@ -181,6 +191,7 @@
 				<%= label_tag :card_code, "Security Code on Card (CVV)", class: "col-md-2 control-label" %>
 				<div class="col-md-2">
 					<%=text_field_tag :card_code, nil, {name: nil, class: 'form-control'} %>	
+					
 				</div>
 			</div>
 			
@@ -205,7 +216,6 @@
 					<button type="submit" class="btn btn-default">Pay Now</button>	
 				</div>
 			</div>
-			
 			
 			
 			

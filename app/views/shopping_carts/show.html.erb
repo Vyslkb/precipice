@@ -14,7 +14,15 @@
 			<div class="row">
 				<div class="col-md-12">
 					<%= link_to "Keep Shopping", :back , class: "horz-padding"%> |
-					<%= link_to "Continue to Checkout", checkout_path,class: "horz-padding" %>
+					
+					<% if Rails.env.production? %>
+						<%= link_to "Continue to Checkout", 
+							checkout_url(host: "beyondtheprecipice.herokuapp.com",
+							port: nil,
+							protocol: "https"),{class: "horz-padding"} %>
+					<%else%>
+						<%= link_to "Continue to Checkout", checkout_url,{class: "horz-padding"} %>
+					<%end%>
 				</div>
 				
 			</div>

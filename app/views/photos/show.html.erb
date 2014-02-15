@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-md-12 col-md-offset-0">
 		
-		<div class="row">
+		<div id="gallery-breadcrumbs" class="row">
 			<div class="col-md-10 top-buffer">
 				
 				<ol class="breadcrumb">
@@ -23,17 +23,17 @@
 		</div>
 		
 		
-		<div class="row top-buffer">
+		<div class="row ">
 			<div class="col-md-5">
 				<ul class="pager without-margin">
 					<li class="<%= ""  if @photo.gallery_order == 1 %>">  		
-			  			<%= link_to "&laquo; Previous ".html_safe, @photo.previous_photo  %>
+			  			<%= link_to "&laquo; Previous ".html_safe, photo_path(@photo.previous_photo, jump: "true")  %>
 			  		</li>
 					<li class="horz-padding">
 				  		<%= @photo.gallery_order %> of <%= @photo.gallery.photos.count %>
 					</li>
-					<li class="<%= ""  if @photo.gallery_order == @photo.gallery.photos.count %>">  
-						<%= link_to "Next &raquo;".html_safe, @photo.next_photo %>
+					<li>  
+						<%= link_to "Next &raquo;".html_safe, photo_path(@photo.next_photo, jump: "true") %>
 					</li>
 				</ul>	
 			</div>
@@ -42,7 +42,7 @@
 		
 		<div class="row top-buffer">
 			<div class="col-md-10">		
-				<%= image_tag @photo.photo_file.url(:large), class: "photo-border ", height:"500" %>
+				<%= image_tag @photo.photo_file.url(:large), class: "photo-border ", height:"480" %>
 			</div>
 		</div>
 		

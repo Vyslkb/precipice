@@ -17,7 +17,7 @@ Precipice::Application.routes.draw do
   get 'order_complete', to: 'customer_orders#complete', as: :order_complete
   get 'charge_error', to: 'customer_orders#charge_error', as: :charge_error
   get 'checkout', to: 'customer_orders#new', as: :checkout
-
+  get 'order_error', to: 'customer_orders#order_error', as: :order_error
 
 
   resources :print_options do

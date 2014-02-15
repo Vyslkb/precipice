@@ -31,10 +31,11 @@ captionOverride = ->
   
 maximize_slideshow = ->
  # available width is window width minus the nav_menu width
- # available height is window height
+ # available height is window height, minus room for the title and shopping cart link
  # aspect ratio is 2x3
  
- h = $(window).height() - 80
+ #Figure out height of other elements
+ h = $(window).height() - 80 - $('#shopping_cart_link_container').height()
  w = $(window).width()
  
  image_height = h
@@ -43,20 +44,9 @@ maximize_slideshow = ->
  if image_width >( w - $("#sidebar-wrapper").width())
    image_width =  w - $("#sidebar-wrapper").width()
    image_height = image_width * 2 / 3
-   
- #$(".maximize_size").height(image_height)
- #$(".maximize_size").width(image_width)
- 
+  
  $("#home-carousel").height(image_height)
  $("#home-carousel").width(image_width)
- 
- #$("img", "#home-carousel").height(image_height)
- #$("img", "#home-carousel").width(image_width)
- 
- #alert image_height
- 
- #$(".maximize_size").height(image_height)
- #$(".maximize_size").width(image_width)
  
  # Center the slideshow
  # figure out left margin

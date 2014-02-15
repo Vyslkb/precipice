@@ -14,17 +14,29 @@ class CustomerOrdersController < ApplicationController
   end
 
   def complete
-    @customer_order = CustomerOrder.find(session[:customer_order_id])
+    if CustomerOrder.exists?(session[:customer_order_id].to_i)
+      @customer_order = CustomerOrder.find(session[:customer_order_id])
+    else
+      redirect_to order_error_path
+    end
   end
   
   def charge_error
     
   end
 
+  def order_error
+    
+  end
+
   # GET /customer_orders/new
   def new
-    @customer_order = CustomerOrder.new
-    @shopping_cart = ShoppingCart.find(session[:shopping_cart_id])
+    get_visitor_cart
+    if @shopping_cart.total_unique_items > 0
+      @customer_order = CustomerOrder.new
+    else
+      redirect_to @shopping_cart
+    end
   end
 
   # GET /customer_orders/1/edit
@@ -133,8 +145,7 @@ class CustomerOrdersController < ApplicationController
           :description => @customer_order.email 
         )
       rescue Stripe::CardError => e
-        
-        #redirect_to charge_error_path
+        redirect_to charge_error_path
       end
     end
 end

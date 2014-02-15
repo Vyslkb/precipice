@@ -5,8 +5,8 @@ $(document).ready ->
   if $('body').data('controller') == 'photos' 
     if $('body').data('action') == 'manage_slideshow'
       sortItems()
-
-
+    if $('body').data('action') == 'show'
+       $(document).scrollTop( $("#gallery-breadcrumbs").offset().top)  
 
 
 sortItems = ->
