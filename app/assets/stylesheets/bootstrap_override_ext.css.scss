@@ -1,0 +1,20 @@
+@import bootstrap; 
+
+.breadcrumb {
+  background: none;
+  border: none;
+}
+
+.well-transparent {
+  background: rgba(28, 30, 34, .6);
+}
+
+label.error {
+  @extend .text-danger;
+}
+
+body {
+  font-family: "Arbutus Slab";
+  //  font-size: 11pt;
+  background-color: #000;
+}

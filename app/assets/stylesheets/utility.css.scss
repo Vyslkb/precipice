@@ -28,14 +28,7 @@
   padding: 2px;
 }
 
-.breadcrumb {
-  background: none;
-  border: none;
-}
 
-.well-transparent {
-  background: rgba(28, 30, 34, .6);
-}
 
 .classy-text {
   font-family: "Times New Roman";
@@ -50,9 +43,7 @@
   margin-top: 25px;
 }
 
-label.error {
-  @extend .text-danger;
-}
+
 
 .text-white {
   color: #FFF; 
