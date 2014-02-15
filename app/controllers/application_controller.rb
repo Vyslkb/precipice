@@ -2,21 +2,26 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  
-  before_filter :check_session
   helper_method :get_visitor_cart
   
-  def check_session
-    
-    #reset_session
-    #if session[:expires_at].present?
-    ##  if session[:expires_at] < Time.now 
-    #    reset_session
-    #    session[:expires_at] = Time.now + 24.hours
-    #  end
-    #else 
-    #  session[:expires_at] = Time.now + 24.hours  
-    #end
+  #unless Rails.application.config.consider_all_requests_local
+  #  rescue_from Exception, with: lambda { |exception| render_error 500, exception }
+  #  rescue_from ActionController::RoutingError, ActionController::UnknownController, ::AbstractController::ActionNotFound, ActiveRecord::RecordNotFound, with: lambda { |exception| render_error 404, exception }
+  #end
+  
+  
+  def page_not_found
+    respond_to do |format|
+      format.html { render template: 'errors/not_found_error', layout: 'layouts/application', status: 404 }
+      format.all  { render nothing: true, status: 404 }
+    end
+  end
+
+  def server_error
+    respond_to do |format|
+      format.html { render template: 'errors/internal_server_error', layout: 'layouts/application', status: 500 }
+      format.all  { render nothing: true, status: 500}
+    end
   end
   
   def get_visitor_cart
@@ -35,5 +40,12 @@ class ApplicationController < ActionController::Base
     @shopping_cart = shopping_cart
   end
   
+  private
+  def render_error(status, exception)
+    respond_to do |format|
+      format.html { render template: "errors/error_#{status}", layout: 'layouts/application', status: status }
+      format.all { render nothing: true, status: status }
+    end
+  end
    
 end

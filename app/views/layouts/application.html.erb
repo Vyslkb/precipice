@@ -16,84 +16,28 @@
     
   </head>
   <body data-controller="<%= controller_name %>" data-action="<%= action_name %>" data-static-page="<%= static_page_name %>">	
-  	
-  	
-  	
-  	
+
   	<div id="background_image_container">
   		<%= set_background_image %>
   	</div>
-  	
-  	
-  	 <div id="wrapper">
-      
-      <!-- Sidebar -->
-      <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-	    	<li class="sidebar-brand">
-	          	<%= link_to root_url, class:"" do%>	
-					<%= image_tag "logo.png", width: "220"%>
-				<%end%>
-         	</li>
-	         
-	         <% Collection.all.each do |collection|%>
-				<li>	
-					<%= link_to collection.name,  collection %>
-				</li>	
-			<%end%>	
-			
-			<li>
-				<%= link_to "Prints and Pricing",  page_path('prints_and_pricing')%>
-			</li>			  
-        	<li>
-				<div class="text-info free-shipping">
-					<div class="horz-padding">Free ground shipping</div>
-					<div class="horz-padding">on all fine art.</div>
-		        </div>
-			</li>
-        	
-        	
-        	<li class="top-buffer-big">
-				<%= link_to "Philosophy", page_path('philosophy')%>
-			</li>
-			<li>
-				<%= link_to "Travel Quotes", page_path('travel_quotes') %>
-			</li>
-			<li>
-				<%= link_to "Contact", page_path('contact') %>
-			</li>
-			
-			
-        </ul>    
-      </div>
+  	<div id="wrapper">
+      <%= render 'layouts/sidebar'%>
           
       <!-- Page content -->
-      <div id="page-content-wrapper">
-        
+      <div id="page-content-wrapper">    
         <!-- Keep all page content within the page-content inset div! -->
         <div class="page-content inset">
           <div class="row">
             <div class="col-md-12">
              	<%= render 'layouts/admin_nav_bar' if admin_signed_in?%>
-				<%= render 'layouts/messages' %>
-				
-					<div id="shopping_cart_link_container" class="pull-right">
-						<% if session[:shopping_cart_id].present? %>
-						<span class="glyphicon glyphicon-shopping-cart"></span>
-						<%= link_to "Shopping Cart", shopping_cart_path  %>
-						<%end%>
-					</div>
-				
-				
-				
+				<%= render 'layouts/messages' %>				
+				<%= render 'layouts/shopping_cart'%>	
 	       		<%= yield %>
             </div>
-            
           </div>
         </div>
       </div>
-      
-    </div>
+	</div>
   	
   	
   	

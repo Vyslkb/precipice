@@ -1,5 +1,7 @@
 Precipice::Application.routes.draw do
   
+  get "errors/error_404"
+  get "errors/error_500"
   resources :site_photos
 
   resources :additional_contents
@@ -57,8 +59,12 @@ Precipice::Application.routes.draw do
   
  # mount using default path
   #mount_griddler
-    
-  
+   
+  #if Rails.env.production? || Rails.env.development?
+   get '404', :to => 'application#page_not_found'
+   get '422', :to => 'application#server_error'
+   get '500', :to => 'application#server_error'
+#  end
   
   #get 'checkout', to: 'shopping_carts#checkout'
   #post 'create_charge', to: 'shopping_carts#create_charge'
