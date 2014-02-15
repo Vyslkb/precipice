@@ -11,6 +11,9 @@ class CollectionsController < ApplicationController
   # GET /collections/1
   # GET /collections/1.json
   def show
+    if @collection.galleries.count == 1
+      redirect_to @collection.galleries.first
+    end
   end
 
   # GET /collections/new
