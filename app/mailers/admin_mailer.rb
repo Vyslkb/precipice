@@ -17,6 +17,13 @@ class AdminMailer < ActionMailer::Base
     @body = email.body
     @attachments = email.attachments
     
+    email.attachments.each do |attachment|
+      tmp_file = attachment.tempfile
+      attachments[attachment.original_filename] = File.read(tmp_file)
+      tmp_file.close
+      tmp_file.unlink   # deletes the temp file
+    end
+    
     
     mail(to: 'jamesmholst@yahoo.com', subject: email.subject)
   end

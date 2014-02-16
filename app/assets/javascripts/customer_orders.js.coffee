@@ -9,7 +9,7 @@ $(document).ready ->
       customer_order.setupForm()
       customer_order.checkoutFormUi()
       customer_order.formValidation()
-      #customer_order.duplicateNameFields()
+      customer_order.duplicateNameFields()
       
 customer_order =
   setupForm: ->
@@ -98,10 +98,20 @@ customer_order =
   duplicateNameFields: ->
     
     #THis seems to screw up validation
-    $('#customer_order_first_name').change ->
-       $('#customer_order_ship_to_first_name').val($(this).val())
-    $('#customer_order_last_name').change ->
-       $('#customer_order_ship_to_last_name').val($(this).val())
+    $('*[data-show-page="checkout-step-2"]*[data-pager-type="forward"]').click ->
+      if !$('#customer_order_ship_to_first_name').val()
+        $('#customer_order_ship_to_first_name').val($('#customer_order_first_name').val())
+      if !$('#customer_order_ship_to_last_name').val()
+        $('#customer_order_ship_to_last_name').val($('#customer_order_last_name').val())
+   
+    
+    #$('#customer_order_first_name').change ->
+    #  if !$('#customer_order_ship_to_first_name').val()
+    #    $('#customer_order_ship_to_first_name').val($(this).val())
+      
+     # $('#customer_order_last_name').change ->
+     #   if !$('#customer_order_last_name').val()
+     #     $('#customer_order_ship_to_last_name').val($(this).val())
    
    
    
