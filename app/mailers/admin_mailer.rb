@@ -11,11 +11,7 @@ class AdminMailer < ActionMailer::Base
   end
   
   def forward_email(email)
-    @to = email.to
-    @from = email.from
-    @cc = email.cc
-    @body = email.body
-    @attachments = email.attachments
+    @email = email
     
     email.attachments.each do |attachment|
       tmp_file = attachment.tempfile

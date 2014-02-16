@@ -7,6 +7,12 @@
     
     <p>
       <b>From:</b>
+      <%= @email.from%>
+    </p>
+    <% if @email.cc.present? %>
+    <p>
+    	<b>cc:</b>
+    	<%= @email.cc%>
     </p>
     
     
