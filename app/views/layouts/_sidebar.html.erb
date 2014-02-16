@@ -3,7 +3,7 @@
         <ul class="sidebar-nav">
 	    	<li class="sidebar-brand">
 	          	<%= link_to root_url, class:"" do%>	
-					<%= image_tag "logo.png", width: "220"%>
+					<%= image_tag SitePhoto.find_by_name("site_logo").photo_file.url(:original), width: "220"%>
 				<%end%>
          	</li>
 	         

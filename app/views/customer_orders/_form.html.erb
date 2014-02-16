@@ -150,9 +150,10 @@
 		</div>
 	</div>
   	
-  	<div class="panel panel-primary hidden " data-content="checkout-page"  data-id="checkout-step-3">
+  	<div class="panel panel-primary hidden" data-content="checkout-page"  data-id="checkout-step-3">
 		<div class="panel-heading">		
-			Checkout Step 3 of 3: Secure Checkout <span class="horz-padding"> <%=link_to image_tag("outline.png"), "https://stripe.com/about", target:"_blank"%> </span>
+			Checkout Step 3 of 3: Secure Checkout <span class="horz-padding"> 
+			<%=link_to image_tag(SitePhoto.find_by_name("stripe_logo").photo_file.url(:original)), "https://stripe.com/about", target:"_blank"%> </span>
 		</div>
 		<div class="panel-body">
 			<div class="alert alert-danger hidden">
@@ -180,10 +181,11 @@
 					
 				</div>
 				<div class="col-md-5">
-					<%= image_tag "visa.png"%>
-					<%= image_tag "mastercard.png"%>
-					<%= image_tag "discover.png"%>
-					<%= image_tag "amex.png"%>
+					<%= image_tag SitePhoto.find_by_name("visa_logo").photo_file.url(:original)%>
+					<%= image_tag SitePhoto.find_by_name("mastercard_logo").photo_file.url(:original)%>
+					<%= image_tag SitePhoto.find_by_name("discover_logo").photo_file.url(:original)%>
+					<%= image_tag SitePhoto.find_by_name("amex_logo").photo_file.url(:original)%>
+					
 				</div>
 			</div>
 			
