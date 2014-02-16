@@ -1,8 +1,7 @@
 class EmailProcessor
   def self.process(email)
-    Rails.logger.error "!!!!!!!!!!!!!!!!!!!"
-    Rails.logger.error email.body
-    AdminMailer.forward_email(email.body).deliver
+    
+    AdminMailer.forward_email(email).deliver
     #Post.create!({ body: email.body, email: email.from })
   end
 end

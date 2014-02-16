@@ -10,9 +10,15 @@ class AdminMailer < ActionMailer::Base
     mail(to: 'jamesmholst@yahoo.com, troutsnifferx@yahoo.com', subject: 'Thank you for your order from Beyond The Precipice')
   end
   
-  def forward_email(body)
-    @body = body
-    mail(to: 'jamesmholst@yahoo.com', subject: 'forwarded email')
+  def forward_email(email)
+    @to = email.to
+    @from = email.from
+    @cc = email.cc
+    @body = email.body
+    @attachments = email.attachments
+    
+    
+    mail(to: 'jamesmholst@yahoo.com', subject: email.subject)
   end
   
 end

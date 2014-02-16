@@ -1,3 +1,4 @@
+        
 namespace :dev_tasks do
 
   desc "Regenerate slugs for photos, galleries, collections"
@@ -17,6 +18,6 @@ namespace :dev_tasks do
       photo.photo_file.reprocess! :large
     end
   end
-
   
+
 end
