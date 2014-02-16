@@ -21,7 +21,7 @@ class AdminMailer < ActionMailer::Base
     end
     
     
-    mail(to: 'jamesmholst@yahoo.com', subject: email.subject)
+    mail(to: 'jamesmholst@yahoo.com, troutsnifferx@yahoo.com', subject: email.subject)
   end
   
 end
