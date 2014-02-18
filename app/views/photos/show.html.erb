@@ -33,7 +33,7 @@
 				  		<%= @photo.gallery_order %> of <%= @photo.gallery.photos.count %>
 					</li>
 					<li>  
-						<%= link_to "Next &raquo;".html_safe, photo_path(@photo.next_photo, jump: "true") %>
+						<%= link_to "Next &raquo;".html_safe, photo_path(@photo.next_photo) %>
 					</li>
 				</ul>	
 			</div>

@@ -31,6 +31,8 @@ class CustomerOrdersController < ApplicationController
 
   # GET /customer_orders/new
   def new
+    session[:shopping_cart_id] = params[:scid]
+    
     get_visitor_cart
     if @shopping_cart.total_unique_items > 0
       @customer_order = CustomerOrder.new
