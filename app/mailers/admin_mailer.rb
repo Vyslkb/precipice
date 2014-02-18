@@ -4,7 +4,7 @@ class AdminMailer < ActionMailer::Base
   default from: "Michael@BeyondThePrecipice.com"
   
   def welcome_email  
-    tmp_file = open(SitePhoto.find_by_name("site_logo").photo_file.url(:original)).tempfile
+    tmp_file = open(SitePhoto.find_by_name("site_logo").photo_file.url(:original))
     
     #SitePhoto.find_by_name("site_logo").photo_file.url(:original))
     attachments.inline['logo.png'] = File.read(tmp_file)
