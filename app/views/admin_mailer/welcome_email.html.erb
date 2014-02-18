@@ -13,7 +13,7 @@
       It should be possible to use Michael@BeyondThePrecipice.com as your email address, without having to pay
       anything extra.  Stay tuned!
     </p>
-    <img src="logo.png" style="width: 250px" />
+    <img src="<%= SitePhoto.find_by_name("site_logo").photo_file.url(:original)%>" style="width: 250px" />
     
   </body>
 </html>
