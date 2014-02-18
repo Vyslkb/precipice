@@ -1,12 +1,28 @@
 class AdminMailer < ActionMailer::Base
+  require 'open-uri'
+  
   default from: "Michael@BeyondThePrecipice.com"
   
   def welcome_email  
-    mail(to: 'jamesmholst@yahoo.com, troutsnifferx@yahoo.com', subject: 'Testing Email Solution')
+    tmp_file = open("http://s3.amazonaws.com/beyondtheprecipice/site_photos/photo_files/000/000/038/original/logo.png?1392563849")
+    
+    #SitePhoto.find_by_name("site_logo").photo_file.url(:original)).tempfile
+    attachments.inline['logo.png'] = File.read(tmp_file)
+    tmp_file.close
+    tmp_file.unlink   # deletes the temp file
+    
+    mail(to: 'jamesmholst@yahoo.com', subject: 'Testing Email Solution')
   end
   
   def order_confirmation(customer_order)
     @customer_order = customer_order 
+    
+    tmp_file = open(SitePhoto.find_by_name('site_logo').photo_file.url(:large)).tempfile
+    attachments.inline['logo.png'] = File.read(tmp_file)
+    tmp_file.close
+    tmp_file.unlink   # deletes the temp file
+    
+    
     mail(to: 'jamesmholst@yahoo.com, troutsnifferx@yahoo.com', subject: 'Thank you for your order from Beyond The Precipice')
   end
   
