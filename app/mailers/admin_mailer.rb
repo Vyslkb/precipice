@@ -23,7 +23,7 @@ class AdminMailer < ActionMailer::Base
     tmp_file.unlink   # deletes the temp file
     
     
-    mail(to: 'jamesmholst@yahoo.com, troutsnifferx@yahoo.com', subject: 'Thank you for your order from Beyond The Precipice')
+    mail(to: 'jamesmholst@yahoo.com', subject: 'Thank you for your order from Beyond The Precipice')
   end
   
   def forward_email(email)
