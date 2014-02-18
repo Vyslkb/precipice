@@ -4,9 +4,9 @@ class AdminMailer < ActionMailer::Base
   default from: "Michael@BeyondThePrecipice.com"
   
   def welcome_email  
-    tmp_file = open("http://s3.amazonaws.com/beyondtheprecipice/site_photos/photo_files/000/000/038/original/logo.png?1392563849")
+    tmp_file = open(SitePhoto.find_by_name("site_logo").photo_file.url(:original)).tempfile
     
-    #SitePhoto.find_by_name("site_logo").photo_file.url(:original)).tempfile
+    #SitePhoto.find_by_name("site_logo").photo_file.url(:original))
     attachments.inline['logo.png'] = File.read(tmp_file)
     tmp_file.close
     tmp_file.unlink   # deletes the temp file
