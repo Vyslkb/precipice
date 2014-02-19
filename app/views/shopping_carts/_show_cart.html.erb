@@ -39,7 +39,7 @@
 								
 							</td>
 							<td>
-								<% if session[:discount_percentage] > 0 %>
+								<% if session[:discount_percentage] %>
 									<strike>
 										<%= number_to_currency(PhotoPrintOption.find(shopping_cart_item.item_id).print_option.price) %>
 									</strike>
