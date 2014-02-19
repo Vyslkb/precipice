@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140214083411) do
+ActiveRecord::Schema.define(version: 20140219092836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,9 +80,17 @@ ActiveRecord::Schema.define(version: 20140214083411) do
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "total",              precision: 8, scale: 2
-    t.decimal  "subtotal",           precision: 8, scale: 2
-    t.decimal  "shipping",           precision: 8, scale: 2
+    t.decimal  "total",               precision: 8, scale: 2
+    t.decimal  "subtotal",            precision: 8, scale: 2
+    t.decimal  "shipping",            precision: 8, scale: 2
+    t.integer  "discount_percentage"
+  end
+
+  create_table "discount_codes", force: true do |t|
+    t.string   "name"
+    t.integer  "discount_percentage"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "friendly_id_slugs", force: true do |t|

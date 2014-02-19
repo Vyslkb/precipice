@@ -1,5 +1,7 @@
 Precipice::Application.routes.draw do
   
+  resources :discount_codes
+
   get "errors/error_404"
   get "errors/error_500"
   resources :site_photos

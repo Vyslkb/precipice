@@ -74,6 +74,7 @@ class CustomerOrdersController < ApplicationController
       if @customer_order.save
         create_charge(@customer_order.total)
         session[:customer_order_id] = @customer_order.id
+        ShoppingCart.find(session[:shopping_cart_id]).destroy
         session[:shopping_cart_id] = nil
         AdminMailer.order_confirmation(@customer_order).deliver
         

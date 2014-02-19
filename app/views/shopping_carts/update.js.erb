@@ -1,7 +1,18 @@
 
 $('#show_cart_container').html("<%= escape_javascript(render :partial => 'show_cart') %>");
+
 shopping_cart.update_quantity_ui();
 
-$('[data-content="saved-msg"]').filter('[data-id="<%= params[:shopping_cart_item_id]%>"]').toggleClass("hidden");
+<% if @update_quantity == true %>
 
-//alert("<%= params[:shopping_cart_item_id]%>");
+	
+
+	$('[data-content="saved-msg"]').filter('[data-id="<%= params[:shopping_cart_item_id]%>"]').toggleClass("hidden");
+
+<% elsif @update_discount_code == true %>
+	alert('updated discount code');
+	
+<%end%>
+
+
+

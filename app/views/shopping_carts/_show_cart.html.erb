@@ -1,3 +1,4 @@
+
 			<table class="table">
 				<thead>
 					<th></th>
@@ -38,7 +39,14 @@
 								
 							</td>
 							<td>
-								<%= number_to_currency shopping_cart_item.price %>
+								<% if session[:discount_percentage] > 0 %>
+									<strike>
+										<%= number_to_currency(PhotoPrintOption.find(shopping_cart_item.item_id).print_option.price) %>
+									</strike>
+									<br />
+								<%end%>
+									
+								<%= number_to_currency shopping_cart_item.price %>	
 							</td>
 					
 						</tr>
@@ -47,15 +55,44 @@
 			</table>
 			
 			<div class="row">
-				<div class="col-md-3 col-md-offset-9">
+				<div class="col-md-9 col-md-offset-0">
+					<p>Estimated shipping time is between 3 - 7 days</p>
+					<p class="top-buffer-big">
+						<%= form_tag update_shopping_cart_path, method: :post, remote: true, 
+									 role: "form", class:"form-inline" do %>
+							
+							<div class="form-group">
+								<%= label_tag  :discount_code, "Promo Code: " %>
+								<%= text_field_tag :discount_code,'', maxlength: "25", size: "25",
+										data:{content:"discount-code-field"}, class:"form-control input-sm ", style:"width: 200px"  %>
+								<%= hidden_field_tag :cart_action, "update_discount_code"%>
+								
+							</div>
+							<button type="submit" 
+									class="btn btn-default btn-xs" 
+									data-content="">
+									update
+							</button>
+							<span  
+								  data-content="saved-msg" 
+								  data-id= "<%=   %>"
+								  class="text-success hidden">
+								  saved
+							</span>
+						<%end%>
+					</p>
+					
+				</div>
+				<div class="col-md-3 ">
 					<table class="table">
 						<tr>
 							<td>Sub-total</td>
 							<td><%= number_to_currency @shopping_cart.subtotal%></td>
 						</tr>
 						<tr>
-							<td>Shipping</td>
-							<td><%= number_to_currency @shopping_cart.shipping_cost%></td>
+							<td>Shipping </td>
+							<td>Free
+								<% number_to_currency @shopping_cart.shipping_cost%></td>
 						</tr>
 						<tr>
 							<td><strong>Total</strong></td>
