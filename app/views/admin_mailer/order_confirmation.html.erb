@@ -67,9 +67,19 @@
 				<% @customer_order.customer_order_items.each do |customer_order_item| %>
 					<tr>
 						<td>
-							<%= image_tag Photo.find_by_name(customer_order_item.photo_name).photo_file.url(:thumbnail)%>
+							
+							<%= image_tag attachments['logo.png'].url, 
+										  alt: '#{customer_order_item.photo_name}'%>
+							
+							
+							
 							<br />
-							<%= link_to customer_order_item.photo_name, Photo.find_by_name(customer_order_item.photo_name),
+							<%= link_to customer_order_item.photo_name, 
+									    photo_url(
+									    	Photo.find_by_name(customer_order_item.photo_name),
+									    	host: "beyondtheprecipice.herokuapp.com",
+											port: nil,
+											protocol: "http"),
 							style: "color: #333333"%>
 						</td>
 						<td>
