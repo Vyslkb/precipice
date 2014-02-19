@@ -67,12 +67,6 @@
 				<% @customer_order.customer_order_items.each do |customer_order_item| %>
 					<tr>
 						<td>
-							
-							<%= image_tag attachments['logo.png'].url, 
-										  alt: '#{customer_order_item.photo_name}'%>
-							
-							
-							
 							<br />
 							<%= link_to customer_order_item.photo_name, 
 									    photo_url(
