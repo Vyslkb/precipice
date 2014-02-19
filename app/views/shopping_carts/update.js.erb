@@ -4,15 +4,14 @@ $('#show_cart_container').html("<%= escape_javascript(render :partial => 'show_c
 shopping_cart.update_quantity_ui();
 
 <% if @update_quantity == true %>
-
-	
-
 	$('[data-content="saved-msg"]').filter('[data-id="<%= params[:shopping_cart_item_id]%>"]').toggleClass("hidden");
-
-<% elsif @update_discount_code == true %>
-	alert('updated discount code');
-	
 <%end%>
+
+<% if @error == true %>
+	$('#discount_code_message').html("<%= @discount_error_msg%>");
+	$('#discount_code_message').addClass('text-danger');
+<% end %>
+ 
 
 
 

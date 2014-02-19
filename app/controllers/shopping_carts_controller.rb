@@ -27,7 +27,7 @@ before_filter :authenticate_admin!, only: [:index, :destroy]
         @shopping_cart.add(photo_print_option, photo_print_option.print_option.price)
       end
       
-      redirect_to shopping_cart_path
+      #redirect_to shopping_cart_path
     
     elsif params[:cart_action] == "update_quantity"
       shopping_cart_item = ShoppingCartItem.find(params[:shopping_cart_item_id])
@@ -39,27 +39,25 @@ before_filter :authenticate_admin!, only: [:index, :destroy]
         @update_quantity = true
       end
       
-      respond_to do |format|
-        format.js
-      end
+      
     elsif params[:cart_action] == "update_discount_code"
-      if DiscountCode.where(name: params[:discount_code]).exists?
-        session[:discount_percentage] = DiscountCode.find_by_name(params[:discount_code]).discount_percentage 
-        get_visitor_cart
-        @shopping_cart.shopping_cart_items.each do |item|
-          sticker_price = PhotoPrintOption.find(item.item_id).print_option.price
-          item.price = (sticker_price * (100 - session[:discount_percentage]) / 100).round(2)
-          item.save 
-        end
-        @update_discount_code = true
+      if DiscountCode.where(name: params[:discount_code_name]).exists?
+        discount_code = DiscountCode.find_by_name(params[:discount_code_name])
+        @shopping_cart.update_attribute(:discount_code_id, discount_code.id) 
+        @shopping_cart.apply_discount
       else
-        @error_msg = "Sorry, that is not a valid promo code."
+        logger.error "!!!!!!!!!!!!!!!!!"
+        @error = true
+        @discount_error_msg = "Sorry, that is not a valid promo code."
       end
-    
     else
       redirect_to shopping_cart_path
     end
     
+    respond_to do |format|
+        format.html {redirect_to shopping_cart_path}
+        format.js
+    end
     
   end
   

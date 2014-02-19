@@ -39,7 +39,7 @@
 								
 							</td>
 							<td>
-								<% if session[:discount_percentage] %>
+								<% if @shopping_cart.discount_code.present? %>
 									<strike>
 										<%= number_to_currency(PhotoPrintOption.find(shopping_cart_item.item_id).print_option.price) %>
 									</strike>
@@ -62,8 +62,8 @@
 									 role: "form", class:"form-inline" do %>
 							
 							<div class="form-group">
-								<%= label_tag  :discount_code, "Promo Code: " %>
-								<%= text_field_tag :discount_code,'', maxlength: "25", size: "25",
+								<%= label_tag  :discount_code_name, "Promo Code: " %>
+								<%= text_field_tag :discount_code_name,'', maxlength: "25", size: "25",
 										data:{content:"discount-code-field"}, class:"form-control input-sm ", style:"width: 200px"  %>
 								<%= hidden_field_tag :cart_action, "update_discount_code"%>
 								
@@ -80,7 +80,16 @@
 								  saved
 							</span>
 						<%end%>
-					</p>
+				</p>
+				<p id="discount_code_message">
+					<% if @shopping_cart.discount_code.present? %>
+						<span class="text-success">
+							You are now receiving a 
+							<%= @shopping_cart.discount_code.discount_percentage%>% 
+							on your order.
+						</span>
+					<%end%>
+				</p>
 					
 				</div>
 				<div class="col-md-3 ">
