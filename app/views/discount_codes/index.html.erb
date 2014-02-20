@@ -1,29 +1,30 @@
-<h1>Listing discount_codes</h1>
+<div class="col-md-6">
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Discount percentage</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @discount_codes.each do |discount_code| %>
-      <tr>
-        <td><%= discount_code.name %></td>
-        <td><%= discount_code.discount_percentage %></td>
-        <td><%= link_to 'Show', discount_code %></td>
-        <td><%= link_to 'Edit', edit_discount_code_path(discount_code) %></td>
-        <td><%= link_to 'Destroy', discount_code, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Discount code', new_discount_code_path %>
+	<h3>Discount Codes</h3>
+	
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th>Name</th>
+	      <th>Percent Off</th>
+	      <th></th>
+	      <th></th>
+	    </tr>
+	  </thead>
+	
+	  <tbody>
+	    <% @discount_codes.each do |discount_code| %>
+	      <tr>
+	        <td><%= discount_code.name %></td>
+	        <td><%= discount_code.discount_percentage %>%</td>
+	        <td><%= link_to 'Edit', edit_discount_code_path(discount_code) %></td>
+	        <td><%= link_to 'Delete', discount_code, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+	
+	<br>
+	
+	<%= link_to 'New Discount code', new_discount_code_path %>
+</div>

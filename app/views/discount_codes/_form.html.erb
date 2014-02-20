@@ -1,25 +1,37 @@
-<%= form_for(@discount_code) do |f| %>
-  <% if @discount_code.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@discount_code.errors.count, "error") %> prohibited this discount_code from being saved:</h2>
 
-      <ul>
-      <% @discount_code.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="col-md-6">
+	<%= form_for(@discount_code, role: "form") do |f| %>
+	  <% if @discount_code.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@discount_code.errors.count, "error") %> prohibited this discount_code from being saved:</h2>
+	
+	      <ul>
+	      <% @discount_code.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+	
+		<div class="form-group">
+	    	<%= f.label :name, "Discount Code" %>
+	    	<div>
+	    		Use lowercase letters (uppercase will be converted to lowercase)
+	    	</div>
+	    	<%= f.text_field :name , class: "form-control"%>
+	  	</div>
+	  	<div class="form-group">
+	    	<%= f.label :discount_percentage, "Percent Off" %>
+	    	<div>
+	    		Use an integer between 1 and 99.
+	    	</div>
+	    	<%= f.number_field :discount_percentage, class:"form-control" %>
+	  	</div>
+	  	<div class="actions">
+	    	<button class="btn btn-default" type="submit">Save</button>
+	  	</div>
+	<% end %>
+	
+	
+</div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :discount_percentage %><br>
-    <%= f.number_field :discount_percentage %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
