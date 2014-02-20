@@ -77,7 +77,7 @@ class CustomerOrdersController < ApplicationController
         create_charge(@customer_order.total)
         session[:customer_order_id] = @customer_order.id
         ShoppingCart.find(session[:shopping_cart_id]).destroy
-        ShoppingCart.where('updated_at < ?', 1.week.ago ).destroy
+        ShoppingCart.where('updated_at < ?', 1.week.ago ).each {|x| x.destroy}
         session[:shopping_cart_id] = nil
         AdminMailer.order_confirmation(@customer_order).deliver
         
