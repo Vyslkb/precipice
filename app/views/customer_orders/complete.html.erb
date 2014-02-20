@@ -11,6 +11,11 @@
 						<div class="row">
 							<div class="col-md-5">
 								<p>
+									 A confirmation email has been sent to  <%= @customer_order.email%><br />
+									 Please review your order details below.
+								</p>
+								
+								<p>
 									<strong class="text-white">Contact:</strong>
 								</p>
 								<p class="horz-padding">
@@ -18,7 +23,7 @@
 										<%= @customer_order.first_name %> <%= @customer_order.last_name %>	
 									</strong>
 									<br />
-									<%= @customer_order.email%> <br /> 
+									
 									<%= number_to_phone @customer_order.phone_number %>
 								</p> 							
 							</div>
@@ -69,6 +74,8 @@
 									
 									<tr>
 										<td>
+											<%= image_tag Photo.where(name: customer_order_item.photo_name).take.photo_file.url(:thumb), class"img-rounded"%>
+											<br />
 											<%= customer_order_item.photo_name %>
 										</td>
 										<td>
