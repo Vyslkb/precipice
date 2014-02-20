@@ -66,7 +66,7 @@ class CustomerOrdersController < ApplicationController
       new_order_item.photo_name = photo.name
       new_order_item.photo_id = photo.id
       new_order_item.print_name = print_option.name
-      new_order_item.print_cost = print_option.price     
+      new_order_item.print_cost = shopping_cart_item.price
       
       new_order_item.quantity = shopping_cart_item.quantity
     end
