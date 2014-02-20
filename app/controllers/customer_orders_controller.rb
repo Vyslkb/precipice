@@ -54,6 +54,8 @@ class CustomerOrdersController < ApplicationController
     @customer_order.subtotal = shopping_cart.subtotal
     @customer_order.shipping = shopping_cart.shipping_cost
     @customer_order.total = shopping_cart.total
+    @customer_order.discount_code = shopping_cart.try(:discount_code).try(:name)
+    @customer_order.discount_percentage = shopping_cart.try(:discount_code).try(:discount_percentage)
     
     shopping_cart.shopping_cart_items.each do |shopping_cart_item|
       new_order_item = @customer_order.customer_order_items.new

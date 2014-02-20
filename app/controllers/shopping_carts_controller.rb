@@ -41,8 +41,8 @@ before_filter :authenticate_admin!, only: [:index, :destroy]
       
       
     elsif params[:cart_action] == "update_discount_code"
-      if DiscountCode.where(name: params[:discount_code_name]).exists?
-        discount_code = DiscountCode.find_by_name(params[:discount_code_name])
+      if DiscountCode.where(name: params[:discount_code_name].downcase).exists?
+        discount_code = DiscountCode.find_by_name(params[:discount_code_name].downcase)
         @shopping_cart.update_attribute(:discount_code_id, discount_code.id) 
         @shopping_cart.apply_discount
       else

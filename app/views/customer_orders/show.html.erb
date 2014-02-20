@@ -66,6 +66,16 @@
 						</h4>
 						<div class="top-buffer-big">
 							<table class="table table-condensed">
+								<% if @customer_order.discount_code.present? %>
+									<tr>
+										<td>
+											Discount Code <%= @customer_order.discount_code %>
+											was used for a <%= @customer_order.discount_percentage %>
+											discount.
+										</td>
+									</tr>
+								<%end%>
+								</tr>
 								<tr>
 									<td>Subtotal:</td>
 									<td><%= number_to_currency @customer_order.subtotal %></td>
@@ -79,7 +89,6 @@
 									<td><%= number_to_currency @customer_order.total %></td>
 								</tr>
 							</table>
-							
 						</div>
 					</div>
 				</div>
