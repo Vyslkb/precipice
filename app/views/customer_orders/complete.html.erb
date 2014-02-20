@@ -74,7 +74,8 @@
 									
 									<tr>
 										<td>
-											<%= image_tag Photo.where(name: customer_order_item.photo_name).take.photo_file.url(:thumb), class"img-rounded"%>
+											<%= image_tag Photo.where(name: customer_order_item.photo_name).take.photo_file.url(:thumb), 
+												class: "photo-border" %>
 											<br />
 											<%= customer_order_item.photo_name %>
 										</td>
