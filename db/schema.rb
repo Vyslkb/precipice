@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140219135859) do
+ActiveRecord::Schema.define(version: 20140220152829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20140219135859) do
     t.decimal  "subtotal",            precision: 8, scale: 2
     t.decimal  "shipping",            precision: 8, scale: 2
     t.integer  "discount_percentage"
+    t.string   "discount_code"
   end
 
   create_table "discount_codes", force: true do |t|
