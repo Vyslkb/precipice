@@ -14,6 +14,10 @@ class CustomerOrdersController < ApplicationController
   end
 
   def complete
+    if CustomerOrder.where(id: params[:co]).take.try(:updated_at) > 5.minutes.ago
+      session[:customer_order_id] = params[:co]
+    end
+    
     if CustomerOrder.exists?(session[:customer_order_id].to_i)
       @customer_order = CustomerOrder.find(session[:customer_order_id])
     else
@@ -31,7 +35,10 @@ class CustomerOrdersController < ApplicationController
 
   # GET /customer_orders/new
   def new
-    session[:shopping_cart_id] = params[:scid]
+    ## security hack to transfer session to new domain
+    if ShoppingCart.where(id: params[:scid]).take.try(:updated_at) > 2.hours.ago
+      session[:shopping_cart_id] = params[:scid]
+    end
     
     get_visitor_cart
     if @shopping_cart.total_unique_items > 0
@@ -75,14 +82,23 @@ class CustomerOrdersController < ApplicationController
     respond_to do |format|
       if @customer_order.save
         create_charge(@customer_order.total)
+        
+        ##probably unnecessary, but what the hell
         session[:customer_order_id] = @customer_order.id
+        
         ShoppingCart.find(session[:shopping_cart_id]).destroy
         ShoppingCart.where('updated_at < ?', 1.week.ago ).each {|x| x.destroy}
         session[:shopping_cart_id] = nil
         AdminMailer.order_confirmation(@customer_order).deliver
         
         
-        format.html { redirect_to order_complete_path }
+        format.html do
+           redirect_to order_complete_url(host: "beyondtheprecipice.com", 
+                                          protocol: "http", 
+                                          port: nil,
+                                          co: @customer_order.id)
+        end
+        
         format.json { render action: 'show', status: :created, location: @customer_order }
       else
         format.html { render action: 'new' }
