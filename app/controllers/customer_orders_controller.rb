@@ -18,8 +18,13 @@ class CustomerOrdersController < ApplicationController
       session[:customer_order_id] = params[:co]
     end
     
-    if CustomerOrder.exists?(session[:customer_order_id].to_i)
-      @customer_order = CustomerOrder.find(session[:customer_order_id])
+    
+    if session[:customer_order_id].present?
+      if CustomerOrder.exists?(session[:customer_order_id].to_i)
+        @customer_order = CustomerOrder.find(session[:customer_order_id])
+      else
+        redirect_to order_error_path
+      end
     else
       redirect_to order_error_path
     end
