@@ -14,9 +14,19 @@ class ShoppingCart < ActiveRecord::Base
     if DiscountCode.where(id: self.discount_code_id).take
       self.shopping_cart_items.each do |item|
         sticker_price = PhotoPrintOption.find(item.item_id).print_option.price
-        item.price = (sticker_price * (100 - self.discount_code.discount_percentage) / 100).round(2)
+        item.price = (sticker_price * (100 - self.discount_code.discount_percentage) / 100.to_f).round(2)
         item.save 
        end
+    
+    else 
+      self.shopping_cart_items.each do |item|
+        sticker_price = PhotoPrintOption.find(item.item_id).print_option.price
+        item.price = sticker_price
+        item.save 
+      end
     end
+    
+    
+    
   end
 end

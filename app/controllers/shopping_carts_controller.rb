@@ -46,7 +46,8 @@ before_filter :authenticate_admin!, only: [:index, :destroy]
         @shopping_cart.update_attribute(:discount_code_id, discount_code.id) 
         @shopping_cart.apply_discount
       else
-        logger.error "!!!!!!!!!!!!!!!!!"
+        @shopping_cart.update_attribute(:discount_code_id, nil) 
+        @shopping_cart.apply_discount
         @error = true
         @discount_error_msg = "Sorry, that is not a valid promo code."
       end
