@@ -41,8 +41,8 @@ maximize_slideshow = ->
  image_height = h
  image_width = h * 1.5
  
- if image_width >( w - $("#sidebar-wrapper").width())
-   image_width =  w - $("#sidebar-wrapper").width()
+ if image_width > $("#main").width()
+   image_width =  $("#main").width()
    image_height = image_width * 2 / 3
   
  $("#home-carousel").height(image_height)
@@ -50,7 +50,9 @@ maximize_slideshow = ->
  
  # Center the slideshow
  # figure out left margin
- left_margin = ($("#page-content-wrapper").width() - image_width)/2 - 20
+
+ #!!!!!!!!!!!!!!!!!!!!!!!
+ left_margin = ($("#main").width() - image_width)/2 - 20
  $("#carousel-wrapper").css("margin-left", left_margin)
  
  # resize container as well for centered text

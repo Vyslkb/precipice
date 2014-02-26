@@ -1,0 +1,194 @@
+/* custom template */
+
+html, body {
+   height: 100%;
+}
+ 
+
+.logo-image {
+	width: 100%;
+}
+
+.logo-image-link {
+	padding: 0px;
+}
+
+
+
+
+.nav {
+   // font-family:Arial,sans-serif;
+   //font-size:13px;
+}
+
+
+
+/*
+.wrapper, .row {
+   height: 100%;
+   margin-left:0;
+   margin-right:0;
+}
+
+*/
+
+
+.wrapper, .row {
+   height: 100%;
+   margin-left:0;
+   margin-right:0;
+}
+
+.wrapper:before, .wrapper:after,
+.column:before, .column:after {
+    content: "";
+    display: table;
+}
+
+.wrapper:after,
+.column:after {
+    clear: both;
+}
+
+.column {
+    height: 100%;
+    overflow: auto;
+    *zoom:1;
+}
+
+.column .padding {
+    padding: 20px;
+}
+
+.full{
+	padding-top:20px;
+}
+
+.box {
+  	bottom: 0; /* increase for footer use */
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+  /*
+    background-image:url('/assets/example/bg_suburb.jpg');
+    background-size:cover;
+    background-attachment:fixed;
+  */
+}
+
+.divider {
+	margin-top:32px;
+}
+
+
+
+#main {
+   padding-left:0;
+   padding-right:0;
+}
+#main .img-circle {
+   margin-top:18px;
+   height:70px;
+   width:70px;
+}
+
+#sidebar {
+    padding:0px;
+	padding-top:15px;
+	
+}
+
+#sidebar, #sidebar a, #sidebar-footer a {
+    color: #C8C8C8;
+    
+    background-color:transparent;
+	text-shadow:0 0 2px #000000;
+    padding-left: 25px;
+}
+#sidebar .nav li>a:hover {
+    color:#ffffff;
+    background-color:#1c1e22;
+}
+
+#sidebar .nav li>a.logo-image-link {
+    padding: 0px;
+   
+}
+
+#sidebar .nav li>a.logo-image-link:hover {
+    background-color: #000;
+}
+
+
+#lg-menu{
+	font-size: 12pt;
+}
+
+
+
+/* bootstrap overrides */
+
+
+.navbar-toggle, .close {
+	outline:0;
+}
+
+.navbar-toggle .icon-bar {
+	background-color: #fff;
+}
+
+.col-sm-9.full {
+    width: 100%;
+}
+
+
+/* adjust the contents on smaller devices */
+@media (max-width: 768px) {
+
+  .column .padding {
+    padding: 7px;
+  }
+
+  .full{
+	padding-top:20px;
+  }
+
+
+}
+
+
+/*
+ * off canvas sidebar
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 768px) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+  }
+
+  .row-offcanvas-left.active {
+    left: 33%;
+  }
+
+  .row-offcanvas-left.active .sidebar-offcanvas {
+    left: -33%;
+    position: absolute;
+    top: 0;
+    width: 33%;
+    margin-left: 5px;
+  }
+
+  #sidebar, #sidebar a, #sidebar-footer a {
+    padding-left:3px;
+  }
+  
+  #lg-menu{
+	font-size: 10pt;
+  }
+
+}

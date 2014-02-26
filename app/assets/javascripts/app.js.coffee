@@ -2,7 +2,7 @@
 $(document).ready ->
   spinner_position() 
   ajax_spinner() 
-  background_image()
+  #background_image()
 
 ajax_spinner = ->
    $("#spinner").hide()

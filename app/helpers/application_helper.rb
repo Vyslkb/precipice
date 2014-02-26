@@ -38,8 +38,9 @@ module ApplicationHelper
         site_photo_name = "portrait_background"
       end
     end
-    
-    image_tag(SitePhoto.find_by_name(site_photo_name).photo_file.url(:original))  unless static_page_name == "home"
+    unless static_page_name == "home"
+      image_tag(SitePhoto.find_by_name(site_photo_name).photo_file.url(:original))  
+    end
     
   end
 end

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Beyond The Precipice" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Beyond The Precipice" %>">
+    
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+   	
+    
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+    <%= favicon_link_tag 'favicon2.ico' %>
+    <%= tag :meta, :name => "stripe-key", :content => Rails.configuration.stripe[:publishable_key] %>
+    
+    <script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	
+	  ga('create', 'UA-48350686-1', 'beyondtheprecipice.com');
+	  ga('send', 'pageview');
+	
+	</script>
+    
+  </head>
+  <body data-controller="<%= controller_name %>" data-action="<%= action_name %>" data-static-page="<%= static_page_name %>">	
+
+  	<div id="background_image_container">
+  		<%= set_background_image %>
+  	</div>
+  	<div id="wrapper">
+      <%= render 'layouts/sidebar'%>
+          
+      <!-- Page content -->
+      <div id="page-content-wrapper">    
+        <!-- Keep all page content within the page-content inset div! -->
+        <div class="page-content inset">
+          <div class="row">
+            <div class="col-md-12">
+             	<%= render 'layouts/admin_nav_bar' if admin_signed_in?%>
+				<%= render 'layouts/messages' %>				
+				<%= render 'layouts/shopping_cart'%>	
+	       		<%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+	</div>
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+	
+	
+	
+	
+	<div id="spinner" style="display: none">
+		<%=  image_tag("loading.gif", :alt => "Loading....", :style => "")%>
+	</div>
+  </body>
+</html>

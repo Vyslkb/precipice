@@ -4,9 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Beyond The Precipice" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Beyond The Precipice" %>">
-    
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-   	
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script> 
     
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
@@ -25,54 +23,139 @@
 	
 	</script>
     
+    
   </head>
   <body data-controller="<%= controller_name %>" data-action="<%= action_name %>" data-static-page="<%= static_page_name %>">	
 
-  	<div id="background_image_container">
-  		<%= set_background_image %>
-  	</div>
-  	<div id="wrapper">
-      <%= render 'layouts/sidebar'%>
+		<div class="wrapper">
+    		<div class="box">
+        		<div class="row row-offcanvas row-offcanvas-left">
+		            <!-- sidebar -->
+		            <div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
+		              
+		              	<ul class="nav">
+		          			<li>
+		          				<a data-toggle="offcanvas" class="visible-xs text-center" >
+		          					<i class="glyphicon glyphicon-chevron-right"></i>
+		          				</a>
+		          			</li>
+		            	</ul>
+		               
+		                <ul class="nav hidden-xs" id="lg-menu">
+		                    
+		                    <li class="logo-image-nav hidden-xs">
+			                    <%= link_to root_url, class:"logo-image-link" do%>	
+									<%= image_tag SitePhoto.find_by_name("site_logo").photo_file.url(:original), class:"logo-image"%>
+								<%end%>
+		                    </li>
+		                    
+		                    <liclass="logo-image-nav visible-xs">
+		                  		<%= link_to root_url, class:"logo-image-link" do%>	
+									<%= image_tag 'mobile_logo.png', class:"logo-image"%>
+								<%end%>
+		                  	</li>
+		                    
+		                    <li class="logo-image-nav visible-xs hidden">
+			                    <%= link_to root_url, class:"logo-image-link" do%>	
+									<%= image_tag "mobile_logo.png", class:"logo-image"%>
+								<%end%>
+		                    </li>
+		                    
+		                    
+		                    <% Collection.all.each do |collection|%>
+								<li>	
+									<%= link_to collection.name,  collection %>
+								</li>	
+							<%end%>	
+		                    
+		                    <li>
+								<div class="text-info free-shipping">
+									<div class="horz-padding">Free ground shipping</div>
+									<div class="horz-padding">on all orders.</div>
+						        </div>
+							</li>
+				        	
+				        	
+				        	<li class="top-buffer-big">
+								<%= link_to "Philosophy", page_path('philosophy')%>
+							</li>
+							<li>
+								<%= link_to "Travel Quotes", page_path('travel_quotes') %>
+							</li>
+							<li>
+								<%= link_to "Contact", page_path('contact') %>
+							</li>
+		                    
+		                    
+		                    
+		                </ul>
+		                
+		              
+		              	<!-- tiny only nav-->
+		              <ul class="nav visible-xs" id="xs-menu">
+		                  	<li>
+		                  		<%= link_to root_url, class:"logo-image-link" do%>	
+									<%= image_tag 'mobile_logo.png', class:"logo-image"%>
+								<%end%>
+		                  	</li>
+		                  	
+		                  	<% Collection.all.each do |collection|%>
+								<li>	
+									<%= link_to collection.name,  collection %>
+								</li>	
+							<%end%>	
+							<li class="">
+								<%= link_to "Philosophy", page_path('philosophy')%>
+							</li>
+							<li>
+								<%= link_to "Travel Quotes", page_path('travel_quotes') %>
+							</li>
+							<li>
+								<%= link_to "Contact", page_path('contact') %>
+							</li>
+		                </ul>
+		              
+		            </div>
+		            <!-- /sidebar -->
           
-      <!-- Page content -->
-      <div id="page-content-wrapper">    
-        <!-- Keep all page content within the page-content inset div! -->
-        <div class="page-content inset">
-          <div class="row">
-            <div class="col-md-12">
-             	<%= render 'layouts/admin_nav_bar' if admin_signed_in?%>
-				<%= render 'layouts/messages' %>				
-				<%= render 'layouts/shopping_cart'%>	
-	       		<%= yield %>
-            </div>
-          </div>
-        </div>
-      </div>
-	</div>
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-	
-	
-	
-	
-	<div id="spinner" style="display: none">
-		<%=  image_tag("loading.gif", :alt => "Loading....", :style => "")%>
-	</div>
+		            <!-- main right col -->
+		            <div class="column col-sm-10 col-xs-11" id="main">
+		            	
+		            	
+		                <div id="background_image_container">
+							<%= set_background_image %>  			
+						</div>
+		                
+		                
+		                
+		                <div class="">
+		                    <div class="full col-sm-9">
+		                
+		                        <!-- content -->                      
+		                      	<div class="row">
+		                			<div class="col-sm-12">
+		            					
+		            				</div>
+		                			          
+		                        	<!-- main col left --> 
+		                        	<div class="col-sm-12">
+		            					<%= yield %>
+		            				</div>
+		            			</div>
+		            		</div>
+		            	</div>
+		            	
+		            			
+		            	
+		            	
+		            	
+		            	
+		            	   
+		            </div>
+		            <!-- /main -->
+          
+       			</div>
+    		</div>
+		</div>
   </body>
 </html>
