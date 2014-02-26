@@ -3,6 +3,9 @@ $(document).ready ->
     maximize_slideshow()
     startCarousel()
     captionOverride()
+    
+    $(window).resize ->
+      maximize_slideshow()
 
 startCarousel = ->
   $('#home-carousel').carousel({
@@ -35,7 +38,7 @@ maximize_slideshow = ->
  # aspect ratio is 2x3
  
  #Figure out height of other elements
- h = $(window).height() - 80 - $('#shopping_cart_link_container').height()
+ h = $(window).height() - 100 - $('#shopping_cart_link_container').height()
  w = $(window).width()
  
  image_height = h
@@ -60,5 +63,4 @@ maximize_slideshow = ->
  
  #center the play/pause buttons
  $('#carouselButtons').css('margin-left', (image_width/2 -16))
-
 
