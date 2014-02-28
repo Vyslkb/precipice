@@ -9,7 +9,7 @@
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
-    <%= favicon_link_tag 'favicon2.ico' %>
+    <%= favicon_link_tag 'favicon.ico' %>
     <%= tag :meta, :name => "stripe-key", :content => Rails.configuration.stripe[:publishable_key] %>
     
     <script>
@@ -65,15 +65,21 @@
 		                    <% Collection.all.each do |collection|%>
 								<li>	
 									<%= link_to collection.name,  collection %>
-								</li>	
+								</li>
+								
+								<% if collection.name == 'Fine Art Prints'%>
+									<li>
+										<div class="text-info free-shipping">
+											<div class="horz-padding">Free ground shipping</div>
+											<div class="horz-padding">on all orders.</div>
+								        </div>
+									</li>	
+								<%end%>	
 							<%end%>	
-		                    
 		                    <li>
-								<div class="text-info free-shipping">
-									<div class="horz-padding">Free ground shipping</div>
-									<div class="horz-padding">on all orders.</div>
-						        </div>
+								<%= link_to "Print Details",  page_path('print_details')%>
 							</li>
+		                    
 				        	
 				        	
 				        	<li class="top-buffer-big">
@@ -104,6 +110,10 @@
 									<%= link_to collection.name,  collection %>
 								</li>	
 							<%end%>	
+							<li>
+								<%= link_to "Print Details",  page_path('print_details')%>
+							</li>
+							
 							<li class="">
 								<%= link_to "Philosophy", page_path('philosophy')%>
 							</li>
@@ -139,6 +149,8 @@
 		                			          
 		                        	<!-- main col left --> 
 		                        	<div class="col-sm-12">
+		            					<%= render 'layouts/admin_nav_bar' if admin_signed_in?%>
+		            					<%= render 'layouts/shopping_cart'%>	
 		            					<%= yield %>
 		            				</div>
 		            			</div>
