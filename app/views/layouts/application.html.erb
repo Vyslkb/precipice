@@ -5,7 +5,7 @@
     <title><%= content_for?(:title) ? yield(:title) : "Beyond The Precipice" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Beyond The Precipice" %>">
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script> 
-    <meta property="og:image" content="<%= "#{request.protocol}#{request.host_with_port}#{asset_path('logo.png')}" %>" /> 
+    <meta property="og:image" content="<%= "#{request.protocol}#{request.host_with_port}#{asset_path('logo_lg.png')}" %>" /> 
     
     
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
