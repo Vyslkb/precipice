@@ -22,8 +22,10 @@ namespace :dev_tasks do
   
   task :fuckme => :environment do
     Gallery.find_by_name("The Photographer").photos.each do |photo|
-      some_file = open( photo.photo_file.url(:original) )
-      SitePhoto.create(name: photo.name, photo_file: some_file)
+      f = open( photo.photo_file.url(:original) )
+      
+      File.rename(f,  "tmp/" + photo.name + ".jpg")
+      SitePhoto.create(name: photo.name, photo_file: "tmp/#{photo.name}.jpg")
     end
   end
   
