@@ -1,3 +1,4 @@
+require 'open-uri'
         
 namespace :dev_tasks do
 
@@ -16,6 +17,13 @@ namespace :dev_tasks do
   task :generate_large_thumbnails => :environment do
     Photo.all.each do |photo|
       photo.photo_file.reprocess! :large
+    end
+  end
+  
+  task :fuckme => :environment do
+    Gallery.find_by_name("The Photographer").photos.each do |photo|
+      
+      SitePhoto.create(name: photo.name, photo_file: open(photo.photo_file.url(:original)))
     end
   end
   
