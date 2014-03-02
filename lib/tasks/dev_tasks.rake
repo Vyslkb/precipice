@@ -23,7 +23,7 @@ namespace :dev_tasks do
   task :fuckme => :environment do
     Gallery.find_by_name("The Photographer").photos.each do |photo|
       
-      SitePhoto.create(name: photo.name, photo_file: open(photo.photo_file.url(:original)))
+      SitePhoto.create(name: photo.name, photo_file: URI.parse(photo.photo_file.url(:original)))
     end
   end
   
