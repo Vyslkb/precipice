@@ -16,7 +16,7 @@ module ApplicationHelper
       if @photo.try(:gallery).try(:collection).try(:name) == "Wedding"
         site_photo_name = "wedding_background"  
       elsif  
-        @photo.try(:gallery).try(:collection).try(:name) == "Portrait"
+        @photo.try(:gallery).try(:collection).try(:name) == "People"
         site_photo_name = "portrait_background"
       end
     end
@@ -25,7 +25,7 @@ module ApplicationHelper
       if @gallery.try(:collection).try(:name) == "Wedding"
         site_photo_name = "wedding_background"  
       elsif  
-        @gallery.try(:collection).try(:name) == "Portrait"
+        @gallery.try(:collection).try(:name) == "People"
         site_photo_name = "portrait_background"
       end
     end
@@ -34,7 +34,7 @@ module ApplicationHelper
       if @collection.name == "Wedding"
         site_photo_name = "wedding_background"  
       elsif  
-        @collection.name == "Portrait"
+        @collection.name == "People"
         site_photo_name = "portrait_background"
       end
     end
@@ -43,4 +43,13 @@ module ApplicationHelper
     end
     
   end
+  
+  
+  def facebook_share_button
+    if static_page_name == "home" || (controller_name == "photos" && action_name == "show" )
+      content_tag(:div, "", class: "fb-share-button horz-padding", data: {href: request.original_url, type: "button" })
+    end
+  end
+  
+  
 end

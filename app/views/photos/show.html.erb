@@ -61,7 +61,7 @@
 			<div class="row top-buffer">
 				<div class="col-md-5">
 					<div class="well well-transparent">
-						<h5>Order Prints:</h5>
+						<h5>Order Prints: (watermark in bottom right WILL NOT be printed)</h5>
 						<%= form_tag update_shopping_cart_path, method: :post, role: "form" do %>
 							<%= hidden_field_tag :cart_action, "add"%>
 							<%= select_tag "photo_print_option_id", 
