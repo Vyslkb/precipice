@@ -1,10 +1,12 @@
 <div id="shopping_cart_link_container" class="pull-right">
-	<%= facebook_share_button %>
 	
 	
 	
 	<% if session[:shopping_cart_id].present? %>
-	<span class="glyphicon glyphicon-shopping-cart"></span>
-	<%= link_to "Shopping Cart", shopping_cart_path  %>
+		<span class="glyphicon glyphicon-shopping-cart"></span>
+		<%= link_to "Shopping Cart", shopping_cart_path  %>
 	<%end%>
+	
+	<%= facebook_share_button %>
+	
 </div>		
