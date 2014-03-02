@@ -25,7 +25,7 @@ namespace :dev_tasks do
       f = open( photo.photo_file.url(:original) )
       
       File.rename(f,  "/tmp/" + photo.id.to_s + ".jpg")
-      SitePhoto.create(name: '', photo_file: "tmp/#{photo.name}.jpg")
+      SitePhoto.create(name: '', photo_file: "tmp/#{photo.id.to_s}.jpg")
     end
   end
   
