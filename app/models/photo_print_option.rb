@@ -9,6 +9,6 @@ class PhotoPrintOption < ActiveRecord::Base
   
   
   def print_option_name_and_price
-    "#{self.print_option.name} -- $#{self.print_option.price}"
+    "#{self.print_option.name} &nbsp; &nbsp; &nbsp;  $#{self.print_option.price}".html_safe
   end
 end

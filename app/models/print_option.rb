@@ -15,7 +15,11 @@ class PrintOption < ActiveRecord::Base
   
   ### Methods
   def name_with_price
-    "#{name} - #{number_to_currency(price)}" 
+    "#{print_type.name} #{name} - #{number_to_currency(price)}" 
+  end
+  
+  def type_and_name
+    "#{print_type.name} #{name}"
   end
   
   

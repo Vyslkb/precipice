@@ -61,7 +61,7 @@
 				    		<% PrintOption.all.each do |print_option|%>
 				    			<li class="list-group-item">
 				    				<%= check_box_tag "print_option_ids[]",print_option.id, f.object.print_option_ids.include?(print_option.id)  %>
-				    				<%= label_tag print_option.name %>
+				    				<%= label_tag print_option.type_and_name %>
 				    			</li>
 				    		<%end%>
 				    		</ul>
