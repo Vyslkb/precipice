@@ -20,6 +20,7 @@ class Photo < ActiveRecord::Base
    
   has_many :photo_print_options
   has_many :print_options, :through => :photo_print_options
+  has_many :print_types, :through => :print_options
    
   ### Validations
   validates_presence_of :name, :photo_file

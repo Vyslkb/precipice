@@ -79,6 +79,6 @@ class PrintOptionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def print_option_params
-      params.require(:print_option).permit(:name, :price, :add_to_photos)
+      params.require(:print_option).permit(:name, :price, :add_to_photos, :print_type_id)
     end
 end

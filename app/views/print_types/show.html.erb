@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @print_type.name %>
+</p>
+
+<p>
+  <strong>Display order:</strong>
+  <%= @print_type.display_order %>
+</p>
+
+<%= link_to 'Edit', edit_print_type_path(@print_type) %> |
+<%= link_to 'Back', print_types_path %>

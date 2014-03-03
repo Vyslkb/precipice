@@ -1,6 +1,8 @@
 class PrintOption < ActiveRecord::Base
   has_many :photo_print_options, :dependent => :destroy
   has_many :photos, :through => :photo_print_options
+  
+  belongs_to :print_type, :inverse_of => :print_options
 
   default_scope {order(:display_order)}
   

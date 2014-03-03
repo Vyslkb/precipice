@@ -1,5 +1,7 @@
 Precipice::Application.routes.draw do
   
+  resources :print_types
+
   resources :discount_codes
 
   get "errors/error_404"

@@ -1,0 +1,2 @@
+module PrintTypesHelper
+end
