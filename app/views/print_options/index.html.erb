@@ -12,12 +12,21 @@
 		</p>
 	</div>	
 	
-	<div class="col-md-7">
+	<div class="col-md-11">
 		<ul>
 			<%= form_tag update_order_print_options_path,  method: :put  do %>
 				<ul class="sortable list-group">
 					<% @print_options.each do |print_option|%>
 						<li class="list-group-item">
+							
+							
+							<span class="horz-padding">
+								<strong>
+									<%= print_option.try(:print_type).try(:name)%>	
+								</strong>
+								 
+							</span>
+							
 							<span class="horz-padding">
 								<%= print_option.name%> 
 							</span>
