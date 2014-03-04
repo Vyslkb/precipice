@@ -27,9 +27,7 @@
     
     
     <script>
-	  
-	  
-	  
+	  facebook_init();
 	  
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -150,14 +148,18 @@
           
 		            <!-- main right col -->
 		            <div class="column col-sm-10 col-xs-11" id="main">
+	                    <div id="background_image_container">
+							<%= set_background_image %>  			
+						</div>
+
 	                    <div class="full col-sm-9">
 	                        <!-- content -->                      
 	                      	<div class="row">
 	                        	<!-- main col left --> 
 	                        	<div class="col-sm-12">
-	            					<% render 'layouts/admin_nav_bar' if admin_signed_in?%>
-	            					<% render 'layouts/shopping_cart'%>		
-	            					<% yield %>
+	            					<%= render 'layouts/admin_nav_bar' if admin_signed_in?%>
+	            					<%= render 'layouts/shopping_cart'%>		
+	            					<%= yield %>
 	            				</div>
 	            			</div>
 	            		</div>   
