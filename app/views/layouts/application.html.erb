@@ -150,42 +150,17 @@
           
 		            <!-- main right col -->
 		            <div class="column col-sm-10 col-xs-11" id="main">
-		            	
-		            	
-		                <div id="background_image_container">
-							<%= set_background_image %>  			
-						</div>
-		                
-		                
-		                
-		                <div class="">
-		                    <div class="full col-sm-9">
-		                
-		                        <!-- content -->                      
-		                      	<div class="row">
-		                			<div class="col-sm-12">
-		            					
-		            				</div>
-		                			          
-		                        	<!-- main col left --> 
-		                        	<div class="col-sm-12">
-		            					<%= render 'layouts/admin_nav_bar' if admin_signed_in?%>
-		      
-		            					<%= render 'layouts/shopping_cart'%>	
-		            					
-		            					
-		            					<%= yield %>
-		            				</div>
-		            			</div>
-		            		</div>
-		            	</div>
-		            	
-		            			
-		            	
-		            	
-		            	
-		            	
-		            	   
+	                    <div class="full col-sm-9">
+	                        <!-- content -->                      
+	                      	<div class="row">
+	                        	<!-- main col left --> 
+	                        	<div class="col-sm-12">
+	            					<% render 'layouts/admin_nav_bar' if admin_signed_in?%>
+	            					<% render 'layouts/shopping_cart'%>		
+	            					<% yield %>
+	            				</div>
+	            			</div>
+	            		</div>   
 		            </div>
 		            <!-- /main -->
           
