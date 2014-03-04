@@ -25,6 +25,7 @@ before_filter :authenticate_admin!, only: [:index, :destroy]
       
       if photo_print_option.present?
         @shopping_cart.add(photo_print_option, photo_print_option.print_option.price)
+        @shopping_cart.apply_discount
       end
       
       #redirect_to shopping_cart_path
