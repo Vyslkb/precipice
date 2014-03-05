@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def server_error
+    reset_session
     
     respond_to do |format|
       format.html { render template: 'errors/internal_server_error', layout: 'layouts/application', status: 500 }
