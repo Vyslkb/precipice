@@ -7,9 +7,8 @@
 	    <title><%= content_for?(:title) ? yield(:title) : "Beyond The Precipice" %></title>
 	    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Beyond The Precipice" %>">
 	    
-	    <% if controller_name == "customer_orders"%>
+	    
 	    	<script type="text/javascript" src="https://js.stripe.com/v2/"></script> 
-	    <%end%>
 	    
 	    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
 	    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
