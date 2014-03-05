@@ -61,7 +61,11 @@
    				<div id="main" class="col-xs-10 col-xs-offset-2  ">	
    					<div class="row">
    						<div class="col-xs-11">
-   							<%= render 'layouts/admin_nav_bar'%>
+   							
+   							
+   							<%= render 'layouts/admin_nav_bar' if admin_signed_in?%>
+   							
+   							
    							<%= render 'layouts/top_links'%>
    							<%= yield %>
 						</div>
