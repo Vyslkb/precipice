@@ -1,0 +1,26 @@
+<ul class="nav  " id="menu-lg">          
+    
+    <li class="logo-image-nav">
+        <%= link_to root_url, class:"logo-image-link" do%>	
+			<%= image_tag 'logo.png', class:"logo-image"%>
+		<%end%>
+    </li>
+    
+    <% Collection.all.each do |collection|%>
+		<li>	
+			<%= link_to collection.name,  collection %>
+		</li>
+	<%end%>	
+    <li>
+		<%= link_to "Print Details",  page_path('print_details')%>
+	</li>
+    <li class="top-buffer-big">
+		<%= link_to "Philosophy", page_path('philosophy')%>
+	</li>
+	<li>
+		<%= link_to "Travel Quotes", page_path('travel_quotes') %>
+	</li>
+	<li>
+		<%= link_to "Contact", page_path('contact') %>
+	</li>
+</ul>

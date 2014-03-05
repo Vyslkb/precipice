@@ -38,7 +38,7 @@ maximize_slideshow = ->
  # aspect ratio is 2x3
  
  #Figure out height of other elements
- h = $(window).height() - 100 - $('#shopping_cart_link_container').height()
+ h = $(window).height() - 95 - $('#top_links_container').height()
  w = $(window).width()
  
  image_height = h

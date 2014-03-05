@@ -1,0 +1,39 @@
+#slideme {
+  overflow-y: auto;
+}
+
+
+.logo-image {
+  width: 100%;
+}
+
+.logo-image-link {
+  padding: 0px;
+}
+
+#sidebar {
+  padding: 0px;
+}
+
+
+
+
+#sidebar a {
+  color: #C8C8C8;
+  background-color:transparent;
+  padding-left: 25px;
+}
+#sidebar .nav li>a:hover {
+    color:#ffffff;
+    background-color:#1c1e22;
+}
+
+#sidebar .nav li> a.logo-image-link {
+    padding: 0px;  
+}
+
+#sidebar .nav li>a.logo-image-link:hover {
+    background-color: #000;
+}
+
+

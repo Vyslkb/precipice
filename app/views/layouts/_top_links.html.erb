@@ -1,0 +1,15 @@
+<div id="top_links_container" class="">
+	<span class="text-success  pull-left">
+		Free UPS ground shipping on all orders.
+	</span>
+	
+	
+	<span class="pull-right">
+		<% if session[:shopping_cart_id].present? %>
+			<span class="glyphicon glyphicon-shopping-cart"></span>
+			<%= link_to "Shopping Cart", shopping_cart_path  %>
+		<%end%>
+		
+		<%= facebook_share_button %>
+	</span>
+</div>		

@@ -1,5 +1,51 @@
+/**
+ @import url(https://fonts.googleapis.com/css?family=Arbutus+Slab);
+**/
 
-@import url(https://fonts.googleapis.com/css?family=Arbutus+Slab);
+#bg-container {
+ position: fixed;
+ top: 0px;
+ bottom: 0px;
+ z-index: -10; 
+ padding: 0px;
+ width: 100%;
+}
+
+#top_links_container {
+  padding-top: 10px;
+}
+
+
+#sidebar {
+ // border: 1px solid red;
+  top: 0px;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  //display: block;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #000;
+}
+
+.fixed {
+  position:fixed;
+}
+
+
+
+#main{
+  //border: 1px solid green;
+ padding-left: 20px;
+
+}
+
+
+.main-padding{
+   padding-left: 20px;
+}
+
 
 
 #background_image_container {
@@ -17,18 +63,6 @@
     height: 100%;
   }
 }
-
-
-.background-image {
-   
-}
-
-
-
-body {
-  padding-bottom: 100px;
-}
-
 
 
 #spinner {

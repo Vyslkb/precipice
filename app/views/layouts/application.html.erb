@@ -1,173 +1,73 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Beyond The Precipice" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Beyond The Precipice" %>">
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script> 
-    
-    
-    
-    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-    <%= csrf_meta_tags %>
-    <%= favicon_link_tag 'favicon.ico' %>
-    <%= tag :meta, :name => "stripe-key", :content => Rails.configuration.stripe[:publishable_key] %>
-    
-    <meta property="og:image" content="<%= "#{request.protocol}#{request.host_with_port}#{asset_path('logo_lg.png')}" %>" /> 
-    <meta property="og:title" content="Beyond The Precipice"/>
-    <meta property="og:url" content="http://www.beyondtheprecipice.com"/>
-    <meta property="og:site_name" content="Beyond The Precipice - Fine Art Photography"/>
-    <meta property="og:type" content="website"/>
-    
-    <meta property="og:image:type" content="image/png"/>
-	<meta property="og:image:width" content="824"/>
-	<meta property="og:image:height" content="824"/>
-    
-    
-    
-    <script>
-	  facebook_init();
-	  
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  	<head>
+	    
+	    
+	    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+	    <title><%= content_for?(:title) ? yield(:title) : "Beyond The Precipice" %></title>
+	    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Beyond The Precipice" %>">
+	    
+	    <% if controller_name == "customer_orders"%>
+	    	<script type="text/javascript" src="https://js.stripe.com/v2/"></script> 
+	    <%end%>
+	    
+	    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+	    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	    <%= csrf_meta_tags %>
+	    <%= favicon_link_tag 'favicon.ico' %>
+	    <%= tag :meta, :name => "stripe-key", :content => Rails.configuration.stripe[:publishable_key] %>
+	    
+	    <meta property="og:image" content="<%= "#{request.protocol}#{request.host_with_port}#{asset_path('logo_lg.png')}" %>" /> 
+	    <meta property="og:title" content="Beyond The Precipice"/>
+	    <meta property="og:url" content="http://www.beyondtheprecipice.com"/>
+	    <meta property="og:site_name" content="Beyond The Precipice - Fine Art Photography"/>
+	    <meta property="og:type" content="website"/>
+	    
+	    <meta property="og:image:type" content="image/png"/>
+		<meta property="og:image:width" content="824"/>
+		<meta property="og:image:height" content="824"/>
+        <script>
+		  
+		  facebook_init();
+		  
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-48350686-1', 'beyondtheprecipice.com');
+		  ga('send', 'pageview');
+		
+		</script>
 	
-	  ga('create', 'UA-48350686-1', 'beyondtheprecipice.com');
-	  ga('send', 'pageview');
-	
-	</script>
-    
-    
-  </head>
-  <body data-controller="<%= controller_name %>" data-action="<%= action_name %>" data-static-page="<%= static_page_name %>">	
-		
-		
-		
-		<div class="wrapper">
-    		<div class="box">
-        		<div class="row row-offcanvas row-offcanvas-left">
-		            <!-- sidebar -->
-		            <div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
-		              
-		              	<ul class="nav">
-		          			<li>
-		          				<a data-toggle="offcanvas" class="visible-xs text-center" >
-		          					<i class="glyphicon glyphicon-chevron-right"></i>
-		          				</a>
-		          			</li>
-		            	</ul>
-		               
-		                <ul class="nav hidden-xs" id="lg-menu">
-		                    
-		                    <li class="logo-image-nav hidden-xs">
-			                    <%= link_to root_url, class:"logo-image-link" do%>	
-									<%= image_tag 'logo.png', class:"logo-image"%>
-								<%end%>
-		                    </li>
-		                    
-		                    <li class="logo-image-nav visible-xs">
-		                  		<%= link_to root_url, class:"logo-image-link" do%>	
-									<%= image_tag 'mobile_logo.png', class:"logo-image"%>
-								<%end%>
-		                  	</li>
-		                    
-		                    <li class="logo-image-nav visible-xs hidden">
-			                    <%= link_to root_url, class:"logo-image-link" do%>	
-									<%= image_tag "mobile_logo.png", class:"logo-image"%>
-								<%end%>
-		                    </li>
-		                    
-		                    
-		                    <% Collection.all.each do |collection|%>
-								<li>	
-									<%= link_to collection.name,  collection %>
-								</li>
-								
-								<% if collection.name == 'Fine Art Prints'%>
-									<li>
-										<div class="text-info free-shipping">
-											<div class="">Free UPS ground shipping</div>
-											<div class="">on all orders.</div>
-								        </div>
-									</li>	
-								<%end%>	
-							<%end%>	
-		                    <li>
-								<%= link_to "Print Details",  page_path('print_details')%>
-							</li>
-		                    
-				        	
-				        	
-				        	<li class="top-buffer-big">
-								<%= link_to "Philosophy", page_path('philosophy')%>
-							</li>
-							<li>
-								<%= link_to "Travel Quotes", page_path('travel_quotes') %>
-							</li>
-							<li>
-								<%= link_to "Contact", page_path('contact') %>
-							</li>
-		                    
-		                    
-		                    
-		                </ul>
-		                
-		              
-		              	<!-- tiny only nav-->
-		              <ul class="nav visible-xs" id="xs-menu">
-		                  	<li>
-		                  		<%= link_to root_url, class:"logo-image-link" do%>	
-									<%= image_tag 'mobile_logo.png', class:"logo-image"%>
-								<%end%>
-		                  	</li>
-		                  	
-		                  	<% Collection.all.each do |collection|%>
-								<li>	
-									<%= link_to collection.name,  collection %>
-								</li>	
-							<%end%>	
-							<li>
-								<%= link_to "Print Details",  page_path('print_details')%>
-							</li>
-							
-							<li class="">
-								<%= link_to "Philosophy", page_path('philosophy')%>
-							</li>
-							<li>
-								<%= link_to "Travel Quotes", page_path('travel_quotes') %>
-							</li>
-							<li>
-								<%= link_to "Contact", page_path('contact') %>
-							</li>
-		                </ul>
-		              
-		            </div>
-		            <!-- /sidebar -->
-          
-		            <!-- main right col -->
-		            <div class="column col-sm-10 col-xs-11" id="main">
-	                    <div id="background_image_container">
-							<%= set_background_image %>  			
+  	</head>
+	<body data-controller="<%= controller_name %>" data-action="<%= action_name %>" data-static-page="<%= static_page_name %>">	
+   		<div id="fb-root"></div>
+   		
+   		<div class="container">
+   			<div class="row">
+   				<!-- Sidebar -->
+   				<div id="sidebar"  class="col-xs-2 fixed">
+   					<%= render 'layouts/sidebar_lg'%>
+   					<% render 'layouts/sidebar_xs'%>
+   				</div>
+   				<!-- End Sidebar -->
+   				
+   				<div id="bg-container" class="col-xs-10 col-xs-offset-2">
+   					<%= set_background_image %>  	
+   				</div>
+   				
+   				<!-- main -->
+   				<div id="main" class="col-xs-10 col-xs-offset-2  ">	
+   					<div class="row">
+   						<div class="col-xs-11">
+   							<%= render 'layouts/top_links'%>
+   							<%= yield %>
 						</div>
-
-	                    <div class="full col-sm-9">
-	                        <!-- content -->                      
-	                      	<div class="row">
-	                        	<!-- main col left --> 
-	                        	<div class="col-sm-12">
-	            					<%= render 'layouts/admin_nav_bar' if admin_signed_in?%>
-	            					<%= render 'layouts/shopping_cart'%>		
-	            					<%= yield %>
-	            				</div>
-	            			</div>
-	            		</div>   
-		            </div>
-		            <!-- /main -->
-          
-       			</div>
-    		</div>
-		</div>
-  </body>
+   					</div>
+   				</div>
+   				<!-- End Main -->
+   			</div>
+   		</div>
+  	</body>
 </html>

@@ -1,6 +1,6 @@
 root = exports ? this
 root.foo = -> 
-  alert 'Hello World'
+  alert 'Hello Worldsadfasdf'
 
 fb_root = null
 fb_events_bound = false
