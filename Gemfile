@@ -49,6 +49,10 @@ group :development do
   gem 'rails_layout'
 end
 
+group :production do
+  gem 'unicorn'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
