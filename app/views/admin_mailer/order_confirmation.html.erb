@@ -46,6 +46,7 @@
 				<th align="left">Quantity</th>
 				<th align="left"><a></a> </th>
 				<th align="left">Unit Price</th>
+				<th align="left">Subtotal</th>
 			</thead>
 			<tbody>	
 				
@@ -69,6 +70,9 @@
 						<td></td>
 						<td>
 							<%= number_to_currency customer_order_item.print_cost %>
+						</td>
+						<td>
+							<%= number_to_currency( customer_order_item.print_cost * customer_order_item.quantity) %>
 						</td>
 					</tr>
 				<%end%>

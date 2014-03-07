@@ -25,6 +25,11 @@
 				 <%end%>
 			<%end%>
 		</div>
+		<div class="col-xs-12 top-buffer">
+			<span class="horz-padding">
+				<%= gallery.description %>
+			</span>
+		</div>
 	</div>
 	
 	<% gallery.photos.use_gallery_order.limit(6).in_groups_of(3, false).each do |photo_group|%>

@@ -98,10 +98,16 @@ class CustomerOrdersController < ApplicationController
         
         
         format.html do
-           redirect_to order_complete_url(host: "beyondtheprecipice.com", 
+           if Rails.env.production?
+           
+            redirect_to order_complete_url(host: "beyondtheprecipice.com", 
                                           protocol: "http", 
                                           port: nil,
                                           co: @customer_order.id)
+           else
+             redirect_to order_complete_url(co: @customer_order.id)
+           end
+                                          
         end
         
         format.json { render action: 'show', status: :created, location: @customer_order }

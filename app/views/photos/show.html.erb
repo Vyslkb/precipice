@@ -11,13 +11,29 @@
 				  <li><%= link_to @photo.gallery.collection.name, @photo.gallery.collection  %></li>
 				  <li><%= link_to @photo.gallery.name, @photo.gallery %></li>
 				  <li class="active"><%= @photo.name%></li>
-				  <li>
+				  <li id="blueimp-links">
 				  	<% @photo.gallery.photos.use_gallery_order.each do |photo|%>
-						<span class="  <%= "hidden" unless photo == @photo %>">
-							<%= link_to photo.photo_file.url(:large), {class: "text-info", title: photo.name, data:{gallery: ""} } do %>	
-								<span>gallery slideshow</span>
-							<%end%>			
-						</span>
+						
+							
+							
+							<%= link_to photo.photo_file.url(:large), 
+								{
+								
+								class: "text-info", 
+								 
+								 
+								 title:"#{photo.name}" , 
+								 data:{gallery: "", 
+								 	   description: photo.description} 
+								} do %>	
+								
+								<% if  photo == @photo %>
+									<span>gallery slideshow</span>
+								<%end %>
+							<%end%>
+							
+										
+						
 					<%end%>
 				  </li>
 				</ol>
@@ -61,7 +77,12 @@
 			<div class="row top-buffer">
 				<div class="col-md-6">
 					<div class="well well-transparent">
-						<h5>Order Prints: (watermark in bottom right WILL NOT be printed)</h5>
+						<div><strong>Order Prints:</strong>
+							 </div>
+						<div class="horz-padding">
+							- Watermark in bottom right WILL NOT be printed.
+						</div>
+						
 						<%= form_tag update_shopping_cart_path, method: :post, role: "form" do %>
 							<%= hidden_field_tag :cart_action, "add"%>
 							
@@ -70,7 +91,7 @@
 							
 								grouped_options_for_select(generate_grouped_options),
 								
-								class: "form-control"%>
+								class: "form-control top-buffer"%>
 							
 							
 							

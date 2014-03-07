@@ -74,7 +74,8 @@
 								<th>Photo</th>
 								<th>Print Type</th>
 								<th>Quantity</th>
-								<th>Price</th>
+								<th>Unit Price</th>
+								<th>Subtotal</th>
 							</thead>
 							<tbody>
 								<% @customer_order.customer_order_items.each do |customer_order_item| %>
@@ -94,6 +95,9 @@
 										</td>
 										<td>
 											<%= number_to_currency customer_order_item.print_cost %>
+										</td>
+										<td>
+											<%= number_to_currency( customer_order_item.print_cost *  customer_order_item.quantity) %>
 										</td>
 									</tr>
 								<%end%>

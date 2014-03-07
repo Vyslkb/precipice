@@ -6,6 +6,7 @@
 					<th>Print Type</th>
 					<th>Quantity</th>
 					<th>Unit Price</th>
+					<th>Subtotal</th>
 					
 				</thead>
 				<tbody>
@@ -48,6 +49,9 @@
 								<span class="<%= 'text-success' if @shopping_cart.discount_code.present?%>">	
 									<%= number_to_currency shopping_cart_item.price %>
 								</span>	
+							</td>
+							<td>
+								<%= number_to_currency(shopping_cart_item.price * shopping_cart_item.quantity) %>
 							</td>
 					
 						</tr>
