@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
 //= require bootstrap.min
 //= require jquery.blueimp-gallery.min
@@ -20,5 +19,4 @@
 //= require additional-methods.min
 //= require jquery.payment
 //= require jquery.sortable
-//= require turbolinks
 //= require_tree .
