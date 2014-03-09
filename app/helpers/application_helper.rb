@@ -79,7 +79,7 @@ module ApplicationHelper
         og[:site_name] = "Beyond The Precipice"
         og[:description] = "Fine Art Photography - #{@photo.name}"
         og[:type] = "website"
-        og[:image] = @photo.photo_file.url(:original)
+        og[:image] = @photo.photo_file.url(:original).gsub("https", "http")
         og[:image_type] = "image/jpg"
         
         if Rails.env.production?
