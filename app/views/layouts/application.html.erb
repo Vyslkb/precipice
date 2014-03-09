@@ -45,13 +45,24 @@
   	</head>
 	<body data-controller="<%= controller_name %>" data-action="<%= action_name %>" data-static-page="<%= static_page_name %>">	
    		<div id="fb-root"></div>
-		<script>(function(d, s, id) {
-			  var js, fjs = d.getElementsByTagName(s)[0];
-			  if (d.getElementById(id)) return;
-			  js = d.createElement(s); js.id = id;
-			  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1454658354765943";
-			  fjs.parentNode.insertBefore(js, fjs);
-			}(document, 'script', 'facebook-jssdk'));
+		<script>
+			window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1454658354765943',
+          status     : true,
+          xfbml      : true
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/all.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+			
+			
 		</script>
    		
    		<div class="container">
