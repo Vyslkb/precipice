@@ -44,6 +44,7 @@ GEM
       tzinfo (~> 0.3.37)
     acts_as_shopping_cart (0.2.0)
       activerecord (~> 4.0.0)
+    addressable (2.3.5)
     arel (4.0.1)
     atomic (1.1.14)
     aws-sdk (1.11.1)
@@ -74,6 +75,8 @@ GEM
       actionmailer (>= 3.0.4)
       activesupport (>= 3.0.4)
     execjs (2.0.2)
+    fastimage (1.6.1)
+      addressable (~> 2.3, >= 2.3.5)
     friendly_id (5.0.2)
       activerecord (~> 4.0.0)
     high_voltage (2.1.0)
@@ -177,6 +180,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   exception_notification
+  fastimage
   friendly_id (~> 5.0.0)
   griddler!
   high_voltage

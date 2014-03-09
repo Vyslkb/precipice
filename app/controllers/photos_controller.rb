@@ -1,3 +1,5 @@
+require 'fastimage'
+
 class PhotosController < ApplicationController
   before_action :set_photo, only: [:show, :edit, :update, :destroy, :show_full_size]
   before_action :massage_gallery_order, only: :update
@@ -19,6 +21,7 @@ class PhotosController < ApplicationController
   # GET /photos/1
   # GET /photos/1.json
   def show   
+    
   end
   
   def manage_slideshow

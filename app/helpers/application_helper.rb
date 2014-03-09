@@ -1,4 +1,8 @@
+require 'fastimage'
+
 module ApplicationHelper
+  
+  
   def static_page_name
     if controller_name == "pages"
       static_page_name = params[:id]
@@ -49,6 +53,43 @@ module ApplicationHelper
     if static_page_name == "home" || (controller_name == "photos" && action_name == "show" )
       content_tag(:div, "", class: "fb-share-button horz-padding", data: {href: request.original_url, type: "button" })
     end
+  end
+  
+  def open_graph_values
+    og = {}
+    
+    
+      og[:title] = "Beyond The Precipice"
+      og[:url] = "http://www.beyondtheprecipice.com"
+      og[:site_name] = "Beyond The Precipice"
+      og[:description] = "Fine Art Photography"
+      og[:type] = "website"
+      og[:image] = "#{request.protocol}#{request.host_with_port}#{asset_path('fb_share_logo.png')}"
+      og[:image_type] = "image/png"
+      og[:image_width] = "1388"
+      og[:image_height] = "729"
+      
+      
+      
+    if controller_name == "photos"
+      if action_name == "show"
+        
+        og[:title] = "Beyond The Precipice"
+        og[:url] = "#{request.protocol}#{request.host_with_port}#{photo_path(@photo)}"
+        og[:site_name] = "Beyond The Precipice"
+        og[:description] = "Fine Art Photography - #{@photo.name}"
+        og[:type] = "website"
+        og[:image] = @photo.photo_file.url(:original)
+        og[:image_type] = "image/jpg"
+        
+        if Rails.env.production?
+          og[:image_width] = FastImage.size(@photo.photo_file.url(:original))[0]
+          og[:image_height] = FastImage.size(@photo.photo_file.url(:original))[1]
+        end
+      end
+    end
+  
+    og  
   end
   
   

@@ -44,13 +44,15 @@ gem 'acts_as_shopping_cart', '~> 0.2.0'
 gem 'friendly_id', '~> 5.0.0'
 gem 'griddler', github: 'thoughtbot/griddler'
 gem 'exception_notification'
+gem 'fastimage'
+
 
 group :development do
   gem 'rails_layout'
 end
 
 group :production do
-  gem 'unicorn'
+  #gem 'unicorn'
 end
 
 # Use ActiveModel has_secure_password
