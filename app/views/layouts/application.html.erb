@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html>
   	<head>
-	    
-	    
 	    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
 	    <title>
 	    	<%= content_for?(:title) ? yield(:title) : "Beyond The Precipice - Fine Art Photography" %>
 	    </title>
+	    
 	    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "" %>">
-	    
-	    
-	    	<script type="text/javascript" src="https://js.stripe.com/v2/"></script> 
+	    <script type="text/javascript" src="https://js.stripe.com/v2/"></script> 
 	    
 	    <%= stylesheet_link_tag "application", media: "all" %>
 	    <%= javascript_include_tag "application" %>
@@ -47,22 +44,20 @@
    		<div id="fb-root"></div>
 		<script>
 			window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '1454658354765943',
-          status     : true,
-          xfbml      : true
-        });
-      };
-
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/all.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-			
-			
+		        FB.init({
+		          appId      : '1454658354765943',
+		          status     : true,
+		          xfbml      : true
+		        });
+		      };
+		
+		      (function(d, s, id){
+		         var js, fjs = d.getElementsByTagName(s)[0];
+		         if (d.getElementById(id)) {return;}
+		         js = d.createElement(s); js.id = id;
+		         js.src = "//connect.facebook.net/en_US/all.js";
+		         fjs.parentNode.insertBefore(js, fjs);
+		       }(document, 'script', 'facebook-jssdk'));
 		</script>
    		
    		<div class="container">
@@ -70,7 +65,6 @@
    				<!-- Sidebar -->
    				<div id="sidebar"  class="col-xs-2 fixed">
    					<%= render 'layouts/sidebar_lg'%>
-   					<% render 'layouts/sidebar_xs'%>
    				</div>
    				<!-- End Sidebar -->
    				
@@ -82,11 +76,7 @@
    				<div id="main" class="col-xs-10 col-xs-offset-2  ">	
    					<div class="row">
    						<div class="col-xs-11">
-   							
-   							
-   							<%= render 'layouts/admin_nav_bar' if admin_signed_in?%>
-   							
-   							
+   							<%= render 'layouts/admin_nav_bar' if admin_signed_in?%>   							
    							<%= render 'layouts/top_links'%>
    							<%= yield %>
 						</div>
