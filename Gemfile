@@ -52,7 +52,7 @@ group :development do
 end
 
 group :production do
-  gem 'unicorn'
+  #gem 'unicorn'
 end
 
 # Use ActiveModel has_secure_password
