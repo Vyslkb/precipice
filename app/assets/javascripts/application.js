@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.turbolinks
 //= require bootstrap.min
 //= require jquery.blueimp-gallery.min
 //= require bootstrap-image-gallery.min
