@@ -44,7 +44,7 @@
 			<div class="col-md-5">
 				<ul class="pager without-margin">
 					<li class="<%= ""  if @photo.gallery_order == 1 %>">  		
-			  			<%= link_to "&laquo; Previous ".html_safe, photo_path(@photo.previous_photo, jump: "true")  %>
+			  			<%= link_to "&laquo; Previous ".html_safe, photo_path(@photo.previous_photo)  %>
 			  		</li>
 					<li class="horz-padding">
 				  		<%= @photo.gallery_order %> of <%= @photo.gallery.photos.count %>
